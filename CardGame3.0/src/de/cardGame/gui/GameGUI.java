@@ -118,7 +118,9 @@ public class GameGUI extends GUI implements ActionListener {
 		CardPath.setForeground(new Color(0x06A666));
 		CardPath.addActionListener(this);
 		CardPath.setIcon(new IconManager(IconPath.CardPathx32).getImageIcon());
-		CardPath.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		CardPath.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN,
+				20));
+
 		Settings = new JMenuItem(Words.get(WordTypes.Settings));
 		Settings.setBackground(CardGame.BackgroundColor);
 		Settings.setFocusable(false);
@@ -127,6 +129,7 @@ public class GameGUI extends GUI implements ActionListener {
 		Settings.addActionListener(this);
 		Settings.setIcon(new IconManager(IconPath.Settingsx32).getImageIcon());
 		Settings.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
 		Startscreen = new JMenuItem(Words.get(WordTypes.StartScreen));
 		Startscreen.setBackground(CardGame.BackgroundColor);
 		Startscreen.setFocusable(false);
@@ -135,6 +138,7 @@ public class GameGUI extends GUI implements ActionListener {
 		Startscreen.setForeground(new Color(0x06A666));
 		Startscreen.setIcon(new IconManager(IconPath.Startscreenx32).getImageIcon());
 		Startscreen.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
 		ProgrammedByHelp = new JMenuItem(Words.get(WordTypes.ProgrammedBy));
 		ProgrammedByHelp.setBackground(CardGame.BackgroundColor);
 		ProgrammedByHelp.setFocusable(false);
@@ -142,6 +146,7 @@ public class GameGUI extends GUI implements ActionListener {
 		ProgrammedByHelp.setForeground(new Color(0x06A666));
 		ProgrammedByHelp.setIcon(new IconManager(IconPath.ProgrammedByx32).getImageIcon());
 		ProgrammedByHelp.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
 		KeyUse = new JMenuItem(Words.get(WordTypes.KeyUse));
 		KeyUse.setBackground(CardGame.BackgroundColor);
 		KeyUse.setFocusable(false);
@@ -149,6 +154,7 @@ public class GameGUI extends GUI implements ActionListener {
 		KeyUse.setForeground(new Color(0x06A666));
 		KeyUse.setIcon(new IconManager(IconPath.KeyUsex32).getImageIcon());
 		KeyUse.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
 		PageBack = new JMenuItem(Words.get(WordTypes.PageBack));
 		PageBack.setBackground(CardGame.BackgroundColor);
 		PageBack.setFocusable(false);
@@ -157,6 +163,7 @@ public class GameGUI extends GUI implements ActionListener {
 		PageBack.setMnemonic(KeyEvent.VK_Z);
 		PageBack.setIcon(new IconManager(IconPath.CardBackx32).getImageIcon());
 		PageBack.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
 		kannstdulesen = new JMenuItem(Words.get(WordTypes.KannstDuLesen));
 		kannstdulesen.setBackground(CardGame.BackgroundColor);
 		kannstdulesen.setFocusable(false);
@@ -335,6 +342,19 @@ public class GameGUI extends GUI implements ActionListener {
 			Storybtn.setText(C.getText());
 		}
 		this.frame.setVisible(true);
+	}
+
+	public JMenuItem setupJMenuItem(String arg0, int keyEvent, IconPath iconpath) {
+		JMenuItem jMenuitem = new JMenuItem(arg0);
+		jMenuitem.setBackground(CardGame.BackgroundColor);
+		jMenuitem.setFocusable(false);
+		jMenuitem.setMnemonic(keyEvent);
+		jMenuitem.setForeground(new Color(0x06A666));
+		jMenuitem.addActionListener(this);
+		jMenuitem.setIcon(new IconManager(iconpath).getImageIcon());
+		jMenuitem.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
+		return jMenuitem;
 	}
 
 	public JLabel setupJLabel(String text, int arg0, int arg1) {
