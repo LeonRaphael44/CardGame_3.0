@@ -355,6 +355,19 @@ public class GameGUI extends GUI implements ActionListener {
 		this.frame.setVisible(true);
 	}
 
+	public JLabel setupJLabel() {
+		JLabel jLabel = new JLabel();
+		jLabel.setText("© Copyright 2021 Timon Filz");
+		jLabel.setPreferredSize(new Dimension(220, 20));
+		jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
+		jLabel.setForeground(new Color(0x808000));
+		jLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		jLabel.setVerticalTextPosition(SwingConstants.TOP);
+		jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+
+		return jLabel;
+	}
+
 	public JButton setupAbcButton(String button) {
 		JButton jButton = new JButton();
 		switch (button) {
