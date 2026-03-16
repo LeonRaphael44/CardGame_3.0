@@ -181,32 +181,13 @@ public class GameGUI extends GUI implements ActionListener {
 
 		this.frame.setJMenuBar(menuBar);
 
-		StoryCreator = new JLabel();
-		StoryCreator.setText(Words.get(WordTypes.StoryBasedOn));
-		StoryCreator.setPreferredSize(new Dimension(400, 20));
-		StoryCreator.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-		StoryCreator.setForeground(new Color(0x808000));
-		StoryCreator.setHorizontalAlignment(SwingConstants.CENTER);
-		StoryCreator.setVerticalTextPosition(SwingConstants.TOP);
-		StoryCreator.setHorizontalTextPosition(SwingConstants.CENTER);
+		// the text while the game is running (below button C)
 
-		ProgrammedBy = new JLabel();
-		ProgrammedBy.setText("© Copyright 2021 Timon Filz");
-		ProgrammedBy.setPreferredSize(new Dimension(220, 20));
-		ProgrammedBy.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-		ProgrammedBy.setForeground(new Color(0x808000));
-		ProgrammedBy.setHorizontalAlignment(SwingConstants.CENTER);
-		ProgrammedBy.setVerticalTextPosition(SwingConstants.TOP);
-		ProgrammedBy.setHorizontalTextPosition(SwingConstants.CENTER);
+		StoryCreator = setupJLabel(Words.get(WordTypes.StoryBasedOn), 400, 20);
 
-		PlaceHolderProgrammedBy = new JLabel();
-		PlaceHolderProgrammedBy.setText("");
-		PlaceHolderProgrammedBy.setPreferredSize(new Dimension(220, 20));
-		PlaceHolderProgrammedBy.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-		PlaceHolderProgrammedBy.setForeground(new Color(0x808000));
-		PlaceHolderProgrammedBy.setHorizontalAlignment(SwingConstants.CENTER);
-		PlaceHolderProgrammedBy.setVerticalTextPosition(SwingConstants.TOP);
-		PlaceHolderProgrammedBy.setHorizontalTextPosition(SwingConstants.CENTER);
+		ProgrammedBy = setupJLabel("© Copyright 2021 Timon Filz", 220, 20);
+
+		PlaceHolderProgrammedBy = setupJLabel("Placeholder", 220, 20);
 
 		PanelmainNorth.setLayout(new BorderLayout());
 		PanelmainSouth.setLayout(new BorderLayout());
@@ -260,6 +241,7 @@ public class GameGUI extends GUI implements ActionListener {
 		contentPanelBottom_Right.setLayout(new GridLayout(3, 1, 10, 10));
 		contentPanelBottom_Right.setBackground(CardGame.BackgroundColor);
 
+		// the buttons for choosing
 		Abtn = setupAbcButton("A");
 
 		Bbtn = setupAbcButton("B");
@@ -355,10 +337,10 @@ public class GameGUI extends GUI implements ActionListener {
 		this.frame.setVisible(true);
 	}
 
-	public JLabel setupJLabel(String text) {
+	public JLabel setupJLabel(String text, int arg0, int arg1) {
 		JLabel jLabel = new JLabel();
 		jLabel.setText(text);
-		jLabel.setPreferredSize(new Dimension(220, 20));
+		jLabel.setPreferredSize(new Dimension(arg0, arg1));
 		jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
 		jLabel.setForeground(new Color(0x808000));
 		jLabel.setHorizontalAlignment(SwingConstants.CENTER);
