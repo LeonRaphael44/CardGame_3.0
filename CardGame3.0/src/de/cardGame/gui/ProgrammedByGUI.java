@@ -26,7 +26,7 @@ import de.cardGame.utils.sprachausgabe.TextType;
 import de.cardGame.utils.words.WordTypes;
 import de.cardGame.utils.words.Words;
 
-public class ProgrammedByGUI implements ActionListener {
+public class ProgrammedByGUI extends GUI implements ActionListener {
 
 	private JFrame frame;
 	private JPanel framePanel = new JPanel();
@@ -117,19 +117,6 @@ public class ProgrammedByGUI implements ActionListener {
 		framePanel.add(contentPanel, BorderLayout.CENTER);
 
 		this.frame.add(framePanel);
-	}
-
-	public JLabel setupJLabel(String setText, Color setBackgroundForJLabel) {
-		JLabel jLabel = new JLabel();
-		jLabel.setText(setText);
-		jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 24));
-		jLabel.setBackground(setBackgroundForJLabel);
-		jLabel.setOpaque(true);
-		jLabel.setForeground(Color.green);
-		jLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-
-		return jLabel;
 	}
 
 	public JFrame getFrame() {
