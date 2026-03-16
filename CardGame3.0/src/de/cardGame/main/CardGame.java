@@ -15,24 +15,24 @@ import de.cardGame.cards.generate.CardGenEn;
 import de.cardGame.gui.StartScreenGUI;
 import de.cardGame.utils.settings.Settings;
 
-
 public class CardGame {
 
 	private static Settings st;
 	private static JFrame GUI;
-	public static Color BackgroundColor,BackgroudColorMatch2;
-	private static GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+	public static Color BackgroundColor, BackgroudColorMatch2;
+	private static GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment()
+			.getDefaultScreenDevice();
 	public static ArrayList<Card> cards = new ArrayList<>();
-	
+
 	public static void main(String[] args) {
 		st = new Settings();
 		st.load();
-		if(st.getLanguage().equalsIgnoreCase("De_de")) {
+		if (st.getLanguage().equalsIgnoreCase("De_de")) {
 			CardGenDe.generateCards(true);
-		}else if(st.getLanguage().equalsIgnoreCase("En_en")) {
+		} else if (st.getLanguage().equalsIgnoreCase("En_en")) {
 			CardGenEn.generateCards(true);
 		}
-		setBackgroundColor(false,null);
+		setBackgroundColor(false, null);
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
@@ -40,7 +40,7 @@ public class CardGame {
 				setGUI(new StartScreenGUI(null).getFrame());
 			}
 		}, 1000);
-		
+
 		Timer timer2 = new Timer();
 		timer2.schedule(new TimerTask() {
 			@Override
@@ -48,9 +48,9 @@ public class CardGame {
 				getGUI().setSize(1053, 597);
 			}
 		}, 1250);
-		
+
 	}
-	
+
 	public static Settings getSettings() {
 		return st;
 	}
@@ -62,42 +62,39 @@ public class CardGame {
 	public static JFrame getGUI() {
 		return GUI;
 	}
-	
+
 	public static void setGUI(JFrame gui) {
 		GUI = gui;
 	}
-	
-	public static Color setBackgroundColor(boolean IsNew,String Typ) {
-		if(!IsNew) {
-			if(st.getDesign().equalsIgnoreCase("Dunkel")) {
+
+	public static Color setBackgroundColor(boolean IsNew, String Typ) {
+		if (!IsNew) {
+			if (st.getDesign().equalsIgnoreCase("Dunkel")) {
 				BackgroudColorMatch2 = new Color(0x505050);
 				BackgroundColor = Color.DARK_GRAY;
 				return Color.DARK_GRAY;
-			}else if(st.getDesign().equalsIgnoreCase("Hell")){
+			} else if (st.getDesign().equalsIgnoreCase("Hell")) {
 				BackgroudColorMatch2 = new Color(0x808080);
 				BackgroundColor = Color.WHITE;
 				return Color.WHITE;
-			}else {
+			} else {
 				return Color.RED;
 			}
-		}else {
-			if(Typ.equalsIgnoreCase("Dunkel")) {
+		} else {
+			if (Typ.equalsIgnoreCase("Dunkel")) {
 				BackgroudColorMatch2 = new Color(0x505050);
 				BackgroundColor = Color.DARK_GRAY;
 				return Color.DARK_GRAY;
-			}else if(Typ.equalsIgnoreCase("Hell")){
+			} else if (Typ.equalsIgnoreCase("Hell")) {
 				BackgroudColorMatch2 = new Color(0x808080);
 				BackgroundColor = Color.WHITE;
 				return Color.WHITE;
-			}else {
+			} else {
 				return Color.RED;
 			}
 		}
 	}
 
-	
-
 }
-
 
 // test cooment for commit
