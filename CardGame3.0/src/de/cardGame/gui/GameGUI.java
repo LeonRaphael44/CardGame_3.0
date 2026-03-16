@@ -33,7 +33,7 @@ import de.cardGame.utils.sprachausgabe.TextType;
 import de.cardGame.utils.words.WordTypes;
 import de.cardGame.utils.words.Words;
 
-public class GameGUI implements ActionListener {
+public class GameGUI extends GUI implements ActionListener {
 
 	private JFrame frame;
 	private JLabel StoryCreator, ProgrammedBy, PlaceHolderProgrammedBy;
@@ -260,71 +260,17 @@ public class GameGUI implements ActionListener {
 		contentPanelBottom_Right.setLayout(new GridLayout(3, 1, 10, 10));
 		contentPanelBottom_Right.setBackground(CardGame.BackgroundColor);
 
-		Abtn = new JButton();
-		Abtn.setText(CardGame.cards.get(0).getAntwortA());
-		Abtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
-		Abtn.setForeground(new Color(0x06A666));
-		Abtn.setBackground(CardGame.BackgroudColorMatch2);
-		Abtn.setHorizontalAlignment(SwingConstants.LEFT);
-		Abtn.setVerticalTextPosition(SwingConstants.CENTER);
-		Abtn.setVerticalAlignment(SwingConstants.CENTER);
-		Abtn.setHorizontalTextPosition(SwingConstants.LEFT);
-		Abtn.setFocusable(false);
-		Abtn.addActionListener(this);
-		Abtn.setBorder(BorderFactory.createEmptyBorder());
+		Abtn = setupAbcButton("A");
 
-		Bbtn = new JButton();
-		Bbtn.setText(CardGame.cards.get(0).getAntwortB());
-		Bbtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
-		Bbtn.setForeground(new Color(0x06A666));
-		Bbtn.setBackground(CardGame.BackgroudColorMatch2);
-		Bbtn.setHorizontalAlignment(SwingConstants.LEFT);
-		Bbtn.setVerticalTextPosition(SwingConstants.CENTER);
-		Bbtn.setVerticalAlignment(SwingConstants.CENTER);
-		Bbtn.setHorizontalTextPosition(SwingConstants.LEFT);
-		Bbtn.setFocusable(false);
-		Bbtn.addActionListener(this);
-		Bbtn.setBorder(BorderFactory.createEmptyBorder());
+		Bbtn = setupAbcButton("B");
 
-		Cbtn = new JButton();
-		Cbtn.setText(CardGame.cards.get(0).getAntwortC());
-		Cbtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
-		Cbtn.setForeground(new Color(0x06A666));
-		Cbtn.setBackground(CardGame.BackgroudColorMatch2);
-		Cbtn.setHorizontalAlignment(SwingConstants.LEFT);
-		Cbtn.setVerticalTextPosition(SwingConstants.CENTER);
-		Cbtn.setVerticalAlignment(SwingConstants.CENTER);
-		Cbtn.setHorizontalTextPosition(SwingConstants.LEFT);
-		Cbtn.setFocusable(false);
-		Cbtn.addActionListener(this);
-		Cbtn.setBorder(BorderFactory.createEmptyBorder());
+		Cbtn = setupAbcButton("C");
 
-		VorlesenAbtn = new JButton();
-		VorlesenAbtn.setForeground(new Color(0x06A666));
-		VorlesenAbtn.setBackground(CardGame.BackgroudColorMatch2);
-		VorlesenAbtn.setFocusable(false);
-		VorlesenAbtn.setMnemonic('a');
-		VorlesenAbtn.addActionListener(this);
-		VorlesenAbtn.setIcon(new IconManager(IconPath.Playx64).getImageIcon());
-		VorlesenAbtn.setBorder(BorderFactory.createEmptyBorder());
+		VorlesenAbtn = setupVorleseButton('a');
 
-		VorlesenBbtn = new JButton();
-		VorlesenBbtn.setForeground(new Color(0x06A666));
-		VorlesenBbtn.setBackground(CardGame.BackgroudColorMatch2);
-		VorlesenBbtn.setFocusable(false);
-		VorlesenBbtn.setMnemonic('b');
-		VorlesenBbtn.addActionListener(this);
-		VorlesenBbtn.setIcon(new IconManager(IconPath.Playx64).getImageIcon());
-		VorlesenBbtn.setBorder(BorderFactory.createEmptyBorder());
+		VorlesenBbtn = setupVorleseButton('b');
 
-		VorlesenCbtn = new JButton();
-		VorlesenCbtn.setForeground(new Color(0x06A666));
-		VorlesenCbtn.setBackground(CardGame.BackgroudColorMatch2);
-		VorlesenCbtn.setFocusable(false);
-		VorlesenCbtn.setMnemonic('c');
-		VorlesenCbtn.addActionListener(this);
-		VorlesenCbtn.setIcon(new IconManager(IconPath.Playx64).getImageIcon());
-		VorlesenCbtn.setBorder(BorderFactory.createEmptyBorder());
+		VorlesenCbtn = setupVorleseButton('c');
 
 		contentPanelBottom_Right.add(Abtn);
 		contentPanelBottom_Right.add(Bbtn);
@@ -348,10 +294,6 @@ public class GameGUI implements ActionListener {
 		this.frame.add(framePanel);
 
 		setCardText(0);
-	}
-
-	public JFrame getFrame() {
-		return frame;
 	}
 
 	public void setCardText(int id) {
@@ -411,6 +353,49 @@ public class GameGUI implements ActionListener {
 			Storybtn.setText(C.getText());
 		}
 		this.frame.setVisible(true);
+	}
+
+	public JButton setupAbcButton(String button) {
+		JButton jButton = new JButton();
+		switch (button) {
+			case "A":
+				jButton.setText(CardGame.cards.get(0).getAntwortA());
+				break;
+			case "B":
+				jButton.setText(CardGame.cards.get(0).getAntwortB());
+				break;
+			case "C":
+				jButton.setText(CardGame.cards.get(0).getAntwortC());
+				break;
+		}
+
+		jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+		jButton.setForeground(new Color(0x06A666));
+		jButton.setBackground(CardGame.BackgroudColorMatch2);
+		jButton.setHorizontalAlignment(SwingConstants.LEFT);
+		jButton.setVerticalTextPosition(SwingConstants.CENTER);
+		jButton.setVerticalAlignment(SwingConstants.CENTER);
+		jButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		jButton.setFocusable(false);
+		jButton.addActionListener(this);
+		jButton.setBorder(BorderFactory.createEmptyBorder());
+
+		return jButton;
+	}
+	// * The value of button has to be in lowercase
+	// and also in ' ' not in " " */
+
+	public JButton setupVorleseButton(char button) {
+		JButton jButton = new JButton();
+		jButton.setForeground(new Color(0x06A666));
+		jButton.setBackground(CardGame.BackgroudColorMatch2);
+		jButton.setFocusable(false);
+		jButton.setMnemonic(button);
+		jButton.addActionListener(this);
+		jButton.setIcon(new IconManager(IconPath.Playx64).getImageIcon());
+		jButton.setBorder(BorderFactory.createEmptyBorder());
+
+		return jButton;
 	}
 
 	private boolean vorgelesenA = false, vorgelesenB = false, vorgelesenC = false;
