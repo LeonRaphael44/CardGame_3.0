@@ -149,20 +149,11 @@ public class KeyUseGUI {
 		PanelmainNorth.setPreferredSize(new Dimension(20, 100));
 		PanelmainNorth.add(titellbl);
 
-		PanelmainEast = new JPanel();
-		PanelmainEast.setBackground(CardGame.BackgroundColor);
-		PanelmainEast.setLayout(new BorderLayout());
-		PanelmainEast.setPreferredSize(new Dimension(20, 20));
+		PanelmainEast = setupJPanel();
 
-		PanelmainWest = new JPanel();
-		PanelmainWest.setBackground(CardGame.BackgroundColor);
-		PanelmainWest.setLayout(new BorderLayout());
-		PanelmainWest.setPreferredSize(new Dimension(20, 20));
+		PanelmainWest = setupJPanel();
 
-		PanelmainSouth = new JPanel();
-		PanelmainSouth.setBackground(CardGame.BackgroundColor);
-		PanelmainSouth.setLayout(new BorderLayout());
-		PanelmainSouth.setPreferredSize(new Dimension(20, 20));
+		PanelmainSouth = setupJPanel();
 		// new Color(0x505050)
 		contentPanel = new JPanel();
 		contentPanel.setBackground(CardGame.BackgroundColor);
@@ -192,8 +183,13 @@ public class KeyUseGUI {
 		this.frame.add(framePanel);
 	}
 
-	public JFrame getFrame() {
-		return frame;
+	public JPanel setupJPanel() {
+		JPanel jPanel = new JPanel();
+		jPanel.setBackground(CardGame.BackgroundColor);
+		jPanel.setLayout(new BorderLayout());
+		jPanel.setPreferredSize(new Dimension(20, 20));
+
+		return jPanel;
 	}
 
 	public void Close() {

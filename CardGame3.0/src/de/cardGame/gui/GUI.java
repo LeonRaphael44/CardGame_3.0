@@ -1,9 +1,12 @@
 package de.cardGame.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -12,8 +15,17 @@ import de.cardGame.main.CardGame;
 
 public abstract class GUI {
 
-    public JPanel setuJPanel() {
+    private JFrame frame;
+
+    public GUI() {
+        this.frame = new JFrame();
+    }
+
+    public JPanel setupJPanel(Component addAttr) {
         JPanel jPanel = new JPanel();
+        jPanel.setBackground(CardGame.BackgroundColor);
+        jPanel.setLayout(new BorderLayout());
+        jPanel.add(addAttr);
 
         return jPanel;
     }
@@ -35,5 +47,9 @@ public abstract class GUI {
         jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 
         return jLabel;
+    }
+
+    public JFrame getFrame() {
+        return this.frame;
     }
 }

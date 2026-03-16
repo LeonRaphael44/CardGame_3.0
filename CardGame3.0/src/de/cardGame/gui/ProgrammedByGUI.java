@@ -82,6 +82,8 @@ public class ProgrammedByGUI extends GUI implements ActionListener {
 		PanelmainNorth.setLayout(new BorderLayout());
 		PanelmainNorth.add(titellbl);
 
+		PanelmainNorth = setupJPanel(titellbl);
+
 		PanelmainEast = new JPanel();
 		PanelmainEast.setPreferredSize(new Dimension(20, 20));
 		PanelmainEast.setBackground(CardGame.BackgroundColor);
