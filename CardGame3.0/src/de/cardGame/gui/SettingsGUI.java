@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -34,10 +35,8 @@ import de.cardGame.utils.sprachausgabe.TextType;
 import de.cardGame.utils.words.WordTypes;
 import de.cardGame.utils.words.Words;
 
-public class SettingsGUI implements ActionListener, ChangeListener {
+public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
-	private JFrame frame;
-	private JPanel framePanel;
 	private JPanel titelPanel;
 	private JPanel mainEast;
 	private JPanel mainWest;
@@ -120,17 +119,21 @@ public class SettingsGUI implements ActionListener, ChangeListener {
 		titellbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.BOLD, 40));
 		titellbl.setForeground(Color.green);
 		titellbl.setHorizontalAlignment(SwingConstants.CENTER);
+
 		titelPanel.add(titellbl, BorderLayout.CENTER);
 
 		mainEast = new JPanel();
 		mainEast.setPreferredSize(new Dimension(5, 5));
 		mainEast.setBackground(CardGame.BackgroundColor);
+
 		mainWest = new JPanel();
 		mainWest.setPreferredSize(new Dimension(5, 5));
 		mainWest.setBackground(CardGame.BackgroundColor);
+
 		mainSouth = new JPanel();
 		mainSouth.setPreferredSize(new Dimension(5, 5));
 		mainSouth.setBackground(CardGame.BackgroundColor);
+
 		contentPanel = new JPanel();
 		contentPanel.setLayout(new GridLayout(1, 3, 5, 5)); // Grid 1 row // 3 Colloums // 5 Pixel vertigal 5 Pixel
 															// Horizontal
@@ -139,6 +142,7 @@ public class SettingsGUI implements ActionListener, ChangeListener {
 		contentPanelleft = new JPanel();
 		contentPanelleft.setBackground(CardGame.BackgroudColorMatch2);
 		contentPanelleft.setLayout(new BorderLayout());
+
 		slidertitellbl = new JLabel();
 		slidertitellbl.setPreferredSize(new Dimension(5, 60));
 		slidertitellbl.setText(Words.get(WordTypes.Volume));
@@ -232,6 +236,7 @@ public class SettingsGUI implements ActionListener, ChangeListener {
 		schriftartcbb.setBorder(BorderFactory.createEmptyBorder());
 		schriftartcbb.setSelectedItem(CardGame.getSettings().getSchriftart());
 		schriftartcbb.addActionListener(this);
+
 		contentPanelcenter2.add(schriftartlbl, BorderLayout.WEST);
 		contentPanelcenter2.add(schriftartcbb, BorderLayout.CENTER);
 
@@ -289,6 +294,7 @@ public class SettingsGUI implements ActionListener, ChangeListener {
 		Meanlich.addActionListener(this);
 		Meanlich.setVerticalTextPosition(SwingConstants.CENTER);
 		Meanlich.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+
 		Weiblich = new JRadioButton(Words.get(WordTypes.Female));
 		Weiblich.setFocusable(false);
 		Weiblich.addActionListener(this);
@@ -335,6 +341,7 @@ public class SettingsGUI implements ActionListener, ChangeListener {
 		Dunkel.addActionListener(this);
 		Dunkel.setVerticalTextPosition(SwingConstants.CENTER);
 		Dunkel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+
 		Hell = new JRadioButton(Words.get(WordTypes.Hell));
 		Hell.setFocusable(false);
 		Hell.addActionListener(this);
@@ -372,42 +379,11 @@ public class SettingsGUI implements ActionListener, ChangeListener {
 		contentPanelright.setBackground(CardGame.BackgroundColor);
 		contentPanelright.setLayout(new GridLayout(3, 1, 5, 5));
 
-		Speichern = new JButton();
-		Speichern.setPreferredSize(new Dimension(180, 30));
-		Speichern.setText(Words.get(WordTypes.SpeichernButton));
-		Speichern.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		Speichern.setForeground(new Color(0x06A666));
-		Speichern.setBackground(CardGame.BackgroudColorMatch2);
-		Speichern.setFocusable(false);
-		Speichern.addActionListener(this);
-		Speichern.setIcon(new IconManager(IconPath.Savex64).getImageIcon());
-		Speichern.setBorder(BorderFactory.createEmptyBorder());
-		Speichern.setVerticalAlignment(SwingConstants.CENTER);
-		Speichern.setHorizontalAlignment(SwingConstants.CENTER);
-		Titelscreen = new JButton();
-		Titelscreen.setPreferredSize(new Dimension(180, 30));
-		Titelscreen.setText(Words.get(WordTypes.TitelScreenButton));
-		Titelscreen.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		Titelscreen.setForeground(new Color(0x06A666));
-		Titelscreen.setBackground(CardGame.BackgroudColorMatch2);
-		Titelscreen.setFocusable(false);
-		Titelscreen.addActionListener(this);
-		Titelscreen.setIcon(new IconManager(IconPath.Startscreenx64).getImageIcon());
-		Titelscreen.setBorder(BorderFactory.createEmptyBorder());
-		Titelscreen.setVerticalAlignment(SwingConstants.CENTER);
-		Titelscreen.setHorizontalAlignment(SwingConstants.CENTER);
-		PlayDirect = new JButton();
-		PlayDirect.setPreferredSize(new Dimension(180, 30));
-		PlayDirect.setText(Words.get(WordTypes.PlayDirectButton));
-		PlayDirect.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		PlayDirect.setForeground(new Color(0x06A666));
-		PlayDirect.setBackground(CardGame.BackgroudColorMatch2);
-		PlayDirect.setFocusable(false);
-		PlayDirect.setIcon(new IconManager(IconPath.DirectPlay).getImageIcon());
-		PlayDirect.addActionListener(this);
-		PlayDirect.setBorder(BorderFactory.createEmptyBorder());
-		PlayDirect.setVerticalAlignment(SwingConstants.CENTER);
-		PlayDirect.setHorizontalAlignment(SwingConstants.CENTER);
+		Speichern = setupJButton(Words.get(WordTypes.SpeichernButton), IconPath.Savex64);
+
+		Titelscreen = setupJButton(Words.get(WordTypes.TitelScreenButton), IconPath.Startscreenx64);
+
+		PlayDirect = setupJButton(Words.get(WordTypes.PlayDirectButton), IconPath.DirectPlay);
 
 		contentPanelright.add(Titelscreen);
 		contentPanelright.add(PlayDirect);
@@ -429,6 +405,23 @@ public class SettingsGUI implements ActionListener, ChangeListener {
 
 		this.frame.add(framePanel);
 		this.frame.setVisible(true);
+	}
+
+	public JButton setupJButton(String text, IconPath iconPath) {
+		JButton jButton = new JButton();
+		jButton.setPreferredSize(new Dimension(180, 30));
+		jButton.setText(text);
+		jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
+		jButton.setForeground(new Color(0x06A666));
+		jButton.setBackground(CardGame.BackgroudColorMatch2);
+		jButton.setFocusable(false);
+		jButton.addActionListener(this);
+		jButton.setIcon(new IconManager(iconPath).getImageIcon());
+		jButton.setBorder(BorderFactory.createEmptyBorder());
+		jButton.setVerticalAlignment(SwingConstants.CENTER);
+		jButton.setHorizontalAlignment(SwingConstants.CENTER);
+
+		return jButton;
 	}
 
 	public int getAudioValue() {
