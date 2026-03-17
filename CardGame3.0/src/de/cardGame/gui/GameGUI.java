@@ -89,6 +89,7 @@ public class GameGUI extends GUI implements ActionListener {
 		menuBar.setPreferredSize(new Dimension(420, 32));
 		menuBar.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
 		menuBar.setBorder(BorderFactory.createEmptyBorder());
+
 		Pages = new JMenu(Words.get(WordTypes.Pages));
 		Pages.setBackground(CardGame.BackgroundColor);
 		Pages.setFocusable(false);
@@ -96,6 +97,7 @@ public class GameGUI extends GUI implements ActionListener {
 		Pages.setForeground(new Color(0x06A666));
 		Pages.setIcon(new IconManager(IconPath.Pagesx32).getImageIcon());
 		Pages.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
 		Extras = new JMenu(Words.get(WordTypes.Extras));
 		Extras.setBackground(CardGame.BackgroundColor);
 		Extras.setFocusable(false);
@@ -103,6 +105,7 @@ public class GameGUI extends GUI implements ActionListener {
 		Extras.setForeground(new Color(0x06A666));
 		Extras.setIcon(new IconManager(IconPath.Extrasx32).getImageIcon());
 		Extras.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
 		Help = new JMenu(Words.get(WordTypes.Help));
 		Help.setBackground(CardGame.BackgroundColor);
 		Help.setFocusable(false);
@@ -118,42 +121,15 @@ public class GameGUI extends GUI implements ActionListener {
 
 		Startscreen = setupJMenuItem(Words.get(WordTypes.StartScreen), KeyEvent.VK_T, IconPath.Startscreenx32);
 
-		ProgrammedByHelp = new JMenuItem(Words.get(WordTypes.ProgrammedBy));
-		ProgrammedByHelp.setBackground(CardGame.BackgroundColor);
-		ProgrammedByHelp.setFocusable(false);
-		ProgrammedByHelp.addActionListener(this);
-		ProgrammedByHelp.setForeground(new Color(0x06A666));
-		ProgrammedByHelp.setIcon(new IconManager(IconPath.ProgrammedByx32).getImageIcon());
-		ProgrammedByHelp.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		// ProgrammedByHelp = setupJMenuItem(Words.get(WordTypes.ProgrammedBy), 0,
-		// IconPath.ProgrammedByx32);
+		ProgrammedByHelp = setupJMenuItem(Words.get(WordTypes.ProgrammedBy), 0,
+				IconPath.ProgrammedByx32);
 
-		KeyUse = new JMenuItem(Words.get(WordTypes.KeyUse));
-		KeyUse.setBackground(CardGame.BackgroundColor);
-		KeyUse.setFocusable(false);
-		KeyUse.addActionListener(this);
-		KeyUse.setForeground(new Color(0x06A666));
-		KeyUse.setIcon(new IconManager(IconPath.KeyUsex32).getImageIcon());
-		KeyUse.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		KeyUse = setupJMenuItem(Words.get(WordTypes.KeyUse), 0, IconPath.KeyUsex32);
 
-		PageBack = new JMenuItem(Words.get(WordTypes.PageBack));
-		PageBack.setBackground(CardGame.BackgroundColor);
-		PageBack.setFocusable(false);
-		PageBack.addActionListener(this);
-		PageBack.setForeground(new Color(0x06A666));
-		PageBack.setMnemonic(KeyEvent.VK_Z);
-		PageBack.setIcon(new IconManager(IconPath.CardBackx32).getImageIcon());
-		PageBack.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		PageBack = setupJMenuItem(Words.get(WordTypes.PageBack), KeyEvent.VK_Z, IconPath.CardBackx32);
 
-		kannstdulesen = new JMenuItem(Words.get(WordTypes.KannstDuLesen));
-		kannstdulesen.setBackground(CardGame.BackgroundColor);
-		kannstdulesen.setFocusable(false);
-		kannstdulesen.addActionListener(this);
+		kannstdulesen = setupJMenuItem(Words.get(WordTypes.KannstDuLesen), 0, IconPath.KannstDuLesen);
 		kannstdulesen.setVisible(false);
-		kannstdulesen.setForeground(new Color(0x06A666));
-		kannstdulesen.setIcon(new IconManager(IconPath.KannstDuLesen).getImageIcon());//
-
-		kannstdulesen.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
 
 		Pages.add(Settings);
 		Pages.add(Startscreen);
