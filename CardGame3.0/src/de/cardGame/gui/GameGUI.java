@@ -2,9 +2,11 @@ package de.cardGame.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -33,19 +35,10 @@ import de.cardGame.utils.sprachausgabe.TextType;
 import de.cardGame.utils.words.WordTypes;
 import de.cardGame.utils.words.Words;
 
-public class GameGUI implements ActionListener {
+public class GameGUI extends GUI implements ActionListener {
 
-	private JFrame frame;
 	private JLabel StoryCreator, ProgrammedBy, PlaceHolderProgrammedBy;
-	private JPanel framePanel = new JPanel();
-	private JPanel PanelmainNorth = new JPanel();
-	private JPanel PanelmainEast = new JPanel();
-	private JPanel PanelmainWest = new JPanel();
-	private JPanel PanelmainSouth = new JPanel();
-	private JPanel contentPanel = new JPanel();
-	private JPanel contentPanelTop = new JPanel();
-	private JPanel contentPanelBottom = new JPanel();
-	private JPanel contentPanelBottom_Left = new JPanel(), contentPanelBottom_Right = new JPanel();
+
 	private JButton titelbtn, Storybtn, Abtn, Bbtn, Cbtn, VorlesenAbtn, VorlesenBbtn, VorlesenCbtn = new JButton();
 
 	private JMenuBar menuBar;
@@ -73,104 +66,45 @@ public class GameGUI implements ActionListener {
 		this.frame.getContentPane().setBackground(Color.DARK_GRAY);
 		this.frame.setIconImage(new IconManager(IconPath.GameIcon).getImage());
 
-		titelbtn = new JButton();
-		titelbtn.setText(Words.get(WordTypes.Karte) + "1");
-		titelbtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 60));
-		titelbtn.setBackground(CardGame.BackgroundColor);
-		titelbtn.setForeground(Color.green);
-		titelbtn.setHorizontalAlignment(SwingConstants.CENTER);
-		titelbtn.setHorizontalTextPosition(SwingConstants.CENTER);
-		titelbtn.setFocusable(false);
-		titelbtn.addActionListener(this);
-		titelbtn.setBorder(BorderFactory.createEmptyBorder());
+		titelbtn = setupJButton(Words.get(WordTypes.Karte) + "1", 60,
+				CardGame.BackgroundColor, Color.green,
+				SwingConstants.CENTER, SwingConstants.CENTER);
 
 		menuBar = new JMenuBar();
 		menuBar.setBackground(CardGame.BackgroundColor);
 		menuBar.setPreferredSize(new Dimension(420, 32));
 		menuBar.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
 		menuBar.setBorder(BorderFactory.createEmptyBorder());
-		Pages = new JMenu(Words.get(WordTypes.Pages));
-		Pages.setBackground(CardGame.BackgroundColor);
-		Pages.setFocusable(false);
-		Pages.setMnemonic(KeyEvent.VK_P);
-		Pages.setForeground(new Color(0x06A666));
-		Pages.setIcon(new IconManager(IconPath.Pagesx32).getImageIcon());
-		Pages.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		Extras = new JMenu(Words.get(WordTypes.Extras));
-		Extras.setBackground(CardGame.BackgroundColor);
-		Extras.setFocusable(false);
-		Extras.setMnemonic(KeyEvent.VK_E);
-		Extras.setForeground(new Color(0x06A666));
-		Extras.setIcon(new IconManager(IconPath.Extrasx32).getImageIcon());
-		Extras.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		Help = new JMenu(Words.get(WordTypes.Help));
-		Help.setBackground(CardGame.BackgroundColor);
-		Help.setFocusable(false);
-		Help.setMnemonic(KeyEvent.VK_H);
-		Help.setForeground(new Color(0x06A666));
-		Help.setIcon(new IconManager(IconPath.Helpx32).getImageIcon());
-		Help.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
 
-		CardPath = new JMenuItem(Words.get(WordTypes.CardPath));
-		CardPath.setBackground(CardGame.BackgroundColor);
-		CardPath.setFocusable(false);
-		CardPath.setMnemonic(KeyEvent.VK_K);
-		CardPath.setForeground(new Color(0x06A666));
-		CardPath.addActionListener(this);
-		CardPath.setIcon(new IconManager(IconPath.CardPathx32).getImageIcon());
-		CardPath.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		Settings = new JMenuItem(Words.get(WordTypes.Settings));
-		Settings.setBackground(CardGame.BackgroundColor);
-		Settings.setFocusable(false);
-		Settings.setMnemonic(KeyEvent.VK_S);
-		Settings.setForeground(new Color(0x06A666));
-		Settings.addActionListener(this);
-		Settings.setIcon(new IconManager(IconPath.Settingsx32).getImageIcon());
-		Settings.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		Startscreen = new JMenuItem(Words.get(WordTypes.StartScreen));
-		Startscreen.setBackground(CardGame.BackgroundColor);
-		Startscreen.setFocusable(false);
-		Startscreen.setMnemonic(KeyEvent.VK_T);
-		Startscreen.addActionListener(this);
-		Startscreen.setForeground(new Color(0x06A666));
-		Startscreen.setIcon(new IconManager(IconPath.Startscreenx32).getImageIcon());
-		Startscreen.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		ProgrammedByHelp = new JMenuItem(Words.get(WordTypes.ProgrammedBy));
-		ProgrammedByHelp.setBackground(CardGame.BackgroundColor);
-		ProgrammedByHelp.setFocusable(false);
-		ProgrammedByHelp.addActionListener(this);
-		ProgrammedByHelp.setForeground(new Color(0x06A666));
-		ProgrammedByHelp.setIcon(new IconManager(IconPath.ProgrammedByx32).getImageIcon());
-		ProgrammedByHelp.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		KeyUse = new JMenuItem(Words.get(WordTypes.KeyUse));
-		KeyUse.setBackground(CardGame.BackgroundColor);
-		KeyUse.setFocusable(false);
-		KeyUse.addActionListener(this);
-		KeyUse.setForeground(new Color(0x06A666));
-		KeyUse.setIcon(new IconManager(IconPath.KeyUsex32).getImageIcon());
-		KeyUse.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		PageBack = new JMenuItem(Words.get(WordTypes.PageBack));
-		PageBack.setBackground(CardGame.BackgroundColor);
-		PageBack.setFocusable(false);
-		PageBack.addActionListener(this);
-		PageBack.setForeground(new Color(0x06A666));
-		PageBack.setMnemonic(KeyEvent.VK_Z);
-		PageBack.setIcon(new IconManager(IconPath.CardBackx32).getImageIcon());
-		PageBack.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		kannstdulesen = new JMenuItem(Words.get(WordTypes.KannstDuLesen));
-		kannstdulesen.setBackground(CardGame.BackgroundColor);
-		kannstdulesen.setFocusable(false);
-		kannstdulesen.addActionListener(this);
+		Pages = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_P, IconPath.Pagesx32);
+
+		Extras = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_E, IconPath.Extrasx32);
+
+		Help = setupJMenu(Words.get(WordTypes.Help), KeyEvent.VK_H, IconPath.Helpx32);
+
+		CardPath = setupJMenuItem(Words.get(WordTypes.CardPath), KeyEvent.VK_K,
+				IconPath.CardPathx32);
+
+		Settings = setupJMenuItem(Words.get(WordTypes.Settings), KeyEvent.VK_S, IconPath.Settingsx32);
+
+		Startscreen = setupJMenuItem(Words.get(WordTypes.StartScreen), KeyEvent.VK_T, IconPath.Startscreenx32);
+
+		ProgrammedByHelp = setupJMenuItem(Words.get(WordTypes.ProgrammedBy), 0,
+				IconPath.ProgrammedByx32);
+
+		KeyUse = setupJMenuItem(Words.get(WordTypes.KeyUse), 0, IconPath.KeyUsex32);
+
+		PageBack = setupJMenuItem(Words.get(WordTypes.PageBack), KeyEvent.VK_Z, IconPath.CardBackx32);
+
+		kannstdulesen = setupJMenuItem(Words.get(WordTypes.KannstDuLesen), 0, IconPath.KannstDuLesen);
 		kannstdulesen.setVisible(false);
-		kannstdulesen.setForeground(new Color(0x06A666));
-		kannstdulesen.setIcon(new IconManager(IconPath.KannstDuLesen).getImageIcon());//
-
-		kannstdulesen.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
 
 		Pages.add(Settings);
 		Pages.add(Startscreen);
+
 		Help.add(ProgrammedByHelp);
 		Help.add(KeyUse);
+
 		Extras.add(PageBack);
 		Extras.add(CardPath);
 
@@ -181,159 +115,54 @@ public class GameGUI implements ActionListener {
 
 		this.frame.setJMenuBar(menuBar);
 
-		StoryCreator = new JLabel();
-		StoryCreator.setText(Words.get(WordTypes.StoryBasedOn));
-		StoryCreator.setPreferredSize(new Dimension(400, 20));
-		StoryCreator.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-		StoryCreator.setForeground(new Color(0x808000));
-		StoryCreator.setHorizontalAlignment(SwingConstants.CENTER);
-		StoryCreator.setVerticalTextPosition(SwingConstants.TOP);
-		StoryCreator.setHorizontalTextPosition(SwingConstants.CENTER);
+		// the text while the game is running (below button C)
 
-		ProgrammedBy = new JLabel();
-		ProgrammedBy.setText("© Copyright 2021 Timon Filz");
-		ProgrammedBy.setPreferredSize(new Dimension(220, 20));
-		ProgrammedBy.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-		ProgrammedBy.setForeground(new Color(0x808000));
-		ProgrammedBy.setHorizontalAlignment(SwingConstants.CENTER);
-		ProgrammedBy.setVerticalTextPosition(SwingConstants.TOP);
-		ProgrammedBy.setHorizontalTextPosition(SwingConstants.CENTER);
+		StoryCreator = setupJLabel(Words.get(WordTypes.StoryBasedOn), 400, 20);
 
-		PlaceHolderProgrammedBy = new JLabel();
-		PlaceHolderProgrammedBy.setText("");
-		PlaceHolderProgrammedBy.setPreferredSize(new Dimension(220, 20));
-		PlaceHolderProgrammedBy.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-		PlaceHolderProgrammedBy.setForeground(new Color(0x808000));
-		PlaceHolderProgrammedBy.setHorizontalAlignment(SwingConstants.CENTER);
-		PlaceHolderProgrammedBy.setVerticalTextPosition(SwingConstants.TOP);
-		PlaceHolderProgrammedBy.setHorizontalTextPosition(SwingConstants.CENTER);
+		ProgrammedBy = setupJLabel("© Copyright 2021 Timon Filz", 220, 20);
 
-		PanelmainNorth.setLayout(new BorderLayout());
-		PanelmainSouth.setLayout(new BorderLayout());
-		PanelmainNorth.add(titelbtn, BorderLayout.CENTER);
-		PanelmainSouth.add(StoryCreator, BorderLayout.CENTER);
-		PanelmainSouth.add(ProgrammedBy, BorderLayout.EAST);
-		PanelmainSouth.add(PlaceHolderProgrammedBy, BorderLayout.WEST);
+		PlaceHolderProgrammedBy = setupJLabel("Placeholder", 220, 20);
 
-		PanelmainNorth.setBackground(CardGame.BackgroundColor);
-		PanelmainNorth.setPreferredSize(new Dimension(100, 100));
-		PanelmainEast.setBackground(CardGame.BackgroundColor);
-		PanelmainEast.setPreferredSize(new Dimension(20, 20));
-		PanelmainWest.setBackground(CardGame.BackgroundColor);
-		PanelmainWest.setPreferredSize(new Dimension(20, 20));
-		PanelmainSouth.setBackground(CardGame.BackgroundColor);
-		PanelmainSouth.setPreferredSize(new Dimension(40, 30));
-		contentPanel.setBackground(CardGame.BackgroundColor);
-		contentPanel.setLayout(new GridLayout(2, 1, 10, 10));
-
-		contentPanelTop.setPreferredSize(new Dimension(40, 40));
-		contentPanelTop.setLayout(new BorderLayout());
-		contentPanelTop.setPreferredSize(new Dimension(40, 40));
-		contentPanelTop.setBackground(new Color(0x505050));
-		contentPanelBottom.setPreferredSize(new Dimension(40, 40));
-		contentPanelBottom.setBackground(CardGame.BackgroundColor);
-		contentPanelBottom.setLayout(new BorderLayout());
-
-		contentPanel.add(contentPanelTop);
-		contentPanel.add(contentPanelBottom);
-
-		Storybtn = new JButton();
-		Storybtn.setText(CardGame.cards.get(0).getText());
-		Storybtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 26));
-		Storybtn.setForeground(new Color(0x06A666));
-		Storybtn.setBackground(CardGame.BackgroudColorMatch2);
-		Storybtn.setHorizontalAlignment(SwingConstants.LEFT);
+		Storybtn = setupJButton(CardGame.cards.get(0).getText(), 26,
+				CardGame.BackgroudColorMatch2, new Color(0x06A666),
+				SwingConstants.LEFT, SwingConstants.LEFT);
 		Storybtn.setVerticalTextPosition(SwingConstants.TOP);
 		Storybtn.setVerticalAlignment(SwingConstants.TOP);
-		Storybtn.setHorizontalTextPosition(SwingConstants.LEFT);
-		Storybtn.setFocusable(false);
-		Storybtn.addActionListener(this);
-		Storybtn.setBorder(BorderFactory.createEmptyBorder());
 
-		contentPanelTop.add(Storybtn, BorderLayout.CENTER);
+		// the buttons for choosing
+		Abtn = setupAbcButton("A");
 
-		contentPanelBottom_Left.setPreferredSize(new Dimension(100, 40));
-		contentPanelBottom_Left.setLayout(new GridLayout(3, 1, 10, 10));
-		contentPanelBottom_Left.setBackground(CardGame.BackgroundColor);
+		Bbtn = setupAbcButton("B");
 
-		contentPanelBottom_Right.setPreferredSize(new Dimension(100, 40));
-		contentPanelBottom_Right.setLayout(new GridLayout(3, 1, 10, 10));
-		contentPanelBottom_Right.setBackground(CardGame.BackgroundColor);
+		Cbtn = setupAbcButton("C");
 
-		Abtn = new JButton();
-		Abtn.setText(CardGame.cards.get(0).getAntwortA());
-		Abtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
-		Abtn.setForeground(new Color(0x06A666));
-		Abtn.setBackground(CardGame.BackgroudColorMatch2);
-		Abtn.setHorizontalAlignment(SwingConstants.LEFT);
-		Abtn.setVerticalTextPosition(SwingConstants.CENTER);
-		Abtn.setVerticalAlignment(SwingConstants.CENTER);
-		Abtn.setHorizontalTextPosition(SwingConstants.LEFT);
-		Abtn.setFocusable(false);
-		Abtn.addActionListener(this);
-		Abtn.setBorder(BorderFactory.createEmptyBorder());
+		VorlesenAbtn = setupVorleseButton('a');
 
-		Bbtn = new JButton();
-		Bbtn.setText(CardGame.cards.get(0).getAntwortB());
-		Bbtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
-		Bbtn.setForeground(new Color(0x06A666));
-		Bbtn.setBackground(CardGame.BackgroudColorMatch2);
-		Bbtn.setHorizontalAlignment(SwingConstants.LEFT);
-		Bbtn.setVerticalTextPosition(SwingConstants.CENTER);
-		Bbtn.setVerticalAlignment(SwingConstants.CENTER);
-		Bbtn.setHorizontalTextPosition(SwingConstants.LEFT);
-		Bbtn.setFocusable(false);
-		Bbtn.addActionListener(this);
-		Bbtn.setBorder(BorderFactory.createEmptyBorder());
+		VorlesenBbtn = setupVorleseButton('b');
 
-		Cbtn = new JButton();
-		Cbtn.setText(CardGame.cards.get(0).getAntwortC());
-		Cbtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
-		Cbtn.setForeground(new Color(0x06A666));
-		Cbtn.setBackground(CardGame.BackgroudColorMatch2);
-		Cbtn.setHorizontalAlignment(SwingConstants.LEFT);
-		Cbtn.setVerticalTextPosition(SwingConstants.CENTER);
-		Cbtn.setVerticalAlignment(SwingConstants.CENTER);
-		Cbtn.setHorizontalTextPosition(SwingConstants.LEFT);
-		Cbtn.setFocusable(false);
-		Cbtn.addActionListener(this);
-		Cbtn.setBorder(BorderFactory.createEmptyBorder());
+		VorlesenCbtn = setupVorleseButton('c');
 
-		VorlesenAbtn = new JButton();
-		VorlesenAbtn.setForeground(new Color(0x06A666));
-		VorlesenAbtn.setBackground(CardGame.BackgroudColorMatch2);
-		VorlesenAbtn.setFocusable(false);
-		VorlesenAbtn.setMnemonic('a');
-		VorlesenAbtn.addActionListener(this);
-		VorlesenAbtn.setIcon(new IconManager(IconPath.Playx64).getImageIcon());
-		VorlesenAbtn.setBorder(BorderFactory.createEmptyBorder());
+		contentPanelTop = setupContentJPanel(new BorderLayout(), 40, 40, new Color(0x505050), Storybtn,
+				BorderLayout.CENTER);
 
-		VorlesenBbtn = new JButton();
-		VorlesenBbtn.setForeground(new Color(0x06A666));
-		VorlesenBbtn.setBackground(CardGame.BackgroudColorMatch2);
-		VorlesenBbtn.setFocusable(false);
-		VorlesenBbtn.setMnemonic('b');
-		VorlesenBbtn.addActionListener(this);
-		VorlesenBbtn.setIcon(new IconManager(IconPath.Playx64).getImageIcon());
-		VorlesenBbtn.setBorder(BorderFactory.createEmptyBorder());
+		contentPanelBottom_Right = setupContentJPanel(new GridLayout(3, 1, 10, 10), 100, 40, CardGame.BackgroundColor,
+				Abtn, Bbtn, Cbtn);
 
-		VorlesenCbtn = new JButton();
-		VorlesenCbtn.setForeground(new Color(0x06A666));
-		VorlesenCbtn.setBackground(CardGame.BackgroudColorMatch2);
-		VorlesenCbtn.setFocusable(false);
-		VorlesenCbtn.setMnemonic('c');
-		VorlesenCbtn.addActionListener(this);
-		VorlesenCbtn.setIcon(new IconManager(IconPath.Playx64).getImageIcon());
-		VorlesenCbtn.setBorder(BorderFactory.createEmptyBorder());
+		contentPanelBottom_Left = setupContentJPanel(new GridLayout(3, 1, 10, 10), 100, 40, CardGame.BackgroundColor,
+				VorlesenAbtn, VorlesenBbtn, VorlesenCbtn);
 
-		contentPanelBottom_Right.add(Abtn);
-		contentPanelBottom_Right.add(Bbtn);
-		contentPanelBottom_Right.add(Cbtn);
-		contentPanelBottom_Left.add(VorlesenAbtn);
-		contentPanelBottom_Left.add(VorlesenBbtn);
-		contentPanelBottom_Left.add(VorlesenCbtn);
-		contentPanelBottom.add(contentPanelBottom_Left, BorderLayout.WEST);
-		contentPanelBottom.add(contentPanelBottom_Right, BorderLayout.CENTER);
+		contentPanelBottom = setupContentJPanel(new BorderLayout(), 40, 40, CardGame.BackgroundColor,
+				contentPanelBottom_Left, BorderLayout.WEST, contentPanelBottom_Right, BorderLayout.CENTER);
+
+		contentPanel = setupContentJPanel(new GridLayout(2, 1, 10, 10), 0, 0, CardGame.BackgroundColor, contentPanelTop,
+				contentPanelBottom);
+
+		PanelmainNorth = setupMainJPanel(new BorderLayout(), 100, 100, CardGame.BackgroundColor, titelbtn,
+				BorderLayout.CENTER);
+		PanelmainEast = setupMainJPanel(null, 20, 20, CardGame.BackgroundColor);
+		PanelmainWest = setupMainJPanel(null, 20, 20, CardGame.BackgroundColor);
+		PanelmainSouth = setupMainJPanel(new BorderLayout(), 40, 30, CardGame.BackgroundColor, StoryCreator,
+				BorderLayout.CENTER, ProgrammedBy, BorderLayout.EAST, PlaceHolderProgrammedBy, BorderLayout.WEST);
 
 		framePanel = new JPanel();
 		framePanel.setBackground(new Color(0x505050));
@@ -350,20 +179,22 @@ public class GameGUI implements ActionListener {
 		setCardText(0);
 	}
 
-	public JFrame getFrame() {
-		return frame;
-	}
-
 	public void setCardText(int id) {
 		Card C = CardGame.cards.get(id);
 		Card.AktiveCardID = id;
-		if(id == 15 || id == 43 || id == 50 || (id == 26 && !Card.German && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("W")) || (id == 64 && !Card.German && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("W")) || (id == 45 && Card.German  && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("M")) || ((id == 11 || id == 21 || id == 35 || id == 39 || id == 65) && !Card.German && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("M")) || (id == 13 && !Card.German && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("M"))) {
+		if (id == 15 || id == 43 || id == 50
+				|| (id == 26 && !Card.German && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("W"))
+				|| (id == 64 && !Card.German && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("W"))
+				|| (id == 45 && Card.German && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("M"))
+				|| ((id == 11 || id == 21 || id == 35 || id == 39 || id == 65) && !Card.German
+						&& CardGame.getSettings().getStimmenArt().equalsIgnoreCase("M"))
+				|| (id == 13 && !Card.German && CardGame.getSettings().getStimmenArt().equalsIgnoreCase("M"))) {
 			kannstdulesen.setVisible(true);
-		}else {
+		} else {
 			kannstdulesen.setVisible(false);
 		}
 		titelbtn.setText(Words.get(WordTypes.Karte) + String.valueOf((id + 1)));
-		
+
 		if (C.getAntwortA() != null) {
 			Abtn.setText(C.getAntwortA());
 			Abtn.setVisible(true);
@@ -405,6 +236,146 @@ public class GameGUI implements ActionListener {
 			Storybtn.setText(C.getText());
 		}
 		this.frame.setVisible(true);
+	}
+
+	public JPanel setupMainJPanel(LayoutManager layout, int arg0, int arg1, Color background, Object... components) {
+		JPanel jPanel = new JPanel();
+		jPanel.setLayout(layout);
+		jPanel.setPreferredSize(new Dimension(arg0, arg1));
+		jPanel.setBackground(background);
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof Component) {
+				// check if next is a constraint
+				if (i + 1 < components.length && !(components[i + 1] instanceof Component)) {
+					jPanel.add((Component) components[i], components[i + 1]);
+					i++; // skip constraint
+				} else {
+					jPanel.add((Component) components[i]);
+				}
+
+			}
+		}
+
+		return jPanel;
+	}
+
+	public JPanel setupContentJPanel(LayoutManager layout, int arg0, int arg1, Color backgroundColor,
+			Object... components) {
+		JPanel jPanel = new JPanel();
+		jPanel.setLayout(layout);
+		jPanel.setPreferredSize(new Dimension(arg0, arg1));
+		jPanel.setBackground(backgroundColor);
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof Component) {
+				// check if next is a constraint
+				if (i + 1 < components.length && !(components[i + 1] instanceof Component)) {
+					jPanel.add((Component) components[i], components[i + 1]);
+					i++; // skip constraint
+				} else {
+					jPanel.add((Component) components[i]);
+				}
+
+			}
+		}
+
+		return jPanel;
+	}
+
+	public JButton setupJButton(String text, int arg0, Color backgroundColor, Color foregroundColor,
+			int directionHorrizontalAlligment, int directionHorizontalTextPosition) {
+		JButton jButton = new JButton();
+		jButton.setText(text);
+		jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, arg0));
+		jButton.setBackground(backgroundColor);
+		jButton.setForeground(foregroundColor);
+		jButton.setHorizontalAlignment(directionHorrizontalAlligment);
+		jButton.setHorizontalTextPosition(directionHorizontalTextPosition);
+		jButton.setFocusable(false);
+		jButton.addActionListener(this);
+		jButton.setBorder(BorderFactory.createEmptyBorder());
+
+		return jButton;
+	}
+
+	public JMenu setupJMenu(String arg0, int keyEvent, IconPath iconPath) {
+		JMenu jMenu = new JMenu(arg0);
+		jMenu.setBackground(CardGame.BackgroundColor);
+		jMenu.setFocusable(false);
+		jMenu.setMnemonic(keyEvent);
+		jMenu.setForeground(new Color(0x06A666));
+		jMenu.setIcon(new IconManager(iconPath).getImageIcon());
+		jMenu.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
+		return jMenu;
+	}
+
+	public JMenuItem setupJMenuItem(String arg0, int keyEvent, IconPath iconpath) {
+		JMenuItem jMenuitem = new JMenuItem(arg0);
+		jMenuitem.setBackground(CardGame.BackgroundColor);
+		jMenuitem.setFocusable(false);
+		jMenuitem.setMnemonic(keyEvent);
+		jMenuitem.setForeground(new Color(0x06A666));
+		jMenuitem.addActionListener(this);
+		jMenuitem.setIcon(new IconManager(iconpath).getImageIcon());
+		jMenuitem.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
+		return jMenuitem;
+	}
+
+	public JLabel setupJLabel(String text, int arg0, int arg1) {
+		JLabel jLabel = new JLabel();
+		jLabel.setText(text);
+		jLabel.setPreferredSize(new Dimension(arg0, arg1));
+		jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
+		jLabel.setForeground(new Color(0x808000));
+		jLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		jLabel.setVerticalTextPosition(SwingConstants.TOP);
+		jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+
+		return jLabel;
+	}
+
+	public JButton setupAbcButton(String button) {
+		JButton jButton = new JButton();
+		switch (button) {
+			case "A":
+				jButton.setText(CardGame.cards.get(0).getAntwortA());
+				break;
+			case "B":
+				jButton.setText(CardGame.cards.get(0).getAntwortB());
+				break;
+			case "C":
+				jButton.setText(CardGame.cards.get(0).getAntwortC());
+				break;
+		}
+
+		jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+		jButton.setForeground(new Color(0x06A666));
+		jButton.setBackground(CardGame.BackgroudColorMatch2);
+		jButton.setHorizontalAlignment(SwingConstants.LEFT);
+		jButton.setVerticalTextPosition(SwingConstants.CENTER);
+		jButton.setVerticalAlignment(SwingConstants.CENTER);
+		jButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		jButton.setFocusable(false);
+		jButton.addActionListener(this);
+		jButton.setBorder(BorderFactory.createEmptyBorder());
+
+		return jButton;
+	}
+	// * The value of button has to be in lowercase
+	// and also in ' ' not in " " */
+
+	public JButton setupVorleseButton(char button) {
+		JButton jButton = new JButton();
+		jButton.setForeground(new Color(0x06A666));
+		jButton.setBackground(CardGame.BackgroudColorMatch2);
+		jButton.setFocusable(false);
+		jButton.setMnemonic(button);
+		jButton.addActionListener(this);
+		jButton.setIcon(new IconManager(IconPath.Playx64).getImageIcon());
+		jButton.setBorder(BorderFactory.createEmptyBorder());
+
+		return jButton;
 	}
 
 	private boolean vorgelesenA = false, vorgelesenB = false, vorgelesenC = false;
@@ -540,7 +511,8 @@ public class GameGUI implements ActionListener {
 			StopSprachausgabeAsistent();
 			CardGame.getGUI().dispose();
 			StoppUhr.Stopp();
-			CardGame.setGUI(new SettingsGUI(null).getFrame());
+			// CardGame.setGUI(new SettingsGUI(null).getFrame());
+			getFrame();
 		} else if (e.getSource() == PageBack) {
 			if (de.cardGame.utils.settings.Settings.Cardback <= 2
 					&& de.cardGame.utils.settings.Settings.Cardback >= 1) {
@@ -563,69 +535,84 @@ public class GameGUI implements ActionListener {
 			new ProgrammedByGUI();
 		} else if (e.getSource() == KeyUse) {
 			new KeyUseGUI();
-		}else if(e.getSource() == kannstdulesen) {
+		} else if (e.getSource() == kannstdulesen) {
 			try {
-			if(Card.AktiveCardID == 43 || Card.AktiveCardID == 50) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card43und50Fehler));
-				if(intput.equalsIgnoreCase(Words.get(WordTypes.Roulette))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),Words.get(WordTypes.Card43und50Fehler),JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),Words.get(WordTypes.Card43und50Fehler),JOptionPane.ERROR_MESSAGE);
+				if (Card.AktiveCardID == 43 || Card.AktiveCardID == 50) {
+					String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card43und50Fehler));
+					if (intput.equalsIgnoreCase(Words.get(WordTypes.Roulette))) {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
+								Words.get(WordTypes.Card43und50Fehler), JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
+								Words.get(WordTypes.Card43und50Fehler), JOptionPane.ERROR_MESSAGE);
+					}
 				}
-			}
-			if(Card.AktiveCardID == 26 && !Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card26Fehler));
-				if(intput.equalsIgnoreCase(Words.get(WordTypes.marrythem))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),Words.get(WordTypes.Card26Fehler),JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),Words.get(WordTypes.Card26Fehler),JOptionPane.ERROR_MESSAGE);
+				if (Card.AktiveCardID == 26 && !Card.German) {
+					String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card26Fehler));
+					if (intput.equalsIgnoreCase(Words.get(WordTypes.marrythem))) {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
+								Words.get(WordTypes.Card26Fehler), JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
+								Words.get(WordTypes.Card26Fehler), JOptionPane.ERROR_MESSAGE);
+					}
 				}
-			}
-			if(Card.AktiveCardID == 64 && !Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card64Fehler));
-				if(intput.equalsIgnoreCase(Words.get(WordTypes.your))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),Words.get(WordTypes.Card64Fehler),JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),Words.get(WordTypes.Card64Fehler),JOptionPane.ERROR_MESSAGE);
+				if (Card.AktiveCardID == 64 && !Card.German) {
+					String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card64Fehler));
+					if (intput.equalsIgnoreCase(Words.get(WordTypes.your))) {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
+								Words.get(WordTypes.Card64Fehler), JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
+								Words.get(WordTypes.Card64Fehler), JOptionPane.ERROR_MESSAGE);
+					}
 				}
-			}
-			if(Card.AktiveCardID == 45 && Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card45Fehler));
-				if(intput.equalsIgnoreCase(Words.get(WordTypes.das))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),Words.get(WordTypes.Card45Fehler),JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),Words.get(WordTypes.Card45Fehler),JOptionPane.ERROR_MESSAGE);
+				if (Card.AktiveCardID == 45 && Card.German) {
+					String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card45Fehler));
+					if (intput.equalsIgnoreCase(Words.get(WordTypes.das))) {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
+								Words.get(WordTypes.Card45Fehler), JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
+								Words.get(WordTypes.Card45Fehler), JOptionPane.ERROR_MESSAGE);
+					}
 				}
-			}
-			if((Card.AktiveCardID == 11 || Card.AktiveCardID == 21 || Card.AktiveCardID == 35 || Card.AktiveCardID == 39 || Card.AktiveCardID == 65) && !Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card11_21_35_39_65Fehler));
-				if(intput.equalsIgnoreCase(Words.get(WordTypes.colleague))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),Words.get(WordTypes.Card11_21_35_39_65Fehler),JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),Words.get(WordTypes.Card11_21_35_39_65Fehler),JOptionPane.ERROR_MESSAGE);
+				if ((Card.AktiveCardID == 11 || Card.AktiveCardID == 21 || Card.AktiveCardID == 35
+						|| Card.AktiveCardID == 39 || Card.AktiveCardID == 65) && !Card.German) {
+					String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card11_21_35_39_65Fehler));
+					if (intput.equalsIgnoreCase(Words.get(WordTypes.colleague))) {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
+								Words.get(WordTypes.Card11_21_35_39_65Fehler), JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
+								Words.get(WordTypes.Card11_21_35_39_65Fehler), JOptionPane.ERROR_MESSAGE);
+					}
 				}
-			}
-			if(Card.AktiveCardID == 13 && !Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card13Fehler));
-				if(intput.equalsIgnoreCase(Words.get(WordTypes.whom))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),Words.get(WordTypes.Card13Fehler),JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),Words.get(WordTypes.Card13Fehler),JOptionPane.ERROR_MESSAGE);
+				if (Card.AktiveCardID == 13 && !Card.German) {
+					String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card13Fehler));
+					if (intput.equalsIgnoreCase(Words.get(WordTypes.whom))) {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
+								Words.get(WordTypes.Card13Fehler), JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
+								Words.get(WordTypes.Card13Fehler), JOptionPane.ERROR_MESSAGE);
+					}
 				}
-			}
-			if(Card.AktiveCardID == 15) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card15Fehler));
-				if(intput.equalsIgnoreCase(Words.get(WordTypes.two))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),Words.get(WordTypes.Card15Fehler),JOptionPane.INFORMATION_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),Words.get(WordTypes.Card15Fehler),JOptionPane.ERROR_MESSAGE);
+				if (Card.AktiveCardID == 15) {
+					String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card15Fehler));
+					if (intput.equalsIgnoreCase(Words.get(WordTypes.two))) {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
+								Words.get(WordTypes.Card15Fehler), JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
+								Words.get(WordTypes.Card15Fehler), JOptionPane.ERROR_MESSAGE);
+					}
 				}
-			}
-			}catch (NullPointerException nullPointerException) {
-				
+			} catch (NullPointerException nullPointerException) {
+
 			}
 		}
-		
+
 	}
 
 	private void SetCardPathinStartScreen(StartScreenGUI startScreenGUI) {
