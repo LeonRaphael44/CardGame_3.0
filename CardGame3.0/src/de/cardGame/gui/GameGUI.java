@@ -90,29 +90,11 @@ public class GameGUI extends GUI implements ActionListener {
 		menuBar.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
 		menuBar.setBorder(BorderFactory.createEmptyBorder());
 
-		Pages = new JMenu(Words.get(WordTypes.Pages));
-		Pages.setBackground(CardGame.BackgroundColor);
-		Pages.setFocusable(false);
-		Pages.setMnemonic(KeyEvent.VK_P);
-		Pages.setForeground(new Color(0x06A666));
-		Pages.setIcon(new IconManager(IconPath.Pagesx32).getImageIcon());
-		Pages.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		Pages = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_P, IconPath.Pagesx32);
 
-		Extras = new JMenu(Words.get(WordTypes.Extras));
-		Extras.setBackground(CardGame.BackgroundColor);
-		Extras.setFocusable(false);
-		Extras.setMnemonic(KeyEvent.VK_E);
-		Extras.setForeground(new Color(0x06A666));
-		Extras.setIcon(new IconManager(IconPath.Extrasx32).getImageIcon());
-		Extras.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		Extras = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_E, IconPath.Extrasx32);
 
-		Help = new JMenu(Words.get(WordTypes.Help));
-		Help.setBackground(CardGame.BackgroundColor);
-		Help.setFocusable(false);
-		Help.setMnemonic(KeyEvent.VK_H);
-		Help.setForeground(new Color(0x06A666));
-		Help.setIcon(new IconManager(IconPath.Helpx32).getImageIcon());
-		Help.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		Help = setupJMenu(Words.get(WordTypes.Help), KeyEvent.VK_H, IconPath.Helpx32);
 
 		CardPath = setupJMenuItem(Words.get(WordTypes.CardPath), KeyEvent.VK_K,
 				IconPath.CardPathx32);
@@ -301,6 +283,18 @@ public class GameGUI extends GUI implements ActionListener {
 			Storybtn.setText(C.getText());
 		}
 		this.frame.setVisible(true);
+	}
+
+	public JMenu setupJMenu(String arg0, int keyEvent, IconPath iconPath) {
+		JMenu jMenu = new JMenu(arg0);
+		jMenu.setBackground(CardGame.BackgroundColor);
+		jMenu.setFocusable(false);
+		jMenu.setMnemonic(keyEvent);
+		jMenu.setForeground(new Color(0x06A666));
+		jMenu.setIcon(new IconManager(iconPath).getImageIcon());
+		jMenu.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
+		return jMenu;
 	}
 
 	public JMenuItem setupJMenuItem(String arg0, int keyEvent, IconPath iconpath) {
