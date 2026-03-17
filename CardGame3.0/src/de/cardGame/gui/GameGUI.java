@@ -111,33 +111,12 @@ public class GameGUI extends GUI implements ActionListener {
 		Help.setIcon(new IconManager(IconPath.Helpx32).getImageIcon());
 		Help.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
 
-		CardPath = new JMenuItem(Words.get(WordTypes.CardPath));
-		CardPath.setBackground(CardGame.BackgroundColor);
-		CardPath.setFocusable(false);
-		CardPath.setMnemonic(KeyEvent.VK_K);
-		CardPath.setForeground(new Color(0x06A666));
-		CardPath.addActionListener(this);
-		CardPath.setIcon(new IconManager(IconPath.CardPathx32).getImageIcon());
-		CardPath.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN,
-				20));
+		CardPath = setupJMenuItem(Words.get(WordTypes.CardPath), KeyEvent.VK_K,
+				IconPath.CardPathx32);
 
-		Settings = new JMenuItem(Words.get(WordTypes.Settings));
-		Settings.setBackground(CardGame.BackgroundColor);
-		Settings.setFocusable(false);
-		Settings.setMnemonic(KeyEvent.VK_S);
-		Settings.setForeground(new Color(0x06A666));
-		Settings.addActionListener(this);
-		Settings.setIcon(new IconManager(IconPath.Settingsx32).getImageIcon());
-		Settings.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		Settings = setupJMenuItem(Words.get(WordTypes.Settings), KeyEvent.VK_S, IconPath.Settingsx32);
 
-		Startscreen = new JMenuItem(Words.get(WordTypes.StartScreen));
-		Startscreen.setBackground(CardGame.BackgroundColor);
-		Startscreen.setFocusable(false);
-		Startscreen.setMnemonic(KeyEvent.VK_T);
-		Startscreen.addActionListener(this);
-		Startscreen.setForeground(new Color(0x06A666));
-		Startscreen.setIcon(new IconManager(IconPath.Startscreenx32).getImageIcon());
-		Startscreen.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		Startscreen = setupJMenuItem(Words.get(WordTypes.StartScreen), KeyEvent.VK_T, IconPath.Startscreenx32);
 
 		ProgrammedByHelp = new JMenuItem(Words.get(WordTypes.ProgrammedBy));
 		ProgrammedByHelp.setBackground(CardGame.BackgroundColor);
@@ -146,6 +125,8 @@ public class GameGUI extends GUI implements ActionListener {
 		ProgrammedByHelp.setForeground(new Color(0x06A666));
 		ProgrammedByHelp.setIcon(new IconManager(IconPath.ProgrammedByx32).getImageIcon());
 		ProgrammedByHelp.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		// ProgrammedByHelp = setupJMenuItem(Words.get(WordTypes.ProgrammedBy), 0,
+		// IconPath.ProgrammedByx32);
 
 		KeyUse = new JMenuItem(Words.get(WordTypes.KeyUse));
 		KeyUse.setBackground(CardGame.BackgroundColor);
@@ -176,8 +157,10 @@ public class GameGUI extends GUI implements ActionListener {
 
 		Pages.add(Settings);
 		Pages.add(Startscreen);
+
 		Help.add(ProgrammedByHelp);
 		Help.add(KeyUse);
+
 		Extras.add(PageBack);
 		Extras.add(CardPath);
 

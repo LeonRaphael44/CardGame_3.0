@@ -82,7 +82,7 @@ public class ProgrammedByGUI extends GUI implements ActionListener {
 		PanelmainNorth.setLayout(new BorderLayout());
 		PanelmainNorth.add(titellbl);
 
-		PanelmainNorth = setupJPanel(titellbl);
+		// PanelmainNorth = setupJPanel(titellbl);
 
 		PanelmainEast = new JPanel();
 		PanelmainEast.setPreferredSize(new Dimension(20, 20));
@@ -121,9 +121,9 @@ public class ProgrammedByGUI extends GUI implements ActionListener {
 		this.frame.add(framePanel);
 	}
 
-	public JFrame getFrame() {
-		return frame;
-	}
+	// public JFrame getFrame() {
+	// return frame;
+	// }
 
 	public void Close() {
 		this.frame.dispose();
