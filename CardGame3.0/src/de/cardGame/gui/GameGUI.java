@@ -2,9 +2,11 @@ package de.cardGame.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -35,17 +37,8 @@ import de.cardGame.utils.words.Words;
 
 public class GameGUI extends GUI implements ActionListener {
 
-	private JFrame frame;
 	private JLabel StoryCreator, ProgrammedBy, PlaceHolderProgrammedBy;
-	private JPanel framePanel = new JPanel();
-	private JPanel PanelmainNorth = new JPanel();
-	private JPanel PanelmainEast = new JPanel();
-	private JPanel PanelmainWest = new JPanel();
-	private JPanel PanelmainSouth = new JPanel();
-	private JPanel contentPanel = new JPanel();
-	private JPanel contentPanelTop = new JPanel();
-	private JPanel contentPanelBottom = new JPanel();
-	private JPanel contentPanelBottom_Left = new JPanel(), contentPanelBottom_Right = new JPanel();
+
 	private JButton titelbtn, Storybtn, Abtn, Bbtn, Cbtn, VorlesenAbtn, VorlesenBbtn, VorlesenCbtn = new JButton();
 
 	private JMenuBar menuBar;
@@ -131,49 +124,32 @@ public class GameGUI extends GUI implements ActionListener {
 		PlaceHolderProgrammedBy = setupJLabel("Placeholder", 220, 20);
 
 		PanelmainNorth.setLayout(new BorderLayout());
+
 		PanelmainSouth.setLayout(new BorderLayout());
+
 		PanelmainNorth.add(titelbtn, BorderLayout.CENTER);
+
 		PanelmainSouth.add(StoryCreator, BorderLayout.CENTER);
 		PanelmainSouth.add(ProgrammedBy, BorderLayout.EAST);
 		PanelmainSouth.add(PlaceHolderProgrammedBy, BorderLayout.WEST);
 
 		PanelmainNorth.setBackground(CardGame.BackgroundColor);
 		PanelmainNorth.setPreferredSize(new Dimension(100, 100));
+
 		PanelmainEast.setBackground(CardGame.BackgroundColor);
 		PanelmainEast.setPreferredSize(new Dimension(20, 20));
+
 		PanelmainWest.setBackground(CardGame.BackgroundColor);
 		PanelmainWest.setPreferredSize(new Dimension(20, 20));
+
 		PanelmainSouth.setBackground(CardGame.BackgroundColor);
 		PanelmainSouth.setPreferredSize(new Dimension(40, 30));
-		contentPanel.setBackground(CardGame.BackgroundColor);
-		contentPanel.setLayout(new GridLayout(2, 1, 10, 10));
-
-		contentPanelTop.setPreferredSize(new Dimension(40, 40));
-		contentPanelTop.setLayout(new BorderLayout());
-		contentPanelTop.setPreferredSize(new Dimension(40, 40));
-		contentPanelTop.setBackground(new Color(0x505050));
-		contentPanelBottom.setPreferredSize(new Dimension(40, 40));
-		contentPanelBottom.setBackground(CardGame.BackgroundColor);
-		contentPanelBottom.setLayout(new BorderLayout());
-
-		contentPanel.add(contentPanelTop);
-		contentPanel.add(contentPanelBottom);
 
 		Storybtn = setupJButton(CardGame.cards.get(0).getText(), 26,
 				CardGame.BackgroudColorMatch2, new Color(0x06A666),
 				SwingConstants.LEFT, SwingConstants.LEFT);
 		Storybtn.setVerticalTextPosition(SwingConstants.TOP);
 		Storybtn.setVerticalAlignment(SwingConstants.TOP);
-
-		contentPanelTop.add(Storybtn, BorderLayout.CENTER);
-
-		contentPanelBottom_Left.setPreferredSize(new Dimension(100, 40));
-		contentPanelBottom_Left.setLayout(new GridLayout(3, 1, 10, 10));
-		contentPanelBottom_Left.setBackground(CardGame.BackgroundColor);
-
-		contentPanelBottom_Right.setPreferredSize(new Dimension(100, 40));
-		contentPanelBottom_Right.setLayout(new GridLayout(3, 1, 10, 10));
-		contentPanelBottom_Right.setBackground(CardGame.BackgroundColor);
 
 		// the buttons for choosing
 		Abtn = setupAbcButton("A");
@@ -188,14 +164,20 @@ public class GameGUI extends GUI implements ActionListener {
 
 		VorlesenCbtn = setupVorleseButton('c');
 
-		contentPanelBottom_Right.add(Abtn);
-		contentPanelBottom_Right.add(Bbtn);
-		contentPanelBottom_Right.add(Cbtn);
-		contentPanelBottom_Left.add(VorlesenAbtn);
-		contentPanelBottom_Left.add(VorlesenBbtn);
-		contentPanelBottom_Left.add(VorlesenCbtn);
-		contentPanelBottom.add(contentPanelBottom_Left, BorderLayout.WEST);
-		contentPanelBottom.add(contentPanelBottom_Right, BorderLayout.CENTER);
+		contentPanelTop = setupContentJPanel(new BorderLayout(), 40, 40, new Color(0x505050), Storybtn,
+				BorderLayout.CENTER);
+
+		contentPanelBottom_Right = setupContentJPanel(new GridLayout(3, 1, 10, 10), 100, 40, CardGame.BackgroundColor,
+				Abtn, Bbtn, Cbtn);
+
+		contentPanelBottom_Left = setupContentJPanel(new GridLayout(3, 1, 10, 10), 100, 40, CardGame.BackgroundColor,
+				VorlesenAbtn, VorlesenBbtn, VorlesenCbtn);
+
+		contentPanelBottom = setupContentJPanel(new BorderLayout(), 40, 40, CardGame.BackgroundColor,
+				contentPanelBottom_Left, BorderLayout.WEST, contentPanelBottom_Right, BorderLayout.CENTER);
+
+		contentPanel = setupContentJPanel(new GridLayout(2, 1, 10, 10), 0, 0, CardGame.BackgroundColor, contentPanelTop,
+				contentPanelBottom);
 
 		framePanel = new JPanel();
 		framePanel.setBackground(new Color(0x505050));
@@ -269,6 +251,28 @@ public class GameGUI extends GUI implements ActionListener {
 			Storybtn.setText(C.getText());
 		}
 		this.frame.setVisible(true);
+	}
+
+	public JPanel setupContentJPanel(LayoutManager layout, int arg0, int arg1, Color backgroundColor,
+			Object... components) {
+		JPanel jPanel = new JPanel();
+		jPanel.setLayout(layout);
+		jPanel.setPreferredSize(new Dimension(arg0, arg1));
+		jPanel.setBackground(backgroundColor);
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof Component) {
+				// check if next is a constraint
+				if (i + 1 < components.length && !(components[i + 1] instanceof Component)) {
+					jPanel.add((Component) components[i], components[i + 1]);
+					i++; // skip constraint
+				} else {
+					jPanel.add((Component) components[i]);
+				}
+
+			}
+		}
+
+		return jPanel;
 	}
 
 	public JButton setupJButton(String text, int arg0, Color backgroundColor, Color foregroundColor,

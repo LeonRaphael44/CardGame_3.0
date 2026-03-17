@@ -15,7 +15,17 @@ import de.cardGame.main.CardGame;
 
 public abstract class GUI {
 
-    private JFrame frame;
+    public JFrame frame;
+    public JPanel framePanel;
+    public JPanel PanelmainNorth;
+    public JPanel PanelmainEast;
+    public JPanel PanelmainWest;
+    public JPanel PanelmainSouth;
+    public JPanel contentPanel;
+    public JPanel contentPanelTop;
+    public JPanel contentPanelBottom;
+    public JPanel contentPanelBottom_Left;
+    public JPanel contentPanelBottom_Right;
 
     public GUI() {
         this.frame = new JFrame();
