@@ -48,7 +48,7 @@ public class ProgrammedByGUI extends GUI implements ActionListener {
 				(int) ((height / 2) - (this.frame.getSize().getHeight() / 2)));
 		this.frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.frame.setLayout(new BorderLayout());
-		this.frame.setResizable(false);
+		this.frame.setResizable(true);
 		this.frame.setTitle(Words.get(WordTypes.Name));
 		this.frame.setAlwaysOnTop(false);
 		this.frame.setVisible(true);
