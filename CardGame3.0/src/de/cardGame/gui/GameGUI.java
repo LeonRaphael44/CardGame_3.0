@@ -73,16 +73,9 @@ public class GameGUI extends GUI implements ActionListener {
 		this.frame.getContentPane().setBackground(Color.DARK_GRAY);
 		this.frame.setIconImage(new IconManager(IconPath.GameIcon).getImage());
 
-		titelbtn = new JButton();
-		titelbtn.setText(Words.get(WordTypes.Karte) + "1");
-		titelbtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 60));
-		titelbtn.setBackground(CardGame.BackgroundColor);
-		titelbtn.setForeground(Color.green);
-		titelbtn.setHorizontalAlignment(SwingConstants.CENTER);
-		titelbtn.setHorizontalTextPosition(SwingConstants.CENTER);
-		titelbtn.setFocusable(false);
-		titelbtn.addActionListener(this);
-		titelbtn.setBorder(BorderFactory.createEmptyBorder());
+		titelbtn = setupJButton(Words.get(WordTypes.Karte) + "1", 60,
+				CardGame.BackgroundColor, Color.green,
+				SwingConstants.CENTER, SwingConstants.CENTER);
 
 		menuBar = new JMenuBar();
 		menuBar.setBackground(CardGame.BackgroundColor);
@@ -166,18 +159,11 @@ public class GameGUI extends GUI implements ActionListener {
 		contentPanel.add(contentPanelTop);
 		contentPanel.add(contentPanelBottom);
 
-		Storybtn = new JButton();
-		Storybtn.setText(CardGame.cards.get(0).getText());
-		Storybtn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 26));
-		Storybtn.setForeground(new Color(0x06A666));
-		Storybtn.setBackground(CardGame.BackgroudColorMatch2);
-		Storybtn.setHorizontalAlignment(SwingConstants.LEFT);
+		Storybtn = setupJButton(CardGame.cards.get(0).getText(), 26,
+				CardGame.BackgroudColorMatch2, new Color(0x06A666),
+				SwingConstants.LEFT, SwingConstants.LEFT);
 		Storybtn.setVerticalTextPosition(SwingConstants.TOP);
 		Storybtn.setVerticalAlignment(SwingConstants.TOP);
-		Storybtn.setHorizontalTextPosition(SwingConstants.LEFT);
-		Storybtn.setFocusable(false);
-		Storybtn.addActionListener(this);
-		Storybtn.setBorder(BorderFactory.createEmptyBorder());
 
 		contentPanelTop.add(Storybtn, BorderLayout.CENTER);
 
@@ -283,6 +269,22 @@ public class GameGUI extends GUI implements ActionListener {
 			Storybtn.setText(C.getText());
 		}
 		this.frame.setVisible(true);
+	}
+
+	public JButton setupJButton(String text, int arg0, Color backgroundColor, Color foregroundColor,
+			int directionHorrizontalAlligment, int directionHorizontalTextPosition) {
+		JButton jButton = new JButton();
+		jButton.setText(text);
+		jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, arg0));
+		jButton.setBackground(backgroundColor);
+		jButton.setForeground(foregroundColor);
+		jButton.setHorizontalAlignment(directionHorrizontalAlligment);
+		jButton.setHorizontalTextPosition(directionHorizontalTextPosition);
+		jButton.setFocusable(false);
+		jButton.addActionListener(this);
+		jButton.setBorder(BorderFactory.createEmptyBorder());
+
+		return jButton;
 	}
 
 	public JMenu setupJMenu(String arg0, int keyEvent, IconPath iconPath) {
