@@ -123,28 +123,6 @@ public class GameGUI extends GUI implements ActionListener {
 
 		PlaceHolderProgrammedBy = setupJLabel("Placeholder", 220, 20);
 
-		PanelmainNorth.setLayout(new BorderLayout());
-
-		PanelmainSouth.setLayout(new BorderLayout());
-
-		PanelmainNorth.add(titelbtn, BorderLayout.CENTER);
-
-		PanelmainSouth.add(StoryCreator, BorderLayout.CENTER);
-		PanelmainSouth.add(ProgrammedBy, BorderLayout.EAST);
-		PanelmainSouth.add(PlaceHolderProgrammedBy, BorderLayout.WEST);
-
-		PanelmainNorth.setBackground(CardGame.BackgroundColor);
-		PanelmainNorth.setPreferredSize(new Dimension(100, 100));
-
-		PanelmainEast.setBackground(CardGame.BackgroundColor);
-		PanelmainEast.setPreferredSize(new Dimension(20, 20));
-
-		PanelmainWest.setBackground(CardGame.BackgroundColor);
-		PanelmainWest.setPreferredSize(new Dimension(20, 20));
-
-		PanelmainSouth.setBackground(CardGame.BackgroundColor);
-		PanelmainSouth.setPreferredSize(new Dimension(40, 30));
-
 		Storybtn = setupJButton(CardGame.cards.get(0).getText(), 26,
 				CardGame.BackgroudColorMatch2, new Color(0x06A666),
 				SwingConstants.LEFT, SwingConstants.LEFT);
@@ -178,6 +156,13 @@ public class GameGUI extends GUI implements ActionListener {
 
 		contentPanel = setupContentJPanel(new GridLayout(2, 1, 10, 10), 0, 0, CardGame.BackgroundColor, contentPanelTop,
 				contentPanelBottom);
+
+		PanelmainNorth = setupMainJPanel(new BorderLayout(), 100, 100, CardGame.BackgroundColor, titelbtn,
+				BorderLayout.CENTER);
+		PanelmainEast = setupMainJPanel(null, 20, 20, CardGame.BackgroundColor);
+		PanelmainWest = setupMainJPanel(null, 20, 20, CardGame.BackgroundColor);
+		PanelmainSouth = setupMainJPanel(new BorderLayout(), 40, 30, CardGame.BackgroundColor, StoryCreator,
+				BorderLayout.CENTER, ProgrammedBy, BorderLayout.EAST, PlaceHolderProgrammedBy, BorderLayout.WEST);
 
 		framePanel = new JPanel();
 		framePanel.setBackground(new Color(0x505050));
@@ -251,6 +236,27 @@ public class GameGUI extends GUI implements ActionListener {
 			Storybtn.setText(C.getText());
 		}
 		this.frame.setVisible(true);
+	}
+
+	public JPanel setupMainJPanel(LayoutManager layout, int arg0, int arg1, Color background, Object... components) {
+		JPanel jPanel = new JPanel();
+		jPanel.setLayout(layout);
+		jPanel.setPreferredSize(new Dimension(arg0, arg1));
+		jPanel.setBackground(background);
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof Component) {
+				// check if next is a constraint
+				if (i + 1 < components.length && !(components[i + 1] instanceof Component)) {
+					jPanel.add((Component) components[i], components[i + 1]);
+					i++; // skip constraint
+				} else {
+					jPanel.add((Component) components[i]);
+				}
+
+			}
+		}
+
+		return jPanel;
 	}
 
 	public JPanel setupContentJPanel(LayoutManager layout, int arg0, int arg1, Color backgroundColor,
