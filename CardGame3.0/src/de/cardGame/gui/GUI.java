@@ -71,7 +71,7 @@ public abstract class GUI {
         return jPanel;
     }
 
-    public JPanel setupContentJPanel(LayoutManager layout, Color background) {
+    public JPanel setupJPanel(LayoutManager layout, Color background) {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(layout);
         jPanel.setBackground(background);
@@ -79,7 +79,7 @@ public abstract class GUI {
         return jPanel;
     }
 
-    public JPanel setupContentJPanel(LayoutManager layout, Color background, Object... components) {
+    public JPanel setupJPanel(LayoutManager layout, Color background, Object... components) {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(layout);
         jPanel.setBackground(background);
@@ -89,7 +89,7 @@ public abstract class GUI {
         return jPanel;
     }
 
-    public JPanel setupContentJPanel(LayoutManager layout, int width, int height, Color background,
+    public JPanel setupJPanel(LayoutManager layout, int width, int height, Color background,
             Object... components) {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(layout);

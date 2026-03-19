@@ -171,7 +171,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		sliderbottomlbl.setForeground(new Color(0x06A666));
 		sliderbottomlbl.setHorizontalAlignment(SwingConstants.CENTER);
 
-		contentPanelleft = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, sliderbottomlbl,
+		contentPanelleft = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, sliderbottomlbl,
 				BorderLayout.NORTH, slider, BorderLayout.CENTER, sliderbottomlbl, BorderLayout.SOUTH);
 
 		languagelbl = new JLabel();
@@ -196,7 +196,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 			langugagecbb.setSelectedIndex(0);
 		}
 
-		contentPanelcenter1 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, languagelbl,
+		contentPanelcenter1 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, languagelbl,
 				BorderLayout.WEST, langugagecbb, BorderLayout.CENTER);
 
 		schriftartlbl = new JLabel();
@@ -218,7 +218,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		schriftartcbb.setSelectedItem(CardGame.getSettings().getSchriftart());
 		schriftartcbb.addActionListener(this);
 
-		contentPanelcenter2 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, schriftartlbl,
+		contentPanelcenter2 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, schriftartlbl,
 				BorderLayout.WEST, schriftartcbb, BorderLayout.CENTER);
 
 		AutoPlayAfterGameEndckb = new JCheckBox();
@@ -232,7 +232,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		AutoPlayAfterGameEndckb.setSelected(CardGame.getSettings().isAutoplayaftergame());
 		AutoPlayAfterGameEndckb.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
 
-		contentPanelcenter3 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
+		contentPanelcenter3 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
 				AutoPlayAfterGameEndckb, BorderLayout.CENTER);
 
 		AutoSaveAfterChangesckb = new JCheckBox();
@@ -246,7 +246,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		AutoSaveAfterChangesckb.setSelected(CardGame.getSettings().isAutoSave());
 		AutoSaveAfterChangesckb.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
 
-		contentPanelcenter4 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
+		contentPanelcenter4 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
 				AutoSaveAfterChangesckb, BorderLayout.CENTER);
 
 		groupstimmelbl = new JLabel();
@@ -289,7 +289,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		groupPanelstimme.add(Meanlich);
 		groupPanelstimme.add(Weiblich);
 
-		contentPanelcenter5 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, groupstimmelbl,
+		contentPanelcenter5 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, groupstimmelbl,
 				BorderLayout.WEST, groupPanelstimme, BorderLayout.CENTER);
 
 		designlbl = new JLabel();
@@ -332,10 +332,10 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		groupPanelDesign.add(Dunkel);
 		groupPanelDesign.add(Hell);
 
-		contentPanelcenter6 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, designlbl,
+		contentPanelcenter6 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, designlbl,
 				BorderLayout.WEST, groupPanelDesign, BorderLayout.CENTER);
 
-		contentPanelcenter = setupContentJPanel(new GridLayout(6, 1, 5, 5), CardGame.BackgroundColor,
+		contentPanelcenter = setupJPanel(new GridLayout(6, 1, 5, 5), CardGame.BackgroundColor,
 				contentPanelcenter1, contentPanelcenter2, contentPanelcenter3, contentPanelcenter4, contentPanelcenter5,
 				contentPanelcenter6);
 
@@ -345,10 +345,10 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 		PlayDirect = setupJButton(Words.get(WordTypes.PlayDirectButton), IconPath.DirectPlay);
 
-		contentPanelright = setupContentJPanel(new GridLayout(3, 1, 5, 5), CardGame.BackgroundColor, Titelscreen,
+		contentPanelright = setupJPanel(new GridLayout(3, 1, 5, 5), CardGame.BackgroundColor, Titelscreen,
 				PlayDirect, Speichern);
 
-		contentPanel = setupContentJPanel(new GridLayout(1, 3, 5, 5), CardGame.BackgroundColor, contentPanelright,
+		contentPanel = setupJPanel(new GridLayout(1, 3, 5, 5), CardGame.BackgroundColor, contentPanelright,
 				contentPanelcenter, contentPanelleft);
 
 		contentPanel.add(contentPanelright);// Ist jetzt einfach links eigentlich ist das contentPanelleft hier

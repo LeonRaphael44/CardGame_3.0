@@ -142,19 +142,19 @@ public class GameGUI extends GUI implements ActionListener {
 
 		VorlesenCbtn = setupVorleseButton('c');
 
-		contentPanelTop = setupContentJPanel(new BorderLayout(), 40, 40, new Color(0x505050), Storybtn,
+		contentPanelTop = setupJPanel(new BorderLayout(), 40, 40, new Color(0x505050), Storybtn,
 				BorderLayout.CENTER);
 
-		contentPanelBottom_Right = setupContentJPanel(new GridLayout(3, 1, 10, 10), 100, 40, CardGame.BackgroundColor,
+		contentPanelBottom_Right = setupJPanel(new GridLayout(3, 1, 10, 10), 100, 40, CardGame.BackgroundColor,
 				Abtn, Bbtn, Cbtn);
 
-		contentPanelBottom_Left = setupContentJPanel(new GridLayout(3, 1, 10, 10), 100, 40, CardGame.BackgroundColor,
+		contentPanelBottom_Left = setupJPanel(new GridLayout(3, 1, 10, 10), 100, 40, CardGame.BackgroundColor,
 				VorlesenAbtn, VorlesenBbtn, VorlesenCbtn);
 
-		contentPanelBottom = setupContentJPanel(new BorderLayout(), 40, 40, CardGame.BackgroundColor,
+		contentPanelBottom = setupJPanel(new BorderLayout(), 40, 40, CardGame.BackgroundColor,
 				contentPanelBottom_Left, BorderLayout.WEST, contentPanelBottom_Right, BorderLayout.CENTER);
 
-		contentPanel = setupContentJPanel(new GridLayout(2, 1, 10, 10), 0, 0, CardGame.BackgroundColor, contentPanelTop,
+		contentPanel = setupJPanel(new GridLayout(2, 1, 10, 10), 0, 0, CardGame.BackgroundColor, contentPanelTop,
 				contentPanelBottom);
 
 		PanelmainNorth = setupMainJPanel(new BorderLayout(), 100, 100, CardGame.BackgroundColor, titelbtn,
