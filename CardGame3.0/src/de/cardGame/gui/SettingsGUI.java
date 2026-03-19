@@ -125,26 +125,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		slidertitellbl = setupJLabel(5, 60, Words.get(WordTypes.Volume), new Color(0x06A666), Font.BOLD, 30,
 				SwingConstants.CENTER);
 
-		slider = new JSlider(0, 100, CardGame.getSettings().getAudiovalue());
-		slider.setBackground(CardGame.BackgroudColorMatch2);
-		slider.setForeground(new Color(0x06A666));
-		slider.setPreferredSize(new Dimension(50, 400));
-		slider.setPaintTicks(true);
-		slider.setMinorTickSpacing(10);
-		slider.setPaintTrack(true);
-		slider.setMajorTickSpacing(50);
-		slider.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		slider.setPaintLabels(true);
-		slider.addChangeListener(this);
-		slider.setOrientation(SwingConstants.VERTICAL);
-		slider.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				sliderbottomlbl.setText(slider.getValue() + "%");
-				setAudioValue(slider.getValue());
-			}
-		});
+		slider = setupJSlider(0, 100, CardGame.getSettings().getAudiovalue(), 50, 400, this);
 
 		sliderbottomlbl = setupJLabel(5, 60, CardGame.getSettings().getAudiovalue() + "%", new Color(0x06A666),
 				Font.BOLD, 30,
@@ -269,6 +250,32 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 		this.frame.add(framePanel);
 		this.frame.setVisible(true);
+	}
+
+	public JSlider setupJSlider(int min, int max, int value, int width, int height, ChangeListener changeListener) {
+		JSlider jSlider = new JSlider(min, max, value);
+		jSlider.setBackground(CardGame.BackgroudColorMatch2);
+		jSlider.setForeground(new Color(0x06A666));
+		jSlider.setPreferredSize(new Dimension(width, height));
+		jSlider.setPaintTicks(true);
+		jSlider.setMinorTickSpacing(10);
+		jSlider.setPaintTrack(true);
+		jSlider.setMajorTickSpacing(50);
+		jSlider.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+		jSlider.setPaintLabels(true);
+		jSlider.setOrientation(SwingConstants.VERTICAL);
+
+		jSlider.addChangeListener(changeListener);
+		jSlider.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				sliderbottomlbl.setText(slider.getValue() + "%");
+				setAudioValue(slider.getValue());
+			}
+		});
+
+		return jSlider;
 	}
 
 	public int getAudioValue() {
