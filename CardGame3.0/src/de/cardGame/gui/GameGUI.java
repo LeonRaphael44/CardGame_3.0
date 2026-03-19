@@ -489,8 +489,7 @@ public class GameGUI extends GUI implements ActionListener {
 			StopSprachausgabeAsistent();
 			CardGame.getGUI().dispose();
 			StoppUhr.Stopp();
-			// CardGame.setGUI(new SettingsGUI(null).getFrame());
-			getFrame();
+			CardGame.setGUI(new SettingsGUI(null).getFrame());
 		} else if (e.getSource() == PageBack) {
 			if (de.cardGame.utils.settings.Settings.Cardback <= 2
 					&& de.cardGame.utils.settings.Settings.Cardback >= 1) {
