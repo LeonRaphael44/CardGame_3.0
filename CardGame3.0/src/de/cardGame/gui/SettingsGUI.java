@@ -383,21 +383,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 			st.setStimmenArt(getStimmenart());
 			st.save();
 			GameGUI gui = new GameGUI(null);
-			if (Words.choosenWayID.size() >= 2) {
-				Card c = Card.getCardByID(Words.choosenWayID.get(Words.choosenWayID.size() - 2));
-				if (Words.choosenWayAnswer.get(Words.choosenWayAnswer.size() - 1) == TextType.A
-						|| Words.choosenWayAnswer.get(Words.choosenWayAnswer.size() - 1) == TextType.Weiter) {
-					gui.setCardText(c.getNextA());
-				} else if (Words.choosenWayAnswer.get(Words.choosenWayAnswer.size() - 1) == TextType.B) {
-					gui.setCardText(c.getNextB());
-				} else if (Words.choosenWayAnswer.get(Words.choosenWayAnswer.size() - 1) == TextType.C) {
-					gui.setCardText(c.getNextC());
-				} else if (Words.choosenWayAnswer.get(Words.choosenWayAnswer.size() - 1) == TextType.GameOver) {
-					gui.setCardText(0);
-				}
-			} else {
-				gui.setCardText(0);
-			}
+			resolveNextCard();
 			CardGame.setGUI(gui.getFrame());
 			StoppUhr.Run();
 		} else if (e.getSource() == Weiblich) {
@@ -468,6 +454,35 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 				}
 			}
 			IsSecondTime++;
+		}
+	}
+
+	private int resolveNextCard() {
+		if (Words.choosenWayID.size() < 2 || Words.choosenWayAnswer.isEmpty()) {
+			return 0;
+		}
+
+		int index = Words.choosenWayID.size() - 2;
+		Card c = Card.getCardByID(Words.choosenWayID.get(index));
+
+		if (c == null) {
+			return 0;
+		}
+
+		TextType last = Words.choosenWayAnswer.get(Words.choosenWayAnswer.size() - 1);
+
+		switch (last) {
+			case A:
+			case Weiter:
+				return c.getNextA();
+			case B:
+				return c.getNextB();
+			case C:
+				return c.getNextC();
+			case GameOver:
+
+			default:
+				return 0;
 		}
 	}
 

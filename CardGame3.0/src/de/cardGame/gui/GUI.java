@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 
 import de.cardGame.main.CardGame;
 import de.cardGame.utils.icons.IconManager;
