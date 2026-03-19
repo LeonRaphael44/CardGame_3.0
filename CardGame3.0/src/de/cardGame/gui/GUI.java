@@ -6,12 +6,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import de.cardGame.main.CardGame;
@@ -183,5 +185,19 @@ public abstract class GUI {
         jLabel.setBorder(BorderFactory.createLineBorder(color, thickness));
 
         return jLabel;
+    }
+
+    public JRadioButton setupJRadioButton(String text, boolean focusable, Color background, Color foreground,
+            int verticalTextPosition, ActionListener listener) {
+        JRadioButton jRadioButton = new JRadioButton(text);
+        jRadioButton.setFocusable(focusable);
+        jRadioButton.setBackground(background);
+        jRadioButton.setForeground(foreground);
+        jRadioButton.setVerticalTextPosition(verticalTextPosition);
+        jRadioButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+
+        jRadioButton.addActionListener(listener);
+
+        return jRadioButton;
     }
 }

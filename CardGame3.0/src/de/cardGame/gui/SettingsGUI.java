@@ -220,21 +220,14 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		groupstimmelbl = setupJLabel(200, 30, Words.get(WordTypes.VorleseStimme), new Color(0x06A666), Font.PLAIN,
 				25, SwingConstants.LEFT, SwingConstants.CENTER, CardGame.BackgroudColorMatch2, 5);
 
-		Meanlich = new JRadioButton(Words.get(WordTypes.Male));
-		Meanlich.setFocusable(false);
-		Meanlich.setBackground(CardGame.BackgroudColorMatch2);
-		Meanlich.setForeground(new Color(0x06A666));
-		Meanlich.addActionListener(this);
-		Meanlich.setVerticalTextPosition(SwingConstants.CENTER);
-		Meanlich.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+		Dunkel = setupJRadioButton(Words
+				.get(WordTypes.Male), false, CardGame.BackgroudColorMatch2, new Color(0x06A666),
+				SwingConstants.CENTER, this);
 
-		Weiblich = new JRadioButton(Words.get(WordTypes.Female));
-		Weiblich.setFocusable(false);
-		Weiblich.addActionListener(this);
-		Weiblich.setBackground(CardGame.BackgroudColorMatch2);
-		Weiblich.setForeground(new Color(0x06A666));
-		Weiblich.setVerticalTextPosition(SwingConstants.CENTER);
-		Weiblich.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+		Weiblich = setupJRadioButton(Words
+				.get(WordTypes.Female), false, CardGame.BackgroudColorMatch2, new Color(0x06A666),
+				SwingConstants.CENTER, this);
+
 		if (CardGame.getSettings().getStimmenArt().equalsIgnoreCase("W")) {
 			Weiblich.setSelected(true);
 		} else if (CardGame.getSettings().getStimmenArt().equalsIgnoreCase("M")) {
@@ -252,21 +245,15 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		designlbl = setupJLabel(200, 30, Words.get(WordTypes.Design), new Color(0x06A666), Font.PLAIN, 25,
 				SwingConstants.LEFT, SwingConstants.CENTER, CardGame.BackgroudColorMatch2, 5);
 
-		Dunkel = new JRadioButton(Words.get(WordTypes.Dunkel));
-		Dunkel.setFocusable(false);
-		Dunkel.setBackground(CardGame.BackgroudColorMatch2);
-		Dunkel.setForeground(new Color(0x06A666));
-		Dunkel.addActionListener(this);
-		Dunkel.setVerticalTextPosition(SwingConstants.CENTER);
-		Dunkel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+		Dunkel = setupJRadioButton(Words
+				.get(WordTypes.Dunkel), false, CardGame.BackgroudColorMatch2, new Color(0x06A666),
+				SwingConstants.CENTER,
+				this);
 
-		Hell = new JRadioButton(Words.get(WordTypes.Hell));
-		Hell.setFocusable(false);
-		Hell.addActionListener(this);
-		Hell.setBackground(CardGame.BackgroudColorMatch2);
-		Hell.setForeground(new Color(0x06A666));
-		Hell.setVerticalTextPosition(SwingConstants.CENTER);
-		Hell.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+		Hell = setupJRadioButton(Words
+				.get(WordTypes.Hell), false, CardGame.BackgroudColorMatch2, new Color(0x06A666), SwingConstants.CENTER,
+				this);
+
 		if (getdesign().equalsIgnoreCase("Dunkel")) {
 			Dunkel.setSelected(true);
 		} else if (getdesign().equalsIgnoreCase("Hell")) {
