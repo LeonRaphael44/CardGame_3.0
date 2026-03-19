@@ -199,9 +199,8 @@ public class StartScreenGUI extends GUI implements ActionListener {
 		if (e.getSource() == Settings) {
 			CheckPlayBack();
 			CardGame.getGUI().dispose();
-			// SettingsGUI gui = new SettingsGUI(null);
-			// CardGame.setGUI(gui.getFrame());
-			getFrame();
+			SettingsGUI gui = new SettingsGUI(null);
+			CardGame.setGUI(gui.getFrame());
 			CardGame.getGUI().show();
 		} else if (e.getSource() == PlayGame) {
 			Words.choosenWay.clear();
