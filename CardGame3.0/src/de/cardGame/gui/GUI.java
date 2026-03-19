@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.LayoutManager;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import de.cardGame.main.CardGame;
+import de.cardGame.utils.icons.IconManager;
+import de.cardGame.utils.icons.IconPath;
 
 public abstract class GUI {
 
@@ -122,5 +125,63 @@ public abstract class GUI {
 
             }
         }
+    }
+
+    public JLabel setupJLabel() {
+        JLabel jLabel = new JLabel();
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(String text, Color foreground, int style, int sizeOfFont,
+            int alligment) {
+        JLabel jLabel = new JLabel();
+        jLabel.setText(text);
+        jLabel.setForeground(foreground);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), style, sizeOfFont));
+        jLabel.setHorizontalAlignment(alligment);
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(int width, int height, String text, Color foreground, int style, int sizeOfFont,
+            int alligment) {
+        JLabel jLabel = new JLabel();
+        jLabel.setPreferredSize(new Dimension(width, height));
+        jLabel.setText(text);
+        jLabel.setForeground(foreground);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), style, sizeOfFont));
+        jLabel.setHorizontalAlignment(alligment);
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(int width, int height, String text, Color foreground, int style, int sizeOfFont,
+            int horizontalAlligment, int verticalAlligment, Color color, int thickness) {
+        JLabel jLabel = new JLabel();
+        jLabel.setPreferredSize(new Dimension(width, height));
+        jLabel.setText(text);
+        jLabel.setForeground(foreground);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), style, sizeOfFont));
+        jLabel.setHorizontalAlignment(horizontalAlligment);
+        jLabel.setVerticalAlignment(verticalAlligment);
+        jLabel.setBorder(BorderFactory.createLineBorder(color, thickness));
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(int width, int height, String text, Color foreground, int style, int sizeOfFont,
+            int horizontalAlligment, int verticalAlligment, IconPath iconPath, Color color, int thickness) {
+        JLabel jLabel = new JLabel();
+        jLabel.setPreferredSize(new Dimension(width, height));
+        jLabel.setText(text);
+        jLabel.setForeground(foreground);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), style, sizeOfFont));
+        jLabel.setHorizontalAlignment(horizontalAlligment);
+        jLabel.setVerticalAlignment(verticalAlligment);
+        jLabel.setIcon(new IconManager(iconPath).getImageIcon());
+        jLabel.setBorder(BorderFactory.createLineBorder(color, thickness));
+
+        return jLabel;
     }
 }

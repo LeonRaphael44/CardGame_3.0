@@ -111,15 +111,10 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		this.frame.setTitle(Words.get(WordTypes.Name));
 		this.frame.setIconImage(new IconManager(IconPath.GameIcon).getImage());
 
-		titelPanel = setupJPanel(new BorderLayout(), 10, 75, CardGame.BackgroundColor, null);
+		titellbl = setupJLabel(Words.get(WordTypes.Settings), Color.green, Font.BOLD, 40,
+				SwingConstants.CENTER);
 
-		titellbl = new JLabel();
-		titellbl.setText(Words.get(WordTypes.Settings));
-		titellbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.BOLD, 40));
-		titellbl.setForeground(Color.green);
-		titellbl.setHorizontalAlignment(SwingConstants.CENTER);
-
-		titelPanel.add(titellbl, BorderLayout.CENTER);
+		titelPanel = setupJPanel(new BorderLayout(), 10, 75, CardGame.BackgroundColor, titellbl, BorderLayout.CENTER);
 
 		mainEast = setupJPanel(5, 5, CardGame.BackgroundColor);
 
@@ -127,12 +122,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 		mainSouth = setupJPanel(5, 5, CardGame.BackgroundColor);
 
-		slidertitellbl = new JLabel();
-		slidertitellbl.setPreferredSize(new Dimension(5, 60));
-		slidertitellbl.setText(Words.get(WordTypes.Volume));
-		slidertitellbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.BOLD, 30));
-		slidertitellbl.setForeground(new Color(0x06A666));
-		slidertitellbl.setHorizontalAlignment(SwingConstants.CENTER);
+		slidertitellbl = setupJLabel(5, 60, Words.get(WordTypes.Volume), new Color(0x06A666), Font.BOLD, 30,
+				SwingConstants.CENTER);
 
 		slider = new JSlider(0, 100, CardGame.getSettings().getAudiovalue());
 		slider.setBackground(CardGame.BackgroudColorMatch2);
@@ -155,24 +146,16 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 			}
 		});
 
-		sliderbottomlbl = new JLabel();
-		sliderbottomlbl.setPreferredSize(new Dimension(5, 60));
-		sliderbottomlbl.setText(CardGame.getSettings().getAudiovalue() + "%");
-		sliderbottomlbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.BOLD, 30));
-		sliderbottomlbl.setForeground(new Color(0x06A666));
-		sliderbottomlbl.setHorizontalAlignment(SwingConstants.CENTER);
+		sliderbottomlbl = setupJLabel(5, 60, CardGame.getSettings().getAudiovalue() + "%", new Color(0x06A666),
+				Font.BOLD, 30,
+				SwingConstants.CENTER);
 
 		contentPanelleft = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, sliderbottomlbl,
 				BorderLayout.NORTH, slider, BorderLayout.CENTER, sliderbottomlbl, BorderLayout.SOUTH);
 
-		languagelbl = new JLabel();
-		languagelbl.setPreferredSize(new Dimension(250, 30));
-		languagelbl.setText(Words.get(WordTypes.Sprache));
-		languagelbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		languagelbl.setForeground(new Color(0x06A666));
-		languagelbl.setVerticalAlignment(SwingConstants.CENTER);
-		languagelbl.setHorizontalAlignment(SwingConstants.LEFT);
-		languagelbl.setBorder(BorderFactory.createLineBorder(CardGame.BackgroudColorMatch2, 5));
+		languagelbl = setupJLabel(250, 30, Words.get(WordTypes.Sprache), new Color(
+				0x06A666), Font.PLAIN, 30, SwingConstants.LEFT, SwingConstants.CENTER, CardGame.BackgroudColorMatch2,
+				5);
 
 		langugagecbb = new JComboBox<>(CardGame.getSettings().getLanguages(CardGame.getSettings().getLanguage()));
 		langugagecbb.setBackground(CardGame.BackgroudColorMatch2);
@@ -190,15 +173,9 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		contentPanelcenter1 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, languagelbl,
 				BorderLayout.WEST, langugagecbb, BorderLayout.CENTER);
 
-		schriftartlbl = new JLabel();
-		schriftartlbl.setPreferredSize(new Dimension(250, 30));
-		schriftartlbl.setText(Words.get(WordTypes.Schriftart));
-		schriftartlbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		schriftartlbl.setForeground(new Color(0x06A666));
-		schriftartlbl.setVerticalAlignment(SwingConstants.CENTER);
-		schriftartlbl.setHorizontalAlignment(SwingConstants.LEFT);
-		schriftartlbl.setIcon(new IconManager(IconPath.Fontx64).getImageIcon());
-		schriftartlbl.setBorder(BorderFactory.createLineBorder(CardGame.BackgroudColorMatch2, 5));
+		schriftartlbl = setupJLabel(250, 30, Words.get(WordTypes.Schriftart), new Color(0x06A666), Font.PLAIN,
+				30, SwingConstants.LEFT, SwingConstants.CENTER, IconPath.Fontx64,
+				CardGame.BackgroudColorMatch2, 5);
 
 		schriftartcbb = new JComboBox<>(CardGame.getSettings().getSchriftArten());
 		schriftartcbb.setBackground(CardGame.BackgroudColorMatch2);
@@ -240,14 +217,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		contentPanelcenter4 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
 				AutoSaveAfterChangesckb, BorderLayout.CENTER);
 
-		groupstimmelbl = new JLabel();
-		groupstimmelbl.setPreferredSize(new Dimension(200, 30));
-		groupstimmelbl.setForeground(new Color(0x06A666));
-		groupstimmelbl.setText(Words.get(WordTypes.VorleseStimme));
-		groupstimmelbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
-		groupstimmelbl.setVerticalAlignment(SwingConstants.CENTER);
-		groupstimmelbl.setHorizontalAlignment(SwingConstants.LEFT);
-		groupstimmelbl.setBorder(BorderFactory.createLineBorder(CardGame.BackgroudColorMatch2, 5));
+		groupstimmelbl = setupJLabel(200, 30, Words.get(WordTypes.VorleseStimme), new Color(0x06A666), Font.PLAIN,
+				25, SwingConstants.LEFT, SwingConstants.CENTER, CardGame.BackgroudColorMatch2, 5);
 
 		Meanlich = new JRadioButton(Words.get(WordTypes.Male));
 		Meanlich.setFocusable(false);
@@ -278,14 +249,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		contentPanelcenter5 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, groupstimmelbl,
 				BorderLayout.WEST, groupPanelstimme, BorderLayout.CENTER);
 
-		designlbl = new JLabel();
-		designlbl.setPreferredSize(new Dimension(200, 30));
-		designlbl.setForeground(new Color(0x06A666));
-		designlbl.setText(Words.get(WordTypes.Design));
-		designlbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
-		designlbl.setVerticalAlignment(SwingConstants.CENTER);
-		designlbl.setHorizontalAlignment(SwingConstants.LEFT);
-		designlbl.setBorder(BorderFactory.createLineBorder(CardGame.BackgroudColorMatch2, 5));
+		designlbl = setupJLabel(200, 30, Words.get(WordTypes.Design), new Color(0x06A666), Font.PLAIN, 25,
+				SwingConstants.LEFT, SwingConstants.CENTER, CardGame.BackgroudColorMatch2, 5);
 
 		Dunkel = new JRadioButton(Words.get(WordTypes.Dunkel));
 		Dunkel.setFocusable(false);
