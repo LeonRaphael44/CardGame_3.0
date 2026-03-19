@@ -259,28 +259,6 @@ public class GameGUI extends GUI implements ActionListener {
 		return jPanel;
 	}
 
-	public JPanel setupContentJPanel(LayoutManager layout, int arg0, int arg1, Color backgroundColor,
-			Object... components) {
-		JPanel jPanel = new JPanel();
-		jPanel.setLayout(layout);
-		jPanel.setPreferredSize(new Dimension(arg0, arg1));
-		jPanel.setBackground(backgroundColor);
-		for (int i = 0; i < components.length; i++) {
-			if (components[i] instanceof Component) {
-				// check if next is a constraint
-				if (i + 1 < components.length && !(components[i + 1] instanceof Component)) {
-					jPanel.add((Component) components[i], components[i + 1]);
-					i++; // skip constraint
-				} else {
-					jPanel.add((Component) components[i]);
-				}
-
-			}
-		}
-
-		return jPanel;
-	}
-
 	public JButton setupJButton(String text, int arg0, Color backgroundColor, Color foregroundColor,
 			int directionHorrizontalAlligment, int directionHorizontalTextPosition) {
 		JButton jButton = new JButton();

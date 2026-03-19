@@ -3,7 +3,9 @@ package de.cardGame.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.LayoutManager;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -61,5 +63,41 @@ public abstract class GUI {
 
     public JFrame getFrame() {
         return this.frame;
+    }
+
+    public JPanel setupJPanel() {
+        JPanel jPanel = new JPanel();
+
+        return jPanel;
+    }
+
+    public JPanel setupContentJPanel(LayoutManager layout, Color background) {
+        JPanel jPanel = new JPanel();
+        jPanel.setLayout(layout);
+        jPanel.setBackground(background);
+
+        return jPanel;
+    }
+
+    public JPanel setupContentJPanel(LayoutManager layout, int width, int height, Color background,
+            Object... components) {
+        JPanel jPanel = new JPanel();
+        jPanel.setLayout(layout);
+        jPanel.setPreferredSize(new Dimension(width, height));
+        jPanel.setBackground(background);
+        for (int i = 0; i < components.length; i++) {
+            if (components[i] instanceof Component) {
+                // check if next is a constraint
+                if (i + 1 < components.length && !(components[i + 1] instanceof Component)) {
+                    jPanel.add((Component) components[i], components[i + 1]);
+                    i++; // skip constraint
+                } else {
+                    jPanel.add((Component) components[i]);
+                }
+
+            }
+        }
+
+        return jPanel;
     }
 }
