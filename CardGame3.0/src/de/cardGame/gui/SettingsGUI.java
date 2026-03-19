@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -135,10 +136,6 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		mainSouth.setPreferredSize(new Dimension(5, 5));
 		mainSouth.setBackground(CardGame.BackgroundColor);
 
-		contentPanel = setupContentJPanel(new GridLayout(1, 3, 5, 5), CardGame.BackgroundColor);
-
-		contentPanelleft = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2);
-
 		slidertitellbl = new JLabel();
 		slidertitellbl.setPreferredSize(new Dimension(5, 60));
 		slidertitellbl.setText(Words.get(WordTypes.Volume));
@@ -174,11 +171,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		sliderbottomlbl.setForeground(new Color(0x06A666));
 		sliderbottomlbl.setHorizontalAlignment(SwingConstants.CENTER);
 
-		contentPanelleft.add(slidertitellbl, BorderLayout.NORTH);
-		contentPanelleft.add(slider, BorderLayout.CENTER);
-		contentPanelleft.add(sliderbottomlbl, BorderLayout.SOUTH);
-
-		contentPanelcenter = setupContentJPanel(new GridLayout(6, 1, 5, 5), CardGame.BackgroundColor);
+		contentPanelleft = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, sliderbottomlbl,
+				BorderLayout.NORTH, slider, BorderLayout.CENTER, sliderbottomlbl, BorderLayout.SOUTH);
 
 		languagelbl = new JLabel();
 		languagelbl.setPreferredSize(new Dimension(250, 30));
@@ -202,11 +196,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 			langugagecbb.setSelectedIndex(0);
 		}
 
-		contentPanelcenter1 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2);
-		contentPanelcenter1.add(languagelbl, BorderLayout.WEST);
-		contentPanelcenter1.add(langugagecbb, BorderLayout.CENTER);
-
-		contentPanelcenter2 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2);
+		contentPanelcenter1 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, languagelbl,
+				BorderLayout.WEST, langugagecbb, BorderLayout.CENTER);
 
 		schriftartlbl = new JLabel();
 		schriftartlbl.setPreferredSize(new Dimension(250, 30));
@@ -227,10 +218,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		schriftartcbb.setSelectedItem(CardGame.getSettings().getSchriftart());
 		schriftartcbb.addActionListener(this);
 
-		contentPanelcenter2.add(schriftartlbl, BorderLayout.WEST);
-		contentPanelcenter2.add(schriftartcbb, BorderLayout.CENTER);
-
-		contentPanelcenter3 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2);
+		contentPanelcenter2 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, schriftartlbl,
+				BorderLayout.WEST, schriftartcbb, BorderLayout.CENTER);
 
 		AutoPlayAfterGameEndckb = new JCheckBox();
 		AutoPlayAfterGameEndckb.setText(Words.get(WordTypes.AutoPlayAfterGameEnd));
@@ -243,9 +232,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		AutoPlayAfterGameEndckb.setSelected(CardGame.getSettings().isAutoplayaftergame());
 		AutoPlayAfterGameEndckb.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
 
-		contentPanelcenter3.add(AutoPlayAfterGameEndckb, BorderLayout.CENTER);
-
-		contentPanelcenter4 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2);
+		contentPanelcenter3 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
+				AutoPlayAfterGameEndckb, BorderLayout.CENTER);
 
 		AutoSaveAfterChangesckb = new JCheckBox();
 		AutoSaveAfterChangesckb.setText(Words.get(WordTypes.AutoSave));
@@ -258,9 +246,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		AutoSaveAfterChangesckb.setSelected(CardGame.getSettings().isAutoSave());
 		AutoSaveAfterChangesckb.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
 
-		contentPanelcenter4.add(AutoSaveAfterChangesckb, BorderLayout.CENTER);
-
-		contentPanelcenter5 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2);
+		contentPanelcenter4 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
+				AutoSaveAfterChangesckb, BorderLayout.CENTER);
 
 		groupstimmelbl = new JLabel();
 		groupstimmelbl.setPreferredSize(new Dimension(200, 30));
@@ -302,10 +289,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		groupPanelstimme.add(Meanlich);
 		groupPanelstimme.add(Weiblich);
 
-		contentPanelcenter5.add(groupstimmelbl, BorderLayout.WEST);
-		contentPanelcenter5.add(groupPanelstimme, BorderLayout.CENTER);
-
-		contentPanelcenter6 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2);
+		contentPanelcenter5 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, groupstimmelbl,
+				BorderLayout.WEST, groupPanelstimme, BorderLayout.CENTER);
 
 		designlbl = new JLabel();
 		designlbl.setPreferredSize(new Dimension(200, 30));
@@ -347,19 +332,12 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		groupPanelDesign.add(Dunkel);
 		groupPanelDesign.add(Hell);
 
-		contentPanelcenter6.add(designlbl, BorderLayout.WEST);
-		contentPanelcenter6.add(groupPanelDesign, BorderLayout.CENTER);
+		contentPanelcenter6 = setupContentJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, designlbl,
+				BorderLayout.WEST, groupPanelDesign, BorderLayout.CENTER);
 
-		contentPanelcenter.add(contentPanelcenter1);
-		contentPanelcenter.add(contentPanelcenter2);
-		contentPanelcenter.add(contentPanelcenter3);
-		contentPanelcenter.add(contentPanelcenter4);
-		contentPanelcenter.add(contentPanelcenter5);
-		contentPanelcenter.add(contentPanelcenter6);
-
-		contentPanelright = new JPanel();
-		contentPanelright.setBackground(CardGame.BackgroundColor);
-		contentPanelright.setLayout(new GridLayout(3, 1, 5, 5));
+		contentPanelcenter = setupContentJPanel(new GridLayout(6, 1, 5, 5), CardGame.BackgroundColor,
+				contentPanelcenter1, contentPanelcenter2, contentPanelcenter3, contentPanelcenter4, contentPanelcenter5,
+				contentPanelcenter6);
 
 		Speichern = setupJButton(Words.get(WordTypes.SpeichernButton), IconPath.Savex64);
 
@@ -367,9 +345,11 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 		PlayDirect = setupJButton(Words.get(WordTypes.PlayDirectButton), IconPath.DirectPlay);
 
-		contentPanelright.add(Titelscreen);
-		contentPanelright.add(PlayDirect);
-		contentPanelright.add(Speichern);
+		contentPanelright = setupContentJPanel(new GridLayout(3, 1, 5, 5), CardGame.BackgroundColor, Titelscreen,
+				PlayDirect, Speichern);
+
+		contentPanel = setupContentJPanel(new GridLayout(1, 3, 5, 5), CardGame.BackgroundColor, contentPanelright,
+				contentPanelcenter, contentPanelleft);
 
 		contentPanel.add(contentPanelright);// Ist jetzt einfach links eigentlich ist das contentPanelleft hier
 		contentPanel.add(contentPanelcenter);
@@ -387,14 +367,6 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 		this.frame.add(framePanel);
 		this.frame.setVisible(true);
-	}
-
-	public JPanel setupContentJPanel(LayoutManager layout, Color background) {
-		JPanel jPanel = new JPanel();
-		jPanel.setLayout(layout);
-		jPanel.setBackground(background);
-
-		return jPanel;
 	}
 
 	public JButton setupJButton(String text, IconPath iconPath) {
