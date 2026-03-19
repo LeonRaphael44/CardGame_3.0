@@ -41,28 +41,6 @@ public abstract class GUI {
         this.frame = new JFrame();
     }
 
-    public JPanel setupJPanel(Component addAttr) {
-        JPanel jPanel = new JPanel();
-        jPanel.setBackground(CardGame.BackgroundColor);
-        jPanel.setLayout(new BorderLayout());
-        jPanel.add(addAttr);
-
-        return jPanel;
-    }
-
-    public JLabel setupJLabel(String setText, Color setBackgroundForJLabel) {
-        JLabel jLabel = new JLabel();
-        jLabel.setText(setText);
-        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 24));
-        jLabel.setBackground(setBackgroundForJLabel);
-        jLabel.setOpaque(true);
-        jLabel.setForeground(Color.green);
-        jLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-
-        return jLabel;
-    }
-
     public JFrame getFrame() {
         return this.frame;
     }
@@ -85,6 +63,15 @@ public abstract class GUI {
         JPanel jPanel = new JPanel();
         jPanel.setPreferredSize(new Dimension(width, height));
         jPanel.setBackground(background);
+
+        return jPanel;
+    }
+
+    public JPanel setupJPanel(Component addAttr) {
+        JPanel jPanel = new JPanel();
+        jPanel.setBackground(CardGame.BackgroundColor);
+        jPanel.setLayout(new BorderLayout());
+        jPanel.add(addAttr);
 
         return jPanel;
     }
@@ -151,6 +138,19 @@ public abstract class GUI {
         jLabel.setForeground(foreground);
         jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), style, sizeOfFont));
         jLabel.setHorizontalAlignment(alligment);
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(String setText, Color setBackgroundForJLabel) {
+        JLabel jLabel = new JLabel();
+        jLabel.setText(setText);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 24));
+        jLabel.setBackground(setBackgroundForJLabel);
+        jLabel.setOpaque(true);
+        jLabel.setForeground(Color.green);
+        jLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 
         return jLabel;
     }
