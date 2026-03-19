@@ -79,6 +79,14 @@ public abstract class GUI {
         return jPanel;
     }
 
+    public JPanel setupJPanel(int width, int height, Color background) {
+        JPanel jPanel = new JPanel();
+        jPanel.setPreferredSize(new Dimension(width, height));
+        jPanel.setBackground(background);
+
+        return jPanel;
+    }
+
     public JPanel setupJPanel(LayoutManager layout, Color background, Object... components) {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(layout);
