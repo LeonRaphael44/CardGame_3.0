@@ -79,12 +79,29 @@ public abstract class GUI {
         return jPanel;
     }
 
+    public JPanel setupContentJPanel(LayoutManager layout, Color background, Object... components) {
+        JPanel jPanel = new JPanel();
+        jPanel.setLayout(layout);
+        jPanel.setBackground(background);
+
+        addComponentsWithConstraints(jPanel, components);
+
+        return jPanel;
+    }
+
     public JPanel setupContentJPanel(LayoutManager layout, int width, int height, Color background,
             Object... components) {
         JPanel jPanel = new JPanel();
         jPanel.setLayout(layout);
         jPanel.setPreferredSize(new Dimension(width, height));
         jPanel.setBackground(background);
+
+        addComponentsWithConstraints(jPanel, components);
+
+        return jPanel;
+    }
+
+    public void addComponentsWithConstraints(JPanel jPanel, Object... components) {
         for (int i = 0; i < components.length; i++) {
             if (components[i] instanceof Component) {
                 // check if next is a constraint
@@ -97,7 +114,5 @@ public abstract class GUI {
 
             }
         }
-
-        return jPanel;
     }
 }
