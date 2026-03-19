@@ -157,13 +157,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 				0x06A666), Font.PLAIN, 30, SwingConstants.LEFT, SwingConstants.CENTER, CardGame.BackgroudColorMatch2,
 				5);
 
-		langugagecbb = new JComboBox<>(CardGame.getSettings().getLanguages(CardGame.getSettings().getLanguage()));
-		langugagecbb.setBackground(CardGame.BackgroudColorMatch2);
-		langugagecbb.setForeground(new Color(0x06A666));
-		langugagecbb.setBorder(BorderFactory.createLineBorder(CardGame.BackgroudColorMatch2, 10));
-		langugagecbb.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		langugagecbb.setBorder(BorderFactory.createEmptyBorder());
-		langugagecbb.addActionListener(this);
+		langugagecbb = setupJComboBox(CardGame.getSettings().getLanguages(CardGame.getSettings().getLanguage()), null,
+				this);
 		if (getSprache().equalsIgnoreCase("De_de")) {
 			langugagecbb.setSelectedIndex(1);
 		} else if (getSprache().equalsIgnoreCase("En_en")) {
@@ -177,14 +172,8 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 				30, SwingConstants.LEFT, SwingConstants.CENTER, IconPath.Fontx64,
 				CardGame.BackgroudColorMatch2, 5);
 
-		schriftartcbb = new JComboBox<>(CardGame.getSettings().getSchriftArten());
-		schriftartcbb.setBackground(CardGame.BackgroudColorMatch2);
-		schriftartcbb.setForeground(new Color(0x06A666));
-		schriftartcbb.setBorder(BorderFactory.createLineBorder(CardGame.BackgroudColorMatch2, 10));
-		schriftartcbb.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		schriftartcbb.setBorder(BorderFactory.createEmptyBorder());
-		schriftartcbb.setSelectedItem(CardGame.getSettings().getSchriftart());
-		schriftartcbb.addActionListener(this);
+		schriftartcbb = setupJComboBox(CardGame.getSettings().getSchriftArten(),
+				CardGame.getSettings().getSchriftart(), this);
 
 		contentPanelcenter2 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, schriftartlbl,
 				BorderLayout.WEST, schriftartcbb, BorderLayout.CENTER);

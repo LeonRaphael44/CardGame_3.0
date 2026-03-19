@@ -11,11 +11,13 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import de.cardGame.main.CardGame;
 import de.cardGame.utils.icons.IconManager;
@@ -217,5 +219,19 @@ public abstract class GUI {
         jCheckBox.addActionListener(actionListener);
 
         return jCheckBox;
+    }
+
+    public JComboBox<String> setupJComboBox(String[] items, Object anObject, ActionListener actionListener) {
+        JComboBox<String> jComboBox = new JComboBox<String>(items);
+        jComboBox.setBackground(CardGame.BackgroudColorMatch2);
+        jComboBox.setForeground(new Color(0x06A666));
+        jComboBox.setBorder(BorderFactory.createLineBorder(CardGame.BackgroudColorMatch2, 10));
+        jComboBox.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
+        jComboBox.setBorder(BorderFactory.createEmptyBorder());
+        jComboBox.setSelectedItem(anObject);
+
+        jComboBox.addActionListener(actionListener);
+
+        return jComboBox;
     }
 }
