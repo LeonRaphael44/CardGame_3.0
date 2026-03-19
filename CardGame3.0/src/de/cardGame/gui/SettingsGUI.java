@@ -189,30 +189,16 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		contentPanelcenter2 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, schriftartlbl,
 				BorderLayout.WEST, schriftartcbb, BorderLayout.CENTER);
 
-		AutoPlayAfterGameEndckb = new JCheckBox();
-		AutoPlayAfterGameEndckb.setText(Words.get(WordTypes.AutoPlayAfterGameEnd));
-		AutoPlayAfterGameEndckb.setFocusable(false);
-		AutoPlayAfterGameEndckb.setHorizontalTextPosition(SwingConstants.LEFT);
-		AutoPlayAfterGameEndckb.setIconTextGap(20);
-		AutoPlayAfterGameEndckb.addActionListener(this);
-		AutoPlayAfterGameEndckb.setBackground(CardGame.BackgroudColorMatch2);
-		AutoPlayAfterGameEndckb.setForeground(new Color(0x06A666));
-		AutoPlayAfterGameEndckb.setSelected(CardGame.getSettings().isAutoplayaftergame());
-		AutoPlayAfterGameEndckb.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+		AutoPlayAfterGameEndckb = setupJCheckBox(false, Words.get(WordTypes.AutoPlayAfterGameEnd),
+				CardGame.BackgroudColorMatch2, new Color(0x06A666), SwingConstants.LEFT, 20,
+				CardGame.getSettings().isAutoplayaftergame(), this);
 
 		contentPanelcenter3 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
 				AutoPlayAfterGameEndckb, BorderLayout.CENTER);
 
-		AutoSaveAfterChangesckb = new JCheckBox();
-		AutoSaveAfterChangesckb.setText(Words.get(WordTypes.AutoSave));
-		AutoSaveAfterChangesckb.setFocusable(false);
-		AutoSaveAfterChangesckb.setBackground(CardGame.BackgroudColorMatch2);
-		AutoSaveAfterChangesckb.addActionListener(this);
-		AutoSaveAfterChangesckb.setForeground(new Color(0x06A666));
-		AutoSaveAfterChangesckb.setHorizontalTextPosition(SwingConstants.LEFT);
-		AutoSaveAfterChangesckb.setIconTextGap(20);
-		AutoSaveAfterChangesckb.setSelected(CardGame.getSettings().isAutoSave());
-		AutoSaveAfterChangesckb.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+		AutoSaveAfterChangesckb = setupJCheckBox(false, Words.get(WordTypes.AutoSave),
+				CardGame.BackgroudColorMatch2, new Color(0x06A666), SwingConstants.LEFT, 20,
+				CardGame.getSettings().isAutoplayaftergame(), this);
 
 		contentPanelcenter4 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2,
 				AutoSaveAfterChangesckb, BorderLayout.CENTER);

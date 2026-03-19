@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -199,5 +200,22 @@ public abstract class GUI {
         jRadioButton.addActionListener(listener);
 
         return jRadioButton;
+    }
+
+    public JCheckBox setupJCheckBox(boolean focusable, String text, Color background, Color foreground,
+            int horizontalTextPosition, int iconTextgap, boolean selcted, ActionListener actionListener) {
+        JCheckBox jCheckBox = new JCheckBox();
+        jCheckBox.setFocusable(focusable);
+        jCheckBox.setText(text);
+        jCheckBox.setBackground(background);
+        jCheckBox.setForeground(foreground);
+        jCheckBox.setHorizontalTextPosition(horizontalTextPosition);
+        jCheckBox.setIconTextGap(iconTextgap);
+        jCheckBox.setSelected(selcted);
+        jCheckBox.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 25));
+
+        jCheckBox.addActionListener(actionListener);
+
+        return jCheckBox;
     }
 }
