@@ -111,10 +111,7 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		this.frame.setTitle(Words.get(WordTypes.Name));
 		this.frame.setIconImage(new IconManager(IconPath.GameIcon).getImage());
 
-		titelPanel = new JPanel();
-		titelPanel.setBackground(CardGame.BackgroundColor);
-		titelPanel.setPreferredSize(new Dimension(10, 75));
-		titelPanel.setLayout(new BorderLayout());
+		titelPanel = setupJPanel(new BorderLayout(), 10, 75, CardGame.BackgroundColor, null);
 
 		titellbl = new JLabel();
 		titellbl.setText(Words.get(WordTypes.Settings));
@@ -124,17 +121,11 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 		titelPanel.add(titellbl, BorderLayout.CENTER);
 
-		mainEast = new JPanel();
-		mainEast.setPreferredSize(new Dimension(5, 5));
-		mainEast.setBackground(CardGame.BackgroundColor);
+		mainEast = setupJPanel(5, 5, CardGame.BackgroundColor);
 
-		mainWest = new JPanel();
-		mainWest.setPreferredSize(new Dimension(5, 5));
-		mainWest.setBackground(CardGame.BackgroundColor);
+		mainWest = setupJPanel(5, 5, CardGame.BackgroundColor);
 
-		mainSouth = new JPanel();
-		mainSouth.setPreferredSize(new Dimension(5, 5));
-		mainSouth.setBackground(CardGame.BackgroundColor);
+		mainSouth = setupJPanel(5, 5, CardGame.BackgroundColor);
 
 		slidertitellbl = new JLabel();
 		slidertitellbl.setPreferredSize(new Dimension(5, 60));
@@ -279,15 +270,10 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 			Meanlich.setSelected(true);
 		}
 
-		groupPanelstimme = new JPanel();
-		groupPanelstimme.setLayout(new GridLayout(2, 1, 5, 5));
-		groupPanelstimme.setBackground(CardGame.BackgroudColorMatch2);
-
 		vorlesestimme.add(Meanlich);
 		vorlesestimme.add(Weiblich);
 
-		groupPanelstimme.add(Meanlich);
-		groupPanelstimme.add(Weiblich);
+		groupPanelstimme = setupJPanel(new GridLayout(2, 1, 5, 5), CardGame.BackgroudColorMatch2, Meanlich, Weiblich);
 
 		contentPanelcenter5 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, groupstimmelbl,
 				BorderLayout.WEST, groupPanelstimme, BorderLayout.CENTER);
@@ -322,15 +308,10 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 			Hell.setSelected(true);
 		}
 
-		groupPanelDesign = new JPanel();
-		groupPanelDesign.setLayout(new GridLayout(2, 1, 5, 5));
-		groupPanelDesign.setBackground(CardGame.BackgroudColorMatch2);
+		groupPanelDesign = setupJPanel(new GridLayout(2, 1, 5, 5), CardGame.BackgroudColorMatch2, Dunkel, Hell);
 
 		groupdesign.add(Dunkel);
 		groupdesign.add(Hell);
-
-		groupPanelDesign.add(Dunkel);
-		groupPanelDesign.add(Hell);
 
 		contentPanelcenter6 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, designlbl,
 				BorderLayout.WEST, groupPanelDesign, BorderLayout.CENTER);
@@ -355,15 +336,9 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		contentPanel.add(contentPanelcenter);
 		contentPanel.add(contentPanelleft);// Ist jetzt einfach rechts eigentlich ist das contentPanelright hier
 
-		framePanel = new JPanel();
-		framePanel.setBackground(CardGame.BackgroudColorMatch2);
-		framePanel.setLayout(new BorderLayout());
-
-		framePanel.add(titelPanel, BorderLayout.NORTH);
-		framePanel.add(mainEast, BorderLayout.EAST);
-		framePanel.add(mainWest, BorderLayout.WEST);
-		framePanel.add(mainSouth, BorderLayout.SOUTH);
-		framePanel.add(contentPanel, BorderLayout.CENTER);
+		framePanel = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, titelPanel, BorderLayout.NORTH,
+				mainEast, BorderLayout.EAST, mainWest, BorderLayout.WEST, mainSouth, BorderLayout.SOUTH, contentPanel,
+				BorderLayout.CENTER);
 
 		this.frame.add(framePanel);
 		this.frame.setVisible(true);
