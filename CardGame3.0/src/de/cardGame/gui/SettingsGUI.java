@@ -247,11 +247,11 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 				contentPanelcenter1, contentPanelcenter2, contentPanelcenter3, contentPanelcenter4, contentPanelcenter5,
 				contentPanelcenter6);
 
-		Speichern = setupJButton(Words.get(WordTypes.SpeichernButton), IconPath.Savex64);
+		Speichern = setupJButton(Words.get(WordTypes.SpeichernButton), IconPath.Savex64, this);
 
-		Titelscreen = setupJButton(Words.get(WordTypes.TitelScreenButton), IconPath.Startscreenx64);
+		Titelscreen = setupJButton(Words.get(WordTypes.TitelScreenButton), IconPath.Startscreenx64, this);
 
-		PlayDirect = setupJButton(Words.get(WordTypes.PlayDirectButton), IconPath.DirectPlay);
+		PlayDirect = setupJButton(Words.get(WordTypes.PlayDirectButton), IconPath.DirectPlay, this);
 
 		contentPanelright = setupJPanel(new GridLayout(3, 1, 5, 5), CardGame.BackgroundColor, Titelscreen,
 				PlayDirect, Speichern);
@@ -269,23 +269,6 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 		this.frame.add(framePanel);
 		this.frame.setVisible(true);
-	}
-
-	public JButton setupJButton(String text, IconPath iconPath) {
-		JButton jButton = new JButton();
-		jButton.setPreferredSize(new Dimension(180, 30));
-		jButton.setText(text);
-		jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		jButton.setForeground(new Color(0x06A666));
-		jButton.setBackground(CardGame.BackgroudColorMatch2);
-		jButton.setFocusable(false);
-		jButton.addActionListener(this);
-		jButton.setIcon(new IconManager(iconPath).getImageIcon());
-		jButton.setBorder(BorderFactory.createEmptyBorder());
-		jButton.setVerticalAlignment(SwingConstants.CENTER);
-		jButton.setHorizontalAlignment(SwingConstants.CENTER);
-
-		return jButton;
 	}
 
 	public int getAudioValue() {
@@ -500,13 +483,18 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 	private void UpdateComponets() {
 		titellbl.setFont(new Font(getSchriftart(), Font.PLAIN, 40));
 		titellbl.setText(Words.get(WordTypes.Settings, getSprache()));
+
 		slidertitellbl.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		slidertitellbl.setText(Words.get(WordTypes.Volume, getSprache()));
+
 		slider.setFont(new Font(getSchriftart(), Font.PLAIN, 20));
+
 		sliderbottomlbl.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		sliderbottomlbl.setText(CardGame.getSettings().getAudiovalue() + "%");
+
 		languagelbl.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		languagelbl.setText(Words.get(WordTypes.Sprache, getSprache()));
+
 		langugagecbb.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		langugagecbb.removeAllItems();
 		for (int i = 0; i < CardGame.getSettings().getLanguages(getSprache()).length; i++) {
@@ -520,26 +508,37 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		schriftartcbb.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		schriftartlbl.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		schriftartlbl.setText(Words.get(WordTypes.Schriftart, getSprache()));
+
 		AutoPlayAfterGameEndckb.setFont(new Font(getSchriftart(), Font.PLAIN, 25));
 		AutoPlayAfterGameEndckb.setText(Words.get(WordTypes.AutoPlayAfterGameEnd, getSprache()));
+
 		AutoSaveAfterChangesckb.setFont(new Font(getSchriftart(), Font.PLAIN, 25));
 		AutoSaveAfterChangesckb.setText(Words.get(WordTypes.AutoSave, getSprache()));
+
 		Speichern.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		Speichern.setText(Words.get(WordTypes.SpeichernButton, getSprache()));
+
 		PlayDirect.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		PlayDirect.setText(Words.get(WordTypes.PlayDirectButton, getSprache()));
+
 		Titelscreen.setFont(new Font(getSchriftart(), Font.PLAIN, 30));
 		Titelscreen.setText(Words.get(WordTypes.TitelScreenButton, getSprache()));
+
 		Meanlich.setFont(new Font(getSchriftart(), Font.PLAIN, 25));
 		Meanlich.setText(Words.get(WordTypes.Male, getSprache()));
+
 		Weiblich.setFont(new Font(getSchriftart(), Font.PLAIN, 25));
 		Weiblich.setText(Words.get(WordTypes.Female, getSprache()));
+
 		groupstimmelbl.setFont(new Font(getSchriftart(), Font.PLAIN, 25));
 		groupstimmelbl.setText(Words.get(WordTypes.VorleseStimme, getSprache()));
+
 		Dunkel.setFont(new Font(getSchriftart(), Font.PLAIN, 25));
 		Dunkel.setText(Words.get(WordTypes.Dunkel, getSprache()));
+
 		Hell.setFont(new Font(getSchriftart(), Font.PLAIN, 25));
 		Hell.setText(Words.get(WordTypes.Hell, getSprache()));
+
 		designlbl.setFont(new Font(getSchriftart(), Font.PLAIN, 25));
 		designlbl.setText(Words.get(WordTypes.Design, getSprache()));
 		if (getdesign().equalsIgnoreCase("Dunkel")) {

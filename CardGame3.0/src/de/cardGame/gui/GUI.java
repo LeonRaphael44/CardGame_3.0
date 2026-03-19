@@ -50,12 +50,6 @@ public abstract class GUI {
         return jPanel;
     }
 
-    public JButton setupJButton() {
-        JButton jButton = new JButton();
-
-        return jButton;
-    }
-
     public JLabel setupJLabel(String setText, Color setBackgroundForJLabel) {
         JLabel jLabel = new JLabel();
         jLabel.setText(setText);
@@ -233,5 +227,29 @@ public abstract class GUI {
         jComboBox.addActionListener(actionListener);
 
         return jComboBox;
+    }
+
+    public JButton setupJButton() {
+        JButton jButton = new JButton();
+
+        return jButton;
+    }
+
+    public JButton setupJButton(String text, IconPath iconPath, ActionListener actionListener) {
+        JButton jButton = new JButton();
+        jButton.setPreferredSize(new Dimension(180, 30));
+        jButton.setText(text);
+        jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
+        jButton.setForeground(new Color(0x06A666));
+        jButton.setBackground(CardGame.BackgroudColorMatch2);
+        jButton.setFocusable(false);
+        jButton.setIcon(new IconManager(iconPath).getImageIcon());
+        jButton.setBorder(BorderFactory.createEmptyBorder());
+        jButton.setVerticalAlignment(SwingConstants.CENTER);
+        jButton.setHorizontalAlignment(SwingConstants.CENTER);
+
+        jButton.addActionListener(actionListener);
+
+        return jButton;
     }
 }
