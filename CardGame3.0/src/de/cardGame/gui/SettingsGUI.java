@@ -334,127 +334,124 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
 		Settings st = CardGame.getSettings();
-		if (e.getSource() == Titelscreen) {
-			CardGame.getGUI().dispose();
-			CardGame.setGUI(new StartScreenGUI(null).getFrame());
-		} else if (e.getSource() == Speichern) {
+		if (src == Titelscreen) {
+			handleTitelScreen();
+		} else if (src == Speichern) {
 			if (st.isAutoSave()) {
-				CardGame.getGUI().dispose();
-				CardGame.setGUI(new StartScreenGUI(null).getFrame());
-			} else {
-				ProgressBarGUI progressBarGUI = new ProgressBarGUI(Words.get(WordTypes.SavingTitel), 7);
-				progressBarGUI.fill(0);
-				progressBarGUI.Warten(100);
-				st.setAudiovalue(getAudioValue());
-				progressBarGUI.fill(1);
-				progressBarGUI.Warten(100);
-				st.setAutoplayaftergame(isPlaySotryAfterGameend());
-				progressBarGUI.fill(2);
-				progressBarGUI.Warten(100);
-				st.setAutoSave(isAutoSave());
-				progressBarGUI.fill(3);
-				progressBarGUI.Warten(100);
-				st.setDesign(getdesign());
-				progressBarGUI.fill(4);
-				progressBarGUI.Warten(100);
-				st.setLanguage(getSprache());
-				progressBarGUI.fill(5);
-				progressBarGUI.Warten(100);
-				st.setSchriftart(getSchriftart());
-				progressBarGUI.fill(6);
-				progressBarGUI.Warten(100);
-				st.setStimmenArt(getStimmenart());
-				progressBarGUI.fill(7);
-				progressBarGUI.Warten(100);
-				st.save();
-				progressBarGUI.Warten(100);
-				progressBarGUI.progressend(Words.get(WordTypes.SavingEnd));
-				// KartenSpiel.setGUI(new StartScreenGUI(null).getFrame());
+				handleSave(st);
+			} else if (src == PlayDirect) {
+				handlePlayDirect(st);
+			} else if (src == Weiblich) {
+				handleVoice("W");
+			} else if (src == Meanlich) {
+
+				handleVoice("M");
+			} else if (src == Dunkel) {
+
+				handleDesign("Dunkel");
+			} else if (src == Hell) {
+				handleDesign("Hell");
+			} else if (src == AutoSaveAfterChangesckb) {
+
+				handleAutoSaveToggle();
+			} else if (src == AutoPlayAfterGameEndckb) {
+
+				handleAutoPlayToggle();
+			} else if (src == schriftartcbb) {
+				handleFontChange();
+			} else if (src == langugagecbb) {
+				handleLanguageChange();
 			}
-		} else if (e.getSource() == PlayDirect) {
-			CardGame.getGUI().dispose();
-			st.setAudiovalue(getAudioValue());
-			st.setAutoplayaftergame(isPlaySotryAfterGameend());
-			st.setAutoSave(isAutoSave());
-			st.setDesign(getdesign());
-			st.setLanguage(getSprache());
-			st.setSchriftart(getSchriftart());
-			st.setStimmenArt(getStimmenart());
-			st.save();
-			GameGUI gui = new GameGUI(null);
-			resolveNextCard();
-			CardGame.setGUI(gui.getFrame());
-			StoppUhr.Run();
-		} else if (e.getSource() == Weiblich) {
-			setStimmenart("W");
-			if (CardGame.getSettings().isAutoSave()) {
-				CardGame.getSettings().setStimmenArt(getStimmenart());
-				CardGame.getSettings().save();
-			}
-		} else if (e.getSource() == Meanlich) {
-			setStimmenart("M");
-			if (CardGame.getSettings().isAutoSave()) {
-				CardGame.getSettings().setStimmenArt(getStimmenart());
-				CardGame.getSettings().save();
-			}
-		} else if (e.getSource() == Dunkel) {
-			setdesign("Dunkel");
-			if (CardGame.getSettings().isAutoSave()) {
-				CardGame.getSettings().setDesign(getdesign());
-				CardGame.getSettings().save();
-			}
-			CardGame.setBackgroundColor(true, getdesign());
-		} else if (e.getSource() == Hell) {
-			setdesign("Hell");
-			if (CardGame.getSettings().isAutoSave()) {
-				CardGame.getSettings().setDesign(getdesign());
-				CardGame.getSettings().save();
-			}
-			CardGame.setBackgroundColor(true, getdesign());
-		} else if (e.getSource() == AutoSaveAfterChangesckb) {
-			setAutoSave(AutoSaveAfterChangesckb.isSelected());
-			CardGame.getSettings().setAutoSave(isAutoSave());
+		}
+
+	}
+
+	private void handleTitelScreen() {
+		CardGame.getGUI().dispose();
+		CardGame.setGUI(new StartScreenGUI(null).getFrame());
+	}
+
+	private void handlePlayDirect(Settings st) {
+		CardGame.getGUI().dispose();
+		synchSettings(st);
+		st.save();
+		GameGUI gui = new GameGUI(null);
+		resolveNextCard();
+		CardGame.setGUI(gui.getFrame());
+		StoppUhr.Run();
+	}
+
+	private void handleVoice(String gender) {
+		setStimmenart(gender);
+		if (CardGame.getSettings().isAutoSave()) {
+			CardGame.getSettings().setStimmenArt(getStimmenart());
 			CardGame.getSettings().save();
-		} else if (e.getSource() == AutoPlayAfterGameEndckb) {
-			setPlaySotryAfterGameend(AutoPlayAfterGameEndckb.isSelected());
+
+		}
+	}
+
+	private void handleDesign(String design) {
+		setdesign(design);
+		if (CardGame.getSettings().isAutoSave()) {
+			CardGame.getSettings().setDesign(getdesign());
+			CardGame.getSettings().save();
+
+		}
+		CardGame.setBackgroundColor(true, getdesign());
+	}
+
+	private void handleAutoSaveToggle() {
+		setAutoSave(AutoSaveAfterChangesckb.isSelected());
+		CardGame.getSettings().setAutoSave(isAutoSave());
+		CardGame.getSettings().save();
+	}
+
+	private void handleAutoPlayToggle() {
+		setPlaySotryAfterGameend(AutoPlayAfterGameEndckb.isSelected());
+		if (CardGame.getSettings().isAutoSave()) {
+			CardGame.getSettings().setAutoplayaftergame(isPlaySotryAfterGameend());
+			CardGame.getSettings().save();
+
+		}
+	}
+
+	private void handleFontChange() {
+		setSchriftart(schriftartcbb.getSelectedItem().toString());
+		if (CardGame.getSettings().isAutoSave()) {
+			CardGame.getSettings().setSchriftart(getSchriftart());
+			CardGame.getSettings().save();
+
+		}
+		if (IsSecondTime >= 1) {
+			UpdateComponets();
+		}
+	}
+
+	private void handleLanguageChange() {
+		if (langugagecbb.getItemCount() >= 1) {
+			if (langugagecbb.getSelectedItem().toString()
+					.equalsIgnoreCase(Words.get(WordTypes.DEUTSCH, getSprache()))) {
+				setSprache("De_de");
+				languagelbl.setIcon(new IconManager(IconPath.DeutscheFlagge).getImageIcon());
+				CardGenDe.generateCards(false);
+			} else if (langugagecbb.getSelectedItem().toString()
+					.equalsIgnoreCase(Words.get(WordTypes.ENGLISCH, getSprache()))) {
+				setSprache("En_en");
+				languagelbl.setIcon(new IconManager(IconPath.EnglischeFlagge).getImageIcon());
+				CardGenEn.generateCards(false);
+
+			}
 			if (CardGame.getSettings().isAutoSave()) {
-				CardGame.getSettings().setAutoplayaftergame(isPlaySotryAfterGameend());
+				CardGame.getSettings().setLanguage(getSprache());
 				CardGame.getSettings().save();
 			}
-		} else if (e.getSource() == schriftartcbb) {
-			setSchriftart(schriftartcbb.getSelectedItem().toString());
-			if (CardGame.getSettings().isAutoSave()) {
-				CardGame.getSettings().setSchriftart(getSchriftart());
-				CardGame.getSettings().save();
-			}
-			if (IsSecondTime >= 1) {
+			if (IsSecondTime >= 1 && langugagecbb.getSelectedItem().toString() != null) {
 				UpdateComponets();
 			}
-		} else if (e.getSource() == langugagecbb) {
-			if (langugagecbb.getItemCount() >= 1) {
-				if (langugagecbb.getSelectedItem().toString()
-						.equalsIgnoreCase(Words.get(WordTypes.DEUTSCH, getSprache()))) {
-					setSprache("De_de");
-					languagelbl.setIcon(new IconManager(IconPath.DeutscheFlagge).getImageIcon());
-					CardGenDe.generateCards(false);
-				} else if (langugagecbb.getSelectedItem().toString()
-						.equalsIgnoreCase(Words.get(WordTypes.ENGLISCH, getSprache()))) {
-					setSprache("En_en");
-					languagelbl.setIcon(new IconManager(IconPath.EnglischeFlagge).getImageIcon());
-					CardGenEn.generateCards(false);
-
-				}
-				if (CardGame.getSettings().isAutoSave()) {
-					CardGame.getSettings().setLanguage(getSprache());
-					CardGame.getSettings().save();
-				}
-				if (IsSecondTime >= 1 && langugagecbb.getSelectedItem().toString() != null) {
-					UpdateComponets();
-				}
-			}
-			IsSecondTime++;
 		}
+		IsSecondTime++;
 	}
 
 	private int resolveNextCard() {
@@ -486,16 +483,80 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		}
 	}
 
+	private void synchSettings(Settings st) {
+		st.setAudiovalue(getAudioValue());
+		st.setAutoplayaftergame(isPlaySotryAfterGameend());
+		st.setAutoSave(isAutoSave());
+		st.setDesign(getdesign());
+		st.setLanguage(getSprache());
+		st.setSchriftart(getSchriftart());
+		st.setStimmenArt(getStimmenart());
+	}
+
+	private void handleSave(Settings st) {
+		if (st.isAutoSave()) {
+			openTitleScreen();
+			return;
+		}
+
+		ProgressBarGUI bar = new ProgressBarGUI(Words.get(WordTypes.SavingTitel), 7);
+
+		bar.fill(0);
+		bar.Warten(100);
+		st.setAudiovalue(getAudioValue());
+
+		bar.fill(1);
+		bar.Warten(100);
+		st.setAutoplayaftergame(isPlaySotryAfterGameend());
+
+		bar.fill(2);
+		bar.Warten(100);
+		st.setAutoSave(isAutoSave());
+
+		bar.fill(3);
+		bar.Warten(100);
+		st.setDesign(getdesign());
+
+		bar.fill(4);
+		bar.Warten(100);
+		st.setLanguage(getSprache());
+
+		bar.fill(5);
+		bar.Warten(100);
+		st.setSchriftart(getSchriftart());
+
+		bar.fill(6);
+		bar.Warten(100);
+		st.setStimmenArt(getStimmenart());
+
+		bar.fill(7);
+		bar.Warten(100);
+
+		st.save();
+
+		bar.Warten(100);
+		bar.progressend(Words.get(WordTypes.SavingEnd));
+	}
+
+	private void openTitleScreen() {
+		CardGame.getGUI().dispose();
+		CardGame.setGUI(new StartScreenGUI(null).getFrame());
+	}
+
+	private void autoSave(Runnable update) {
+		Settings st = CardGame.getSettings();
+		if (st.isAutoSave()) {
+			update.run();
+			st.save();
+		}
+	}
+
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		if (e.getSource() == slider) {
 			setAudioValue(slider.getValue());
-			if (CardGame.getSettings().isAutoSave()) {
-				CardGame.getSettings().setAudiovalue(getAudioValue());
-				CardGame.getSettings().save();
-			}
+			autoSave(() -> CardGame.getSettings().setAudiovalue(getAudioValue()));
 		}
-
 	}
 
 	private void UpdateComponets() {
