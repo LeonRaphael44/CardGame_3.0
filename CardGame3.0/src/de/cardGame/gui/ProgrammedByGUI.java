@@ -55,12 +55,12 @@ public class ProgrammedByGUI extends GUI implements ActionListener {
 		this.frame.getContentPane().setBackground(CardGame.BackgroundColor);
 		this.frame.setIconImage(new IconManager(IconPath.GameIcon).getImage());
 
-		titellbl = setupJLabel(Words.get(WordTypes.Info), CardGame.BackgroundColor);
+		titellbl = setupJLabel(Words.get(WordTypes.Info), 24, CardGame.BackgroundColor);
 
-		Namelbl = setupJLabel("Name: Timon Filz", CardGame.BackgroudColorMatch2);
+		Namelbl = setupJLabel("Name: Timon Filz", 24, CardGame.BackgroudColorMatch2);
 
 		Geburtstagslbl = setupJLabel(Words.get(WordTypes.Geburtstag) + ": 2002",
-				CardGame.BackgroudColorMatch2);
+				24, CardGame.BackgroudColorMatch2);
 
 		btnZocken = new JButton();
 		btnZocken.setText(Words.get(WordTypes.VielSpassBeimZocken));
@@ -75,7 +75,7 @@ public class ProgrammedByGUI extends GUI implements ActionListener {
 		btnZocken.setBorder(BorderFactory.createEmptyBorder());
 
 		Copyright = setupJLabel("� Copyright 2021 Timon Filz",
-				CardGame.BackgroudColorMatch2);
+				24, CardGame.BackgroudColorMatch2);
 
 		PanelmainNorth = new JPanel();
 		PanelmainNorth.setBackground(CardGame.BackgroundColor);

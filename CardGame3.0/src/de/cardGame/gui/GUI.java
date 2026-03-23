@@ -141,12 +141,24 @@ public abstract class GUI {
         return jLabel;
     }
 
-    public JLabel setupJLabel(String setText, Color setBackgroundForJLabel) {
+    public JLabel setupJLabel(String setText, int fontSize, Color setBackgroundForJLabel) {
         JLabel jLabel = new JLabel();
         jLabel.setText(setText);
-        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 24));
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, fontSize));
         jLabel.setBackground(setBackgroundForJLabel);
-        jLabel.setOpaque(true);
+        jLabel.setForeground(Color.green);
+        jLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(String setText, int fontSize, Color setBackgroundForJLabel, boolean isOpaque) {
+        JLabel jLabel = new JLabel();
+        jLabel.setText(setText);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, fontSize));
+        jLabel.setBackground(setBackgroundForJLabel);
+        jLabel.setOpaque(isOpaque);
         jLabel.setForeground(Color.green);
         jLabel.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
