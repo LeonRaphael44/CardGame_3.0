@@ -17,15 +17,8 @@ import de.cardGame.utils.icons.IconPath;
 import de.cardGame.utils.words.WordTypes;
 import de.cardGame.utils.words.Words;
 
-public class KeyUseGUI {
+public class KeyUseGUI extends GUI {
 
-	private JFrame frame;
-	private JPanel framePanel = new JPanel();
-	private JPanel PanelmainNorth = new JPanel();
-	private JPanel PanelmainEast = new JPanel();
-	private JPanel PanelmainWest = new JPanel();
-	private JPanel PanelmainSouth = new JPanel();
-	private JPanel contentPanel = new JPanel();
 	private JLabel titellbl, AltA, AltB, AltC, AltP, AltE, AltH, Titelscrenn, Settings, Zurueck, KartePath;
 
 	public KeyUseGUI() {
