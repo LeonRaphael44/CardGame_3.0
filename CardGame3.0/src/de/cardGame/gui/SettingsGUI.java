@@ -380,22 +380,14 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		StoppUhr.Run();
 	}
 
-	private void handleVoice(String gender) {
-		setStimmenart(gender);
-		if (CardGame.getSettings().isAutoSave()) {
-			CardGame.getSettings().setStimmenArt(getStimmenart());
-			CardGame.getSettings().save();
-
-		}
+	private void handleVoice(String voice) {
+		setStimmenart(voice);
+		autoSave(() -> CardGame.getSettings().setStimmenArt(getStimmenart()));
 	}
 
 	private void handleDesign(String design) {
 		setdesign(design);
-		if (CardGame.getSettings().isAutoSave()) {
-			CardGame.getSettings().setDesign(getdesign());
-			CardGame.getSettings().save();
-
-		}
+		autoSave(() -> CardGame.getSettings().setDesign(getdesign()));
 		CardGame.setBackgroundColor(true, getdesign());
 	}
 
@@ -407,20 +399,12 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
 	private void handleAutoPlayToggle() {
 		setPlaySotryAfterGameend(AutoPlayAfterGameEndckb.isSelected());
-		if (CardGame.getSettings().isAutoSave()) {
-			CardGame.getSettings().setAutoplayaftergame(isPlaySotryAfterGameend());
-			CardGame.getSettings().save();
-
-		}
+		autoSave(() -> CardGame.getSettings().setAutoplayaftergame(isPlaySotryAfterGameend()));
 	}
 
 	private void handleFontChange() {
 		setSchriftart(schriftartcbb.getSelectedItem().toString());
-		if (CardGame.getSettings().isAutoSave()) {
-			CardGame.getSettings().setSchriftart(getSchriftart());
-			CardGame.getSettings().save();
-
-		}
+		autoSave(() -> CardGame.getSettings().setSchriftart(getSchriftart()));
 		if (IsSecondTime >= 1) {
 			UpdateComponets();
 		}
