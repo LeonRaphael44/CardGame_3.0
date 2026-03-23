@@ -339,33 +339,30 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 		if (src == Titelscreen) {
 			handleTitelScreen();
 		} else if (src == Speichern) {
-			if (st.isAutoSave()) {
-				handleSave(st);
-			} else if (src == PlayDirect) {
-				handlePlayDirect(st);
-			} else if (src == Weiblich) {
-				handleVoice("W");
-			} else if (src == Meanlich) {
+			handleSave(st);
+		} else if (src == PlayDirect) {
+			handlePlayDirect(st);
+		} else if (src == Weiblich) {
+			handleVoice("W");
+		} else if (src == Meanlich) {
 
-				handleVoice("M");
-			} else if (src == Dunkel) {
+			handleVoice("M");
+		} else if (src == Dunkel) {
 
-				handleDesign("Dunkel");
-			} else if (src == Hell) {
-				handleDesign("Hell");
-			} else if (src == AutoSaveAfterChangesckb) {
+			handleDesign("Dunkel");
+		} else if (src == Hell) {
+			handleDesign("Hell");
+		} else if (src == AutoSaveAfterChangesckb) {
 
-				handleAutoSaveToggle();
-			} else if (src == AutoPlayAfterGameEndckb) {
+			handleAutoSaveToggle();
+		} else if (src == AutoPlayAfterGameEndckb) {
 
-				handleAutoPlayToggle();
-			} else if (src == schriftartcbb) {
-				handleFontChange();
-			} else if (src == langugagecbb) {
-				handleLanguageChange();
-			}
+			handleAutoPlayToggle();
+		} else if (src == schriftartcbb) {
+			handleFontChange();
+		} else if (src == langugagecbb) {
+			handleLanguageChange();
 		}
-
 	}
 
 	private void handleTitelScreen() {
