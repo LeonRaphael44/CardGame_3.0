@@ -38,103 +38,37 @@ public class KeyUseGUI extends GUI {
 		this.frame.getContentPane().setBackground(CardGame.BackgroundColor);
 		this.frame.setIconImage(new IconManager(IconPath.GameIcon).getImage());
 
-		titellbl = new JLabel();
-		titellbl.setText(Words.get(WordTypes.KeyUse));
-		titellbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 60));
-		titellbl.setBackground(CardGame.BackgroundColor);
-		titellbl.setForeground(Color.green);
-		titellbl.setHorizontalAlignment(SwingConstants.CENTER);
-		titellbl.setHorizontalTextPosition(SwingConstants.CENTER);
+		titellbl = setupJLabel(Words.get(WordTypes.KeyUse), 60, CardGame.BackgroundColor);
 
-		AltA = new JLabel();
-		AltA.setText("Alt + A | " + Words.get(WordTypes.KeyUseVorlesen).replace("%Karte%", "(a)"));
-		AltA.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		AltA.setBackground(CardGame.BackgroudColorMatch2);
-		AltA.setOpaque(true);
-		AltA.setForeground(Color.green);
-		AltA.setHorizontalAlignment(SwingConstants.CENTER);
-		AltA.setHorizontalTextPosition(SwingConstants.CENTER);
+		AltA = setupJLabel("Alt + A | " + Words.get(WordTypes.KeyUseVorlesen).replace("%Karte%", "(a)"),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		AltB = new JLabel();
-		AltB.setText("Alt + B | " + Words.get(WordTypes.KeyUseVorlesen).replace("%Karte%", "(b)"));
-		AltB.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		AltB.setBackground(CardGame.BackgroudColorMatch2);
-		AltB.setOpaque(true);
-		AltB.setForeground(Color.green);
-		AltB.setHorizontalAlignment(SwingConstants.CENTER);
-		AltB.setHorizontalTextPosition(SwingConstants.CENTER);
+		AltB = setupJLabel("Alt + B | " + Words.get(WordTypes.KeyUseVorlesen).replace("%Karte%", "(b)"),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		AltC = new JLabel();
-		AltC.setText("Alt + C | " + Words.get(WordTypes.KeyUseVorlesen).replace("%Karte%", "(c)"));
-		AltC.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		AltC.setBackground(CardGame.BackgroudColorMatch2);
-		AltC.setOpaque(true);
-		AltC.setForeground(Color.green);
-		AltC.setHorizontalAlignment(SwingConstants.CENTER);
-		AltC.setHorizontalTextPosition(SwingConstants.CENTER);
+		AltC = setupJLabel("Alt + C | " + Words.get(WordTypes.KeyUseVorlesen).replace("%Karte%", "(c)"),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		AltP = new JLabel();
-		AltP.setText("Alt + P | " + Words.get(WordTypes.KeyUsePages));
-		AltP.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		AltP.setBackground(CardGame.BackgroudColorMatch2);
-		AltP.setOpaque(true);
-		AltP.setForeground(Color.green);
-		AltP.setHorizontalAlignment(SwingConstants.CENTER);
-		AltP.setHorizontalTextPosition(SwingConstants.CENTER);
+		AltP = setupJLabel("Alt + P | " + Words.get(WordTypes.KeyUsePages),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		AltE = new JLabel();
-		AltE.setText("Alt + E | " + Words.get(WordTypes.KeyUseExtras));
-		AltE.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		AltE.setBackground(CardGame.BackgroudColorMatch2);
-		AltE.setOpaque(true);
-		AltE.setForeground(Color.green);
-		AltE.setHorizontalAlignment(SwingConstants.CENTER);
-		AltE.setHorizontalTextPosition(SwingConstants.CENTER);
+		AltE = setupJLabel("Alt + E | " + Words.get(WordTypes.KeyUseExtras),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		AltH = new JLabel();
-		AltH.setText("Alt + H | " + Words.get(WordTypes.KeyUseHelp));
-		AltH.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		AltH.setBackground(CardGame.BackgroudColorMatch2);
-		AltH.setOpaque(true);
-		AltH.setForeground(Color.green);
-		AltH.setHorizontalAlignment(SwingConstants.CENTER);
-		AltH.setHorizontalTextPosition(SwingConstants.CENTER);
+		AltH = setupJLabel("Alt + H | " + Words.get(WordTypes.KeyUseHelp),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		Titelscrenn = new JLabel();
-		Titelscrenn.setText("Alt + P + T | " + Words.get(WordTypes.KeyUseTitelScreen));
-		Titelscrenn.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		Titelscrenn.setBackground(CardGame.BackgroudColorMatch2);
-		Titelscrenn.setOpaque(true);
-		Titelscrenn.setForeground(Color.green);
-		Titelscrenn.setHorizontalAlignment(SwingConstants.CENTER);
-		Titelscrenn.setHorizontalTextPosition(SwingConstants.CENTER);
+		Titelscrenn = setupJLabel("Alt + P + T | " + Words.get(WordTypes.KeyUseTitelScreen),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		Settings = new JLabel();
-		Settings.setText("Alt + P + S | " + Words.get(WordTypes.KeyUseSettings));
-		Settings.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		Settings.setBackground(CardGame.BackgroudColorMatch2);
-		Settings.setOpaque(true);
-		Settings.setForeground(Color.green);
-		Settings.setHorizontalAlignment(SwingConstants.CENTER);
-		Settings.setHorizontalTextPosition(SwingConstants.CENTER);
+		Settings = setupJLabel("Alt + P + S | " + Words.get(WordTypes.KeyUseSettings),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		Zurueck = new JLabel();
-		Zurueck.setText("Alt + E + Z | " + Words.get(WordTypes.KeyUseKarteBack));
-		Zurueck.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		Zurueck.setBackground(CardGame.BackgroudColorMatch2);
-		Zurueck.setOpaque(true);
-		Zurueck.setForeground(Color.green);
-		Zurueck.setHorizontalAlignment(SwingConstants.CENTER);
-		Zurueck.setHorizontalTextPosition(SwingConstants.CENTER);
+		Zurueck = setupJLabel("Alt + E + Z | " + Words.get(WordTypes.KeyUseKarteBack),
+				15, CardGame.BackgroudColorMatch2, true);
 
-		KartePath = new JLabel();
-		KartePath.setText("Alt + E + K | " + Words.get(WordTypes.KeyUseKartPath));
-		KartePath.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 15));
-		KartePath.setBackground(CardGame.BackgroudColorMatch2);
-		KartePath.setOpaque(true);
-		KartePath.setForeground(Color.green);
-		KartePath.setHorizontalAlignment(SwingConstants.CENTER);
-		KartePath.setHorizontalTextPosition(SwingConstants.CENTER);
+		KartePath = setupJLabel("Alt + E + K | " + Words.get(WordTypes.KeyUseKartPath),
+				15, CardGame.BackgroudColorMatch2, true);
 
 		PanelmainNorth = new JPanel();
 		PanelmainNorth.setBackground(CardGame.BackgroundColor);
