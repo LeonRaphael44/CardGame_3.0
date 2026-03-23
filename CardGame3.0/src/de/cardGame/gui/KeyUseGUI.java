@@ -1,15 +1,11 @@
 package de.cardGame.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import de.cardGame.main.CardGame;
 import de.cardGame.utils.icons.IconManager;
@@ -70,53 +66,23 @@ public class KeyUseGUI extends GUI {
 		KartePath = setupJLabel("Alt + E + K | " + Words.get(WordTypes.KeyUseKartPath),
 				15, CardGame.BackgroudColorMatch2, true);
 
-		PanelmainNorth = new JPanel();
-		PanelmainNorth.setBackground(CardGame.BackgroundColor);
-		PanelmainNorth.setLayout(new BorderLayout());
-		PanelmainNorth.setPreferredSize(new Dimension(20, 100));
-		PanelmainNorth.add(titellbl);
+		PanelmainNorth = setupJPanel(new BorderLayout(), 20, 100, CardGame.BackgroundColor, titellbl);
 
-		PanelmainEast = setupJPanel();
+		PanelmainEast = setupJPanel(new BorderLayout(), 20, 20, CardGame.BackgroundColor);
 
-		PanelmainWest = setupJPanel();
+		PanelmainWest = setupJPanel(new BorderLayout(), 20, 20, CardGame.BackgroundColor);
 
-		PanelmainSouth = setupJPanel();
+		PanelmainSouth = setupJPanel(new BorderLayout(), 20, 20, CardGame.BackgroundColor);
 		// new Color(0x505050)
-		contentPanel = new JPanel();
-		contentPanel.setBackground(CardGame.BackgroundColor);
-		contentPanel.setLayout(new GridLayout(5, 2, 10, 10));
 
-		contentPanel.add(AltA);
-		contentPanel.add(AltP);
-		contentPanel.add(AltB);
-		contentPanel.add(Titelscrenn);
-		contentPanel.add(AltC);
-		contentPanel.add(Settings);
-		contentPanel.add(AltE);
-		contentPanel.add(AltH);
-		contentPanel.add(KartePath);
-		contentPanel.add(Zurueck);
+		contentPanel = setupJPanel(new GridLayout(5, 2, 10, 10), CardGame.BackgroundColor, AltA, AltB, AltC, AltE, AltH,
+				AltP, Titelscrenn, Settings, KartePath, Zurueck);
 
-		framePanel = new JPanel();
-		framePanel.setBackground(CardGame.BackgroundColor);
-		framePanel.setLayout(new BorderLayout());
-
-		framePanel.add(PanelmainNorth, BorderLayout.NORTH);
-		framePanel.add(PanelmainEast, BorderLayout.EAST);
-		framePanel.add(PanelmainWest, BorderLayout.WEST);
-		framePanel.add(PanelmainSouth, BorderLayout.SOUTH);
-		framePanel.add(contentPanel, BorderLayout.CENTER);
+		framePanel = setupJPanel(new BorderLayout(), CardGame.BackgroundColor, PanelmainNorth, BorderLayout.NORTH,
+				PanelmainEast, BorderLayout.EAST, PanelmainWest, BorderLayout.WEST, PanelmainSouth, BorderLayout.SOUTH,
+				contentPanel, BorderLayout.CENTER);
 
 		this.frame.add(framePanel);
-	}
-
-	public JPanel setupJPanel() {
-		JPanel jPanel = new JPanel();
-		jPanel.setBackground(CardGame.BackgroundColor);
-		jPanel.setLayout(new BorderLayout());
-		jPanel.setPreferredSize(new Dimension(20, 20));
-
-		return jPanel;
 	}
 
 	public void Close() {
