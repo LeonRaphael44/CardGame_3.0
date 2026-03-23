@@ -68,8 +68,8 @@ public abstract class GUI {
 
     public JPanel setupJPanel(Component addAttr) {
         JPanel jPanel = new JPanel();
-        jPanel.setBackground(CardGame.BackgroundColor);
         jPanel.setLayout(new BorderLayout());
+        jPanel.setBackground(CardGame.BackgroundColor);
         jPanel.add(addAttr);
 
         return jPanel;
