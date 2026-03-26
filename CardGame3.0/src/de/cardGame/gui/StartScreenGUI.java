@@ -106,10 +106,6 @@ public class StartScreenGUI extends GUI implements ActionListener {
 		this.frame.add(framePanel, BorderLayout.CENTER);
 	}
 
-	public JFrame getFrame() {
-		return frame;
-	}
-
 	public void removeFramePanel() {
 		this.frame.remove(framePanel);
 	}
