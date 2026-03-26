@@ -68,7 +68,7 @@ public class GameGUI extends GUI implements ActionListener {
 
 		titelbtn = setupJButton(Words.get(WordTypes.Karte) + "1", 60,
 				CardGame.BackgroundColor, Color.green,
-				SwingConstants.CENTER, SwingConstants.CENTER);
+				SwingConstants.CENTER, SwingConstants.CENTER, this);
 
 		menuBar = new JMenuBar();
 		menuBar.setBackground(CardGame.BackgroundColor);
@@ -125,7 +125,7 @@ public class GameGUI extends GUI implements ActionListener {
 
 		Storybtn = setupJButton(CardGame.cards.get(0).getText(), 26,
 				CardGame.BackgroudColorMatch2, new Color(0x06A666),
-				SwingConstants.LEFT, SwingConstants.LEFT);
+				SwingConstants.LEFT, SwingConstants.LEFT, this);
 		Storybtn.setVerticalTextPosition(SwingConstants.TOP);
 		Storybtn.setVerticalAlignment(SwingConstants.TOP);
 
@@ -257,22 +257,6 @@ public class GameGUI extends GUI implements ActionListener {
 		}
 
 		return jPanel;
-	}
-
-	public JButton setupJButton(String text, int arg0, Color backgroundColor, Color foregroundColor,
-			int directionHorrizontalAlligment, int directionHorizontalTextPosition) {
-		JButton jButton = new JButton();
-		jButton.setText(text);
-		jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, arg0));
-		jButton.setBackground(backgroundColor);
-		jButton.setForeground(foregroundColor);
-		jButton.setHorizontalAlignment(directionHorrizontalAlligment);
-		jButton.setHorizontalTextPosition(directionHorizontalTextPosition);
-		jButton.setFocusable(false);
-		jButton.addActionListener(this);
-		jButton.setBorder(BorderFactory.createEmptyBorder());
-
-		return jButton;
 	}
 
 	public JMenu setupJMenu(String arg0, int keyEvent, IconPath iconPath) {

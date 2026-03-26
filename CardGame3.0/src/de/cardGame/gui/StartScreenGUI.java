@@ -2,13 +2,11 @@ package de.cardGame.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,8 +23,6 @@ import de.cardGame.utils.words.Words;
 
 public class StartScreenGUI extends GUI implements ActionListener {
 
-	private JFrame frame;
-	private JLabel titellbl;
 	private JLabel subtitellbl;
 	private JLabel TimePlayed;
 	private JLabel NumberOfCards;
@@ -34,15 +30,9 @@ public class StartScreenGUI extends GUI implements ActionListener {
 	private JButton Settings;
 	private JButton PlayAudioSotry;
 	private JButton PlayGame;
-	private JPanel framePanel = new JPanel();
-	private JPanel titelPanel = new JPanel();
-	private JPanel PanelmainEast = new JPanel();
-	private JPanel PanelmainWest = new JPanel();
-	private JPanel PanelmainSouth = new JPanel();
-	private JPanel contentPanel = new JPanel();
-	private JPanel contentPanel1 = new JPanel();
-	private JPanel contentPanel2 = new JPanel();
-	private JPanel contentPanel3 = new JPanel();
+	private JPanel contentPanel1;
+	private JPanel contentPanel2;
+	private JPanel contentPanel3;
 
 	public StartScreenGUI(JFrame lframe) {
 		if (lframe == null) {
@@ -66,117 +56,52 @@ public class StartScreenGUI extends GUI implements ActionListener {
 		this.frame.setVisible(true);
 		this.frame.setIconImage(new IconManager(IconPath.GameIcon).getImage());
 
-		titelPanel.setLayout(new BorderLayout());
-		titelPanel.setBackground(CardGame.BackgroundColor);
-		titelPanel.setPreferredSize(new Dimension(20, 175));
-		titellbl = new JLabel();
-		titellbl.setText(Words.get(WordTypes.Name));
-		titellbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.BOLD, 60));
-		titellbl.setForeground(Color.green);
-		titellbl.setHorizontalAlignment(SwingConstants.CENTER);
-		titellbl.setHorizontalTextPosition(SwingConstants.CENTER);
-		titelPanel.add(titellbl, BorderLayout.NORTH);
-		subtitellbl = new JLabel();
-		subtitellbl.setPreferredSize(new Dimension(20, 175));
-		subtitellbl = new JLabel();
-		subtitellbl.setText(Words.get(WordTypes.UnterTitel));
-		subtitellbl.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.BOLD, 50));
-		subtitellbl.setForeground(Color.green);
-		subtitellbl.setHorizontalAlignment(SwingConstants.CENTER);
-		subtitellbl.setHorizontalTextPosition(SwingConstants.CENTER);
-		titelPanel.add(subtitellbl, BorderLayout.CENTER);
+		titellbl = setupJLabel(Words.get(WordTypes.Name), Font.BOLD, 60);
 
-		PanelmainEast.setBackground(CardGame.BackgroundColor);
-		PanelmainEast.setPreferredSize(new Dimension(5, 5));
-		PanelmainWest.setBackground(CardGame.BackgroundColor);
-		PanelmainWest.setPreferredSize(new Dimension(5, 5));
-		PanelmainSouth.setBackground(CardGame.BackgroundColor);
-		PanelmainSouth.setPreferredSize(new Dimension(40, 20));
-		contentPanel.setBackground(CardGame.BackgroundColor);
-		contentPanel.setLayout(new GridLayout(3, 1, 10, 10));
+		subtitellbl = setupJLabel(20, 175, Words.get(WordTypes.UnterTitel), Font.BOLD, 50, Color.green,
+				SwingConstants.CENTER, SwingConstants.CENTER);
 
-		contentPanel1.setBackground(CardGame.BackgroudColorMatch2);
-		contentPanel1.setLayout(new GridLayout(2, 1, 10, 10));
-		TimePlayed = new JLabel();
-		TimePlayed.setPreferredSize(new Dimension(400, 50));
-		TimePlayed.setText(Words.get(WordTypes.Versuchszeit));
-		TimePlayed.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		TimePlayed.setForeground(new Color(0x06A666));
-		TimePlayed.setVerticalAlignment(SwingConstants.BOTTOM);
-		TimePlayed.setHorizontalAlignment(SwingConstants.LEFT);
-		NumberOfCards = new JLabel();
-		NumberOfCards.setPreferredSize(new Dimension(400, 50));
-		NumberOfCards.setText(Words.get(WordTypes.CardsChoosen));
-		NumberOfCards.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 30));
-		NumberOfCards.setForeground(new Color(0x06A666));
-		NumberOfCards.setVerticalAlignment(SwingConstants.TOP);
-		NumberOfCards.setHorizontalAlignment(SwingConstants.LEFT);
+		titelPanel = setupJPanel(new BorderLayout(), 20, 175, CardGame.BackgroundColor, titellbl, BorderLayout.NORTH,
+				subtitellbl, BorderLayout.CENTER);
 
-		contentPanel1.add(TimePlayed);
-		contentPanel1.add(NumberOfCards);
+		PanelmainEast = setupJPanel(5, 5, CardGame.BackgroundColor);
 
-		contentPanel2.setBackground(CardGame.BackgroudColorMatch2);
-		contentPanel2.setLayout(new BorderLayout());
+		PanelmainWest = setupJPanel(5, 5, CardGame.BackgroundColor);
 
-		CardPath = new JLabel();
-		CardPath.setText(Words.get(WordTypes.Kartenpfad));
-		CardPath.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 40));
-		CardPath.setForeground(new Color(0x06A666));
-		CardPath.setVerticalAlignment(SwingConstants.TOP);
-		CardPath.setHorizontalAlignment(SwingConstants.LEFT);
+		PanelmainSouth = setupJPanel(40, 20, CardGame.BackgroundColor);
 
-		contentPanel2.add(CardPath, BorderLayout.CENTER);
+		TimePlayed = setupJLabel(400, 50, Words.get(WordTypes.Versuchszeit), Font.PLAIN, 30, SwingConstants.LEFT,
+				SwingConstants.BOTTOM);
 
-		contentPanel3.setBackground(CardGame.BackgroundColor);
-		contentPanel3.setLayout(new GridLayout(1, 3, 10, 10));
+		NumberOfCards = setupJLabel(400, 50, Words.get(WordTypes.CardsChoosen), Font.PLAIN, 30, SwingConstants.LEFT,
+				SwingConstants.TOP);
 
-		Settings = new JButton();
-		Settings.setText(Words.get(WordTypes.Settings));
-		Settings.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 35));
-		Settings.setForeground(new Color(0x06A666));
-		Settings.setBackground(CardGame.BackgroudColorMatch2);
-		Settings.setFocusable(false);
-		Settings.addActionListener(this);
-		Settings.setIcon(new IconManager(IconPath.Settingsx64).getImageIcon());
-		Settings.setBorder(BorderFactory.createEmptyBorder());
+		contentPanel1 = setupJPanel(new GridLayout(2, 1, 10, 10), CardGame.BackgroudColorMatch2, TimePlayed,
+				NumberOfCards);
 
-		PlayAudioSotry = new JButton();
-		PlayAudioSotry.setText(Words.get(WordTypes.PlayAudioStory));
-		PlayAudioSotry.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 35));
-		PlayAudioSotry.setForeground(new Color(0x06A666));
-		PlayAudioSotry.setBackground(CardGame.BackgroudColorMatch2);
-		PlayAudioSotry.setFocusable(false);
-		PlayAudioSotry.addActionListener(this);
-		PlayAudioSotry.setBorder(BorderFactory.createEmptyBorder());
-		PlayAudioSotry.setVisible(false);
+		CardPath = setupJLabel(Words.get(WordTypes.Kartenpfad), Font.PLAIN, 40, SwingConstants.LEFT,
+				SwingConstants.TOP);
 
-		PlayGame = new JButton();
-		PlayGame.setText(Words.get(WordTypes.Play));
-		PlayGame.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 35));
-		PlayGame.setForeground(new Color(0x06A666));
-		PlayGame.setBackground(CardGame.BackgroudColorMatch2);
-		PlayGame.setFocusable(false);
-		PlayGame.addActionListener(this);
-		PlayGame.setIcon(new IconManager(IconPath.Play).getImageIcon());
-		PlayGame.setBorder(BorderFactory.createEmptyBorder());
+		contentPanel2 = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, CardPath, BorderLayout.CENTER);
 
-		contentPanel3.add(Settings);
-		contentPanel3.add(PlayAudioSotry);
-		contentPanel3.add(PlayGame);
+		Settings = setupJButton(Words.get(WordTypes.Settings), Font.PLAIN, 35, CardGame.BackgroudColorMatch2,
+				new Color(0x06A666), IconPath.Settingsx64, this);
 
-		contentPanel.add(contentPanel1);
-		contentPanel.add(contentPanel2);
-		contentPanel.add(contentPanel3);
+		PlayAudioSotry = setupJButton(Words.get(WordTypes.PlayAudioStory), Font.PLAIN, 35,
+				CardGame.BackgroudColorMatch2, new Color(0x06A666), false, this);
 
-		framePanel = new JPanel();
-		framePanel.setBackground(CardGame.BackgroudColorMatch2);
-		framePanel.setLayout(new BorderLayout());
+		PlayGame = setupJButton(Words.get(WordTypes.Play), Font.PLAIN, 35, CardGame.BackgroudColorMatch2,
+				new Color(0x06A666), IconPath.Play, this);
 
-		framePanel.add(titelPanel, BorderLayout.NORTH);
-		framePanel.add(PanelmainEast, BorderLayout.EAST);
-		framePanel.add(PanelmainWest, BorderLayout.WEST);
-		framePanel.add(PanelmainSouth, BorderLayout.SOUTH);
-		framePanel.add(contentPanel, BorderLayout.CENTER);
+		contentPanel3 = setupJPanel(new GridLayout(1, 3, 10, 10), CardGame.BackgroundColor, Settings, PlayAudioSotry,
+				PlayGame);
+
+		contentPanel = setupJPanel(new GridLayout(3, 1, 10, 10), CardGame.BackgroundColor, contentPanel1, contentPanel2,
+				contentPanel3);
+
+		framePanel = setupJPanel(new BorderLayout(), CardGame.BackgroudColorMatch2, titelPanel, BorderLayout.NORTH,
+				PanelmainEast, BorderLayout.EAST, PanelmainWest, BorderLayout.WEST, PanelmainSouth, BorderLayout.SOUTH,
+				contentPanel, BorderLayout.CENTER);
 
 		this.frame.add(framePanel, BorderLayout.CENTER);
 	}

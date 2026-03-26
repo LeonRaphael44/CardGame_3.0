@@ -35,6 +35,9 @@ public abstract class GUI {
     public JPanel contentPanelBottom;
     public JPanel contentPanelBottom_Left;
     public JPanel contentPanelBottom_Right;
+    public JPanel titelPanel;
+
+    public JLabel titellbl;
 
     public GUI() {
         this.frame = new JFrame();
@@ -141,9 +144,9 @@ public abstract class GUI {
         return jLabel;
     }
 
-    public JLabel setupJLabel(String setText, int fontSize, Color setBackgroundForJLabel) {
+    public JLabel setupJLabel(String text, int fontSize, Color setBackgroundForJLabel) {
         JLabel jLabel = new JLabel();
-        jLabel.setText(setText);
+        jLabel.setText(text);
         jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, fontSize));
         jLabel.setBackground(setBackgroundForJLabel);
         jLabel.setForeground(Color.green);
@@ -153,15 +156,63 @@ public abstract class GUI {
         return jLabel;
     }
 
-    public JLabel setupJLabel(String setText, int fontSize, Color setBackgroundForJLabel, boolean isOpaque) {
+    public JLabel setupJLabel(String text, int font, int fontSize) {
         JLabel jLabel = new JLabel();
-        jLabel.setText(setText);
+        jLabel.setText(text);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
+        jLabel.setForeground(Color.green);
+        jLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(String text, int fontSize, Color setBackgroundForJLabel, boolean isOpaque) {
+        JLabel jLabel = new JLabel();
+        jLabel.setText(text);
         jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, fontSize));
         jLabel.setBackground(setBackgroundForJLabel);
         jLabel.setOpaque(isOpaque);
         jLabel.setForeground(Color.green);
         jLabel.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(String text, int font, int fontSize, int hAlligment, int vAlligment) {
+        JLabel jLabel = new JLabel();
+        jLabel.setText(text);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
+        jLabel.setForeground(new Color(0x06A666));
+        jLabel.setHorizontalAlignment(hAlligment);
+        jLabel.setVerticalAlignment(vAlligment);
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(int width, int height, String text, int font, int fontSize, int hAlligment,
+            int vAlligment) {
+        JLabel jLabel = new JLabel();
+        jLabel.setPreferredSize(new Dimension(width, height));
+        jLabel.setText(text);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
+        jLabel.setForeground(new Color(0x06A666));
+        jLabel.setHorizontalAlignment(hAlligment);
+        jLabel.setVerticalAlignment(vAlligment);
+
+        return jLabel;
+    }
+
+    public JLabel setupJLabel(int width, int height, String text, int font, int fontSize, Color color, int hAlligment,
+            int htextPosition) {
+        JLabel jLabel = new JLabel();
+        jLabel.setPreferredSize(new Dimension(width, height));
+        jLabel.setText(text);
+        jLabel.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
+        jLabel.setForeground(color);
+        jLabel.setHorizontalAlignment(hAlligment);
+        jLabel.setHorizontalTextPosition(htextPosition);
 
         return jLabel;
     }
@@ -246,6 +297,40 @@ public abstract class GUI {
         return jButton;
     }
 
+    public JButton setupJButton(String text, int font, int fontSize, Color background, Color foreground,
+            boolean visible, ActionListener actionListener) {
+        JButton jButton = new JButton();
+        jButton.setText(text);
+        jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
+        jButton.setBackground(background);
+        jButton.setForeground(foreground);
+        jButton.setFocusable(false);
+        jButton.setBorder(BorderFactory.createEmptyBorder());
+        jButton.setVisible(visible);
+
+        jButton.addActionListener(actionListener);
+
+        return jButton;
+
+    }
+
+    public JButton setupJButton(String text, int font, int fontSize, Color background, Color foreground,
+            IconPath iconPath, ActionListener actionListener) {
+        JButton jButton = new JButton();
+        jButton.setText(text);
+        jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
+        jButton.setBackground(background);
+        jButton.setForeground(foreground);
+        jButton.setIcon(new IconManager(iconPath).getImageIcon());
+        jButton.setFocusable(false);
+        jButton.setBorder(BorderFactory.createEmptyBorder());
+
+        jButton.addActionListener(actionListener);
+
+        return jButton;
+
+    }
+
     public JButton setupJButton(String text, IconPath iconPath, ActionListener actionListener) {
         JButton jButton = new JButton();
         jButton.setPreferredSize(new Dimension(180, 30));
@@ -260,6 +345,22 @@ public abstract class GUI {
         jButton.setHorizontalAlignment(SwingConstants.CENTER);
 
         jButton.addActionListener(actionListener);
+
+        return jButton;
+    }
+
+    public JButton setupJButton(String text, int fontsize, Color backgroundColor, Color foregroundColor,
+            int directionHorrizontalAlligment, int directionHorizontalTextPosition, ActionListener actionListener) {
+        JButton jButton = new JButton();
+        jButton.setText(text);
+        jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, fontsize));
+        jButton.setBackground(backgroundColor);
+        jButton.setForeground(foregroundColor);
+        jButton.setHorizontalAlignment(directionHorrizontalAlligment);
+        jButton.setHorizontalTextPosition(directionHorizontalTextPosition);
+        jButton.setFocusable(false);
+        jButton.addActionListener(actionListener);
+        jButton.setBorder(BorderFactory.createEmptyBorder());
 
         return jButton;
     }
