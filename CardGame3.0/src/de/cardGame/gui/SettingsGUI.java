@@ -35,7 +35,6 @@ import de.cardGame.utils.words.Words;
 
 public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 
-	private JPanel titelPanel;
 	private JPanel mainEast;
 	private JPanel mainWest;
 	private JPanel mainSouth;
@@ -52,7 +51,6 @@ public class SettingsGUI extends GUI implements ActionListener, ChangeListener {
 	private JSlider slider;
 	private JLabel slidertitellbl;
 	private JLabel sliderbottomlbl;
-	private JLabel titellbl;
 	private JCheckBox AutoPlayAfterGameEndckb;
 	private JCheckBox AutoSaveAfterChangesckb;
 	private JButton Speichern;
