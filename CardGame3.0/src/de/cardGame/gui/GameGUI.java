@@ -70,11 +70,7 @@ public class GameGUI extends GUI implements ActionListener {
 				CardGame.BackgroundColor, Color.green,
 				SwingConstants.CENTER, SwingConstants.CENTER, this);
 
-		menuBar = new JMenuBar();
-		menuBar.setBackground(CardGame.BackgroundColor);
-		menuBar.setPreferredSize(new Dimension(420, 32));
-		menuBar.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-		menuBar.setBorder(BorderFactory.createEmptyBorder());
+		menuBar = setupJMenuBar(420, 32, Font.PLAIN, 20);
 
 		Pages = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_P, IconPath.Pagesx32);
 

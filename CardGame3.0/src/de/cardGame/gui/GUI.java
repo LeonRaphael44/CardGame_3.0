@@ -14,6 +14,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
@@ -396,6 +397,16 @@ public abstract class GUI {
         jProgressBar.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
 
         return jProgressBar;
+    }
+
+    public JMenuBar setupJMenuBar(int width, int height, int font, int fontSize) {
+        JMenuBar jMenuBar = new JMenuBar();
+        jMenuBar.setPreferredSize(new Dimension(width, height));
+        jMenuBar.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
+        jMenuBar.setBackground(CardGame.BackgroundColor);
+        jMenuBar.setBorder(BorderFactory.createEmptyBorder());
+
+        return jMenuBar;
     }
 
     public void close() {
