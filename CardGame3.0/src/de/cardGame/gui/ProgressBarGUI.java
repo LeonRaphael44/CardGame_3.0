@@ -15,7 +15,7 @@ import de.cardGame.utils.icons.IconPath;
 import de.cardGame.utils.words.WordTypes;
 import de.cardGame.utils.words.Words;
 
-public class ProgressBarGUI {
+public class ProgressBarGUI extends GUI {
 
 	private JFrame frame = null;
 	private JPanel panel = null;
@@ -29,7 +29,7 @@ public class ProgressBarGUI {
 		this.frame.setLayout(new BorderLayout());
 		this.frame.setResizable(false);
 		this.frame.setIconImage(new IconManager(IconPath.GameIcon).getImage());
-		// this.frame.setTitle(Titel);
+		this.frame.setTitle(Titel);
 		this.frame.setAlwaysOnTop(false);
 		SetFrameVisible(true);
 
@@ -37,12 +37,6 @@ public class ProgressBarGUI {
 		int height = CardGame.getGraphicsDevice().getDisplayMode().getHeight();
 
 		this.frame.setLocation((width / 2) - 210, (height / 2) - 45);
-
-		panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		panel.setBackground(Color.green);
-
-		// panel = setupJPanel();
 
 		progressBar = new JProgressBar(0, maximum);
 		progressBar.setPreferredSize(new Dimension(420, 50));
@@ -52,7 +46,7 @@ public class ProgressBarGUI {
 		progressBar.setForeground(Color.red);
 		progressBar.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.BOLD, 25));
 
-		panel.add(progressBar, BorderLayout.NORTH);
+		panel = setupJPanel(new BorderLayout(), Color.green, progressBar, BorderLayout.NORTH);
 
 		this.frame.add(panel, BorderLayout.CENTER);
 
