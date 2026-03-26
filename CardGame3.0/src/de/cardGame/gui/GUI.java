@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,7 +15,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
@@ -85,7 +88,7 @@ public abstract class GUI {
         jPanel.setLayout(layout);
         jPanel.setBackground(background);
 
-        addComponentsWithConstraints(jPanel, components);
+        addComponentsWithConstraintsForJPanel(jPanel, components);
 
         return jPanel;
     }
@@ -97,12 +100,12 @@ public abstract class GUI {
         jPanel.setPreferredSize(new Dimension(width, height));
         jPanel.setBackground(background);
 
-        addComponentsWithConstraints(jPanel, components);
+        addComponentsWithConstraintsForJPanel(jPanel, components);
 
         return jPanel;
     }
 
-    public void addComponentsWithConstraints(JPanel jPanel, Object... components) {
+    public void addComponentsWithConstraintsForJPanel(JPanel jPanel, Object... components) {
         for (int i = 0; i < components.length; i++) {
             if (components[i] instanceof Component) {
                 // check if next is a constraint
@@ -399,14 +402,73 @@ public abstract class GUI {
         return jProgressBar;
     }
 
-    public JMenuBar setupJMenuBar(int width, int height, int font, int fontSize) {
+    public JMenu setupJMenu(String arg0, int keyEvent, IconPath iconPath, Object... components) {
+        JMenu jMenu = new JMenu(arg0);
+        jMenu.setBackground(CardGame.BackgroundColor);
+        jMenu.setFocusable(false);
+        jMenu.setMnemonic(keyEvent);
+        jMenu.setForeground(new Color(0x06A666));
+        jMenu.setIcon(new IconManager(iconPath).getImageIcon());
+        jMenu.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
+        addComponentsWithConstraintsForJMenu(jMenu, components);
+
+        return jMenu;
+    }
+
+    public void addComponentsWithConstraintsForJMenu(JMenu jMenu, Object... components) {
+        for (int i = 0; i < components.length; i++) {
+            if (components[i] instanceof Component) {
+                // check if next is a constraint
+                if (i + 1 < components.length && !(components[i + 1] instanceof Component)) {
+                    jMenu.add((Component) components[i], components[i + 1]);
+                    i++; // skip constraint
+                } else {
+                    jMenu.add((Component) components[i]);
+                }
+
+            }
+        }
+    }
+
+    public JMenuBar setupJMenuBar(int width, int height, int font, int fontSize, Object... components) {
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.setPreferredSize(new Dimension(width, height));
         jMenuBar.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
         jMenuBar.setBackground(CardGame.BackgroundColor);
         jMenuBar.setBorder(BorderFactory.createEmptyBorder());
 
+        addComponentsWithConstraintsForJMenuBar(jMenuBar, components);
+
         return jMenuBar;
+    }
+
+    public void addComponentsWithConstraintsForJMenuBar(JMenuBar jMenuBar, Object... components) {
+        for (int i = 0; i < components.length; i++) {
+            if (components[i] instanceof Component) {
+                // check if next is a constraint
+                if (i + 1 < components.length && !(components[i + 1] instanceof Component)) {
+                    jMenuBar.add((Component) components[i], components[i + 1]);
+                    i++; // skip constraint
+                } else {
+                    jMenuBar.add((Component) components[i]);
+                }
+
+            }
+        }
+    }
+
+    public JMenuItem setupJMenuItem(String arg0, int keyEvent, ActionListener actionListener, IconPath iconpath) {
+        JMenuItem jMenuitem = new JMenuItem(arg0);
+        jMenuitem.setBackground(CardGame.BackgroundColor);
+        jMenuitem.setFocusable(false);
+        jMenuitem.setMnemonic(keyEvent);
+        jMenuitem.setForeground(new Color(0x06A666));
+        jMenuitem.addActionListener(actionListener);
+        jMenuitem.setIcon(new IconManager(iconpath).getImageIcon());
+        jMenuitem.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
+
+        return jMenuitem;
     }
 
     public void close() {

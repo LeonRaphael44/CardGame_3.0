@@ -70,44 +70,30 @@ public class GameGUI extends GUI implements ActionListener {
 				CardGame.BackgroundColor, Color.green,
 				SwingConstants.CENTER, SwingConstants.CENTER, this);
 
-		menuBar = setupJMenuBar(420, 32, Font.PLAIN, 20);
+		CardPath = setupJMenuItem(Words.get(WordTypes.CardPath), KeyEvent.VK_K,
+				this, IconPath.CardPathx32);
 
-		Pages = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_P, IconPath.Pagesx32);
+		Settings = setupJMenuItem(Words.get(WordTypes.Settings), KeyEvent.VK_S, this, IconPath.Settingsx32);
+
+		Startscreen = setupJMenuItem(Words.get(WordTypes.StartScreen), KeyEvent.VK_T, this, IconPath.Startscreenx32);
+
+		ProgrammedByHelp = setupJMenuItem(Words.get(WordTypes.ProgrammedBy), 0, this,
+				IconPath.ProgrammedByx32);
+
+		KeyUse = setupJMenuItem(Words.get(WordTypes.KeyUse), 0, this, IconPath.KeyUsex32);
+
+		PageBack = setupJMenuItem(Words.get(WordTypes.PageBack), KeyEvent.VK_Z, this, IconPath.CardBackx32);
+
+		kannstdulesen = setupJMenuItem(Words.get(WordTypes.KannstDuLesen), 0, this, IconPath.KannstDuLesen);
+		kannstdulesen.setVisible(false);
+
+		Pages = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_P, IconPath.Pagesx32, Settings, Startscreen);
+
+		Help = setupJMenu(Words.get(WordTypes.Help), KeyEvent.VK_H, IconPath.Helpx32, ProgrammedByHelp, KeyUse);
 
 		Extras = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_E, IconPath.Extrasx32);
 
-		Help = setupJMenu(Words.get(WordTypes.Help), KeyEvent.VK_H, IconPath.Helpx32);
-
-		CardPath = setupJMenuItem(Words.get(WordTypes.CardPath), KeyEvent.VK_K,
-				IconPath.CardPathx32);
-
-		Settings = setupJMenuItem(Words.get(WordTypes.Settings), KeyEvent.VK_S, IconPath.Settingsx32);
-
-		Startscreen = setupJMenuItem(Words.get(WordTypes.StartScreen), KeyEvent.VK_T, IconPath.Startscreenx32);
-
-		ProgrammedByHelp = setupJMenuItem(Words.get(WordTypes.ProgrammedBy), 0,
-				IconPath.ProgrammedByx32);
-
-		KeyUse = setupJMenuItem(Words.get(WordTypes.KeyUse), 0, IconPath.KeyUsex32);
-
-		PageBack = setupJMenuItem(Words.get(WordTypes.PageBack), KeyEvent.VK_Z, IconPath.CardBackx32);
-
-		kannstdulesen = setupJMenuItem(Words.get(WordTypes.KannstDuLesen), 0, IconPath.KannstDuLesen);
-		kannstdulesen.setVisible(false);
-
-		Pages.add(Settings);
-		Pages.add(Startscreen);
-
-		Help.add(ProgrammedByHelp);
-		Help.add(KeyUse);
-
-		Extras.add(PageBack);
-		Extras.add(CardPath);
-
-		menuBar.add(Pages);
-		menuBar.add(Extras);
-		menuBar.add(Help);
-		menuBar.add(kannstdulesen);
+		menuBar = setupJMenuBar(420, 32, Font.PLAIN, 20, Pages, Extras, Help, kannstdulesen);
 
 		this.frame.setJMenuBar(menuBar);
 
@@ -253,31 +239,6 @@ public class GameGUI extends GUI implements ActionListener {
 		}
 
 		return jPanel;
-	}
-
-	public JMenu setupJMenu(String arg0, int keyEvent, IconPath iconPath) {
-		JMenu jMenu = new JMenu(arg0);
-		jMenu.setBackground(CardGame.BackgroundColor);
-		jMenu.setFocusable(false);
-		jMenu.setMnemonic(keyEvent);
-		jMenu.setForeground(new Color(0x06A666));
-		jMenu.setIcon(new IconManager(iconPath).getImageIcon());
-		jMenu.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-
-		return jMenu;
-	}
-
-	public JMenuItem setupJMenuItem(String arg0, int keyEvent, IconPath iconpath) {
-		JMenuItem jMenuitem = new JMenuItem(arg0);
-		jMenuitem.setBackground(CardGame.BackgroundColor);
-		jMenuitem.setFocusable(false);
-		jMenuitem.setMnemonic(keyEvent);
-		jMenuitem.setForeground(new Color(0x06A666));
-		jMenuitem.addActionListener(this);
-		jMenuitem.setIcon(new IconManager(iconpath).getImageIcon());
-		jMenuitem.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 20));
-
-		return jMenuitem;
 	}
 
 	public JLabel setupJLabel(String text, int arg0, int arg1) {
