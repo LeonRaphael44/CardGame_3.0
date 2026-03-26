@@ -91,7 +91,7 @@ public class GameGUI extends GUI implements ActionListener {
 
 		Help = setupJMenu(Words.get(WordTypes.Help), KeyEvent.VK_H, IconPath.Helpx32, ProgrammedByHelp, KeyUse);
 
-		Extras = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_E, IconPath.Extrasx32);
+		Extras = setupJMenu(Words.get(WordTypes.Pages), KeyEvent.VK_E, IconPath.Extrasx32, PageBack, CardPath);
 
 		menuBar = setupJMenuBar(420, 32, Font.PLAIN, 20, Pages, Extras, Help, kannstdulesen);
 
