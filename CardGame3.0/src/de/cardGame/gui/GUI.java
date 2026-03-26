@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
@@ -383,6 +384,18 @@ public abstract class GUI {
         jButton.addActionListener(actionListener);
 
         return jButton;
+    }
+
+    public JProgressBar setupJProgressBar(int min, int max, int width, int height, int value, int font, int fontSize) {
+        JProgressBar jProgressBar = new JProgressBar(min, max);
+        jProgressBar.setPreferredSize(new Dimension(420, 50));
+        jProgressBar.setValue(value);
+        jProgressBar.setStringPainted(true);
+        jProgressBar.setBackground(Color.black);
+        jProgressBar.setForeground(Color.red);
+        jProgressBar.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontSize));
+
+        return jProgressBar;
     }
 
     public void close() {

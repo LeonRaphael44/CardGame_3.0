@@ -2,7 +2,6 @@ package de.cardGame.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -38,13 +37,7 @@ public class ProgressBarGUI extends GUI {
 
 		this.frame.setLocation((width / 2) - 210, (height / 2) - 45);
 
-		progressBar = new JProgressBar(0, maximum);
-		progressBar.setPreferredSize(new Dimension(420, 50));
-		progressBar.setValue(0);
-		progressBar.setStringPainted(true);
-		progressBar.setBackground(Color.black);
-		progressBar.setForeground(Color.red);
-		progressBar.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.BOLD, 25));
+		progressBar = setupJProgressBar(0, maximum, 420, 50, 0, Font.BOLD, 25);
 
 		panel = setupJPanel(new BorderLayout(), Color.green, progressBar, BorderLayout.NORTH);
 
