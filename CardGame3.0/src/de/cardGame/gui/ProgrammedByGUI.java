@@ -2,17 +2,16 @@ package de.cardGame.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+
 import javax.swing.SwingConstants;
 
 import de.cardGame.andereGames.GamesGUI;
@@ -28,14 +27,7 @@ import de.cardGame.utils.words.Words;
 
 public class ProgrammedByGUI extends GUI implements ActionListener {
 
-	private JFrame frame;
-	private JPanel framePanel = new JPanel();
-	private JPanel PanelmainNorth = new JPanel();
-	private JPanel PanelmainEast = new JPanel();
-	private JPanel PanelmainWest = new JPanel();
-	private JPanel PanelmainSouth = new JPanel();
-	private JPanel contentPanel = new JPanel();
-	private JLabel titellbl, Namelbl, Geburtstagslbl, Copyright;
+	private JLabel Namelbl, Geburtstagslbl, Copyright;
 	private JButton btnZocken;
 
 	public ProgrammedByGUI() {
@@ -62,71 +54,28 @@ public class ProgrammedByGUI extends GUI implements ActionListener {
 		Geburtstagslbl = setupJLabel(Words.get(WordTypes.Geburtstag) + ": 2002",
 				24, CardGame.BackgroudColorMatch2);
 
-		btnZocken = new JButton();
-		btnZocken.setText(Words.get(WordTypes.VielSpassBeimZocken));
-		btnZocken.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 24));
-		btnZocken.setBackground(CardGame.BackgroudColorMatch2);
-		btnZocken.setOpaque(true);
-		btnZocken.setFocusable(false);
-		btnZocken.addActionListener(this);
-		btnZocken.setForeground(Color.green);
-		btnZocken.setHorizontalAlignment(SwingConstants.CENTER);
-		btnZocken.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnZocken.setBorder(BorderFactory.createEmptyBorder());
+		btnZocken = setupJButton(Words.get(WordTypes.VielSpassBeimZocken), Font.PLAIN, 24,
+				CardGame.BackgroudColorMatch2, Color.green, SwingConstants.CENTER, SwingConstants.CENTER, false, this);
 
 		Copyright = setupJLabel("� Copyright 2021 Timon Filz",
 				24, CardGame.BackgroudColorMatch2);
 
-		PanelmainNorth = new JPanel();
-		PanelmainNorth.setBackground(CardGame.BackgroundColor);
-		PanelmainNorth.setLayout(new BorderLayout());
-		PanelmainNorth.add(titellbl);
+		PanelmainNorth = setupJPanel(new BorderLayout(), CardGame.BackgroundColor, titellbl);
 
-		// PanelmainNorth = setupJPanel(titellbl);
+		PanelmainEast = setupJPanel(new BorderLayout(), 20, 20, CardGame.BackgroundColor);
 
-		PanelmainEast = new JPanel();
-		PanelmainEast.setPreferredSize(new Dimension(20, 20));
-		PanelmainEast.setBackground(CardGame.BackgroundColor);
-		PanelmainEast.setLayout(new BorderLayout());
+		PanelmainWest = setupJPanel(new BorderLayout(), 20, 20, CardGame.BackgroundColor);
 
-		PanelmainWest = new JPanel();
-		PanelmainWest.setPreferredSize(new Dimension(20, 20));
-		PanelmainWest.setBackground(CardGame.BackgroundColor);
-		PanelmainWest.setLayout(new BorderLayout());
+		PanelmainSouth = setupJPanel(new BorderLayout(), 20, 20, CardGame.BackgroundColor);
 
-		PanelmainSouth = new JPanel();
-		PanelmainSouth.setPreferredSize(new Dimension(20, 20));
-		PanelmainSouth.setBackground(CardGame.BackgroundColor);
-		PanelmainSouth.setLayout(new BorderLayout());
+		contentPanel = setupJPanel(new GridLayout(4, 1, 10, 10), CardGame.BackgroundColor, Namelbl, Geburtstagslbl,
+				btnZocken, Copyright);
 
-		contentPanel = new JPanel();
-		contentPanel.setBackground(CardGame.BackgroundColor);
-		contentPanel.setLayout(new GridLayout(4, 1, 10, 10));
-
-		contentPanel.add(Namelbl);
-		contentPanel.add(Geburtstagslbl);
-		contentPanel.add(btnZocken);
-		contentPanel.add(Copyright);
-
-		framePanel = new JPanel();
-		framePanel.setBackground(CardGame.BackgroundColor);
-		framePanel.setLayout(new BorderLayout());
-
-		framePanel.add(PanelmainNorth, BorderLayout.NORTH);
-		framePanel.add(PanelmainEast, BorderLayout.EAST);
-		framePanel.add(PanelmainWest, BorderLayout.WEST);
-		framePanel.add(PanelmainSouth, BorderLayout.SOUTH);
-		framePanel.add(contentPanel, BorderLayout.CENTER);
+		framePanel = setupJPanel(new BorderLayout(), CardGame.BackgroundColor, PanelmainNorth, BorderLayout.NORTH,
+				PanelmainEast, BorderLayout.EAST, PanelmainWest, BorderLayout.WEST, PanelmainSouth, BorderLayout.SOUTH,
+				contentPanel, BorderLayout.CENTER);
 
 		this.frame.add(framePanel);
-	}
-
-	// public JFrame getFrame() {
-	// return frame;
-	// }
-
-	public void Close() {
-		this.frame.dispose();
 	}
 
 	@Override

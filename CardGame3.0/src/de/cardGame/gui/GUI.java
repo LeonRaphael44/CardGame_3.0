@@ -359,9 +359,37 @@ public abstract class GUI {
         jButton.setHorizontalAlignment(directionHorrizontalAlligment);
         jButton.setHorizontalTextPosition(directionHorizontalTextPosition);
         jButton.setFocusable(false);
-        jButton.addActionListener(actionListener);
         jButton.setBorder(BorderFactory.createEmptyBorder());
 
+        jButton.addActionListener(actionListener);
+
         return jButton;
+    }
+
+    public JButton setupJButton(String text, int font, int fontsize, Color backgroundColor, Color foregroundColor,
+            int directionHorrizontalAlligment, int directionHorizontalTextPosition, boolean isOpaque,
+            ActionListener actionListener) {
+        JButton jButton = new JButton();
+        jButton.setText(text);
+        jButton.setFont(new Font(CardGame.getSettings().getSchriftart(), font, fontsize));
+        jButton.setBackground(backgroundColor);
+        jButton.setForeground(foregroundColor);
+        jButton.setHorizontalAlignment(directionHorrizontalAlligment);
+        jButton.setHorizontalTextPosition(directionHorizontalTextPosition);
+        jButton.setFocusable(false);
+        jButton.setOpaque(isOpaque);
+        jButton.setBorder(BorderFactory.createEmptyBorder());
+
+        jButton.addActionListener(actionListener);
+
+        return jButton;
+    }
+
+    public void close() {
+        this.frame.dispose();
+    }
+
+    public void actionPerformed() {
+
     }
 }
