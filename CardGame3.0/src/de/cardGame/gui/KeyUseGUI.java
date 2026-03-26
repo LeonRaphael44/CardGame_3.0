@@ -85,8 +85,4 @@ public class KeyUseGUI extends GUI {
 		this.frame.add(framePanel);
 	}
 
-	public void Close() {
-		this.frame.dispose();
-	}
-
 }
