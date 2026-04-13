@@ -146,15 +146,9 @@ public class GameGUI extends GUI implements ActionListener {
 		PanelmainSouth = setupMainJPanel(new BorderLayout(), 40, 30, CardGame.BackgroundColor, StoryCreator,
 				BorderLayout.CENTER, ProgrammedBy, BorderLayout.EAST, PlaceHolderProgrammedBy, BorderLayout.WEST);
 
-		framePanel = new JPanel();
-		framePanel.setBackground(new Color(0x505050));
-		framePanel.setLayout(new BorderLayout());
-
-		framePanel.add(PanelmainNorth, BorderLayout.NORTH);
-		framePanel.add(PanelmainEast, BorderLayout.EAST);
-		framePanel.add(PanelmainWest, BorderLayout.WEST);
-		framePanel.add(PanelmainSouth, BorderLayout.SOUTH);
-		framePanel.add(contentPanel, BorderLayout.CENTER);
+		framePanel = setupJPanel(new BorderLayout(), new Color(
+				0x505050), PanelmainNorth, BorderLayout.NORTH, PanelmainEast, BorderLayout.EAST, PanelmainWest,
+				BorderLayout.WEST, PanelmainSouth, BorderLayout.SOUTH, contentPanel, BorderLayout.CENTER);
 
 		this.frame.add(framePanel);
 
