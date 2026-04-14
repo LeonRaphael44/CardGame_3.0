@@ -607,63 +607,43 @@ public class GameGUI extends GUI implements ActionListener {
 
 	private void SprachausgabenAsistent(TextType X) {
 		if (sa == null) {
-			sa = new SprachAusgabe(Card.getCardByID(Card.AktiveCardID), X);
-			t = new Timer();
-			t.schedule(new TimerTask() {
-				@Override
-				public void run() {
-					setPlayButtonsIconsAfterEnd();
-				}
-			}, sa.getCliplength() / 1000);
+			voiceOutput(X);
 		} else {
 			if (sa.isRunning()) {
 				if (sa.getPlayedcard() == Card.getCardByID(Card.AktiveCardID)) {
 					if (sa.getPlayedText().equals(X)) {
-						sa.Stop();
-						if (t != null) {
-							t.cancel();
-							t = null;
-						}
+						stopVoiceOutput();
 					} else {
-						sa.Stop();
-						if (t != null) {
-							t.cancel();
-							t = null;
-						}
-						sa = new SprachAusgabe(Card.getCardByID(Card.AktiveCardID), X);
-						t = new Timer();
-						t.schedule(new TimerTask() {
-							@Override
-							public void run() {
-								setPlayButtonsIconsAfterEnd();
-							}
-						}, sa.getCliplength() / 1000);
+						stopVoiceOutput();
+						voiceOutput(X);
 					}
 				} else {
-					sa.Stop();
-					if (t != null) {
-						t.cancel();
-						t = null;
-					}
-					sa = new SprachAusgabe(Card.getCardByID(Card.AktiveCardID), X);
-					t = new Timer();
-					t.schedule(new TimerTask() {
-						@Override
-						public void run() {
-							setPlayButtonsIconsAfterEnd();
-						}
-					}, sa.getCliplength() / 1000);
+					stopVoiceOutput();
+					voiceOutput(X);
 				}
 			} else {
-				sa = new SprachAusgabe(Card.getCardByID(Card.AktiveCardID), X);
-				t = new Timer();
-				t.schedule(new TimerTask() {
-					@Override
-					public void run() {
-						setPlayButtonsIconsAfterEnd();
-					}
-				}, sa.getCliplength() / 1000);
+				voiceOutput(X);
 			}
 		}
 	}
+
+	private void voiceOutput(TextType x) {
+		sa = new SprachAusgabe(Card.getCardByID(Card.AktiveCardID), x);
+		t = new Timer();
+		t.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				setPlayButtonsIconsAfterEnd();
+			}
+		}, sa.getCliplength() / 1000);
+	}
+
+	private void stopVoiceOutput() {
+		sa.Stop();
+		if (t != null) {
+			t.cancel();
+			t = null;
+		}
+	}
+
 }
