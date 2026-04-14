@@ -548,6 +548,7 @@ public class GameGUI extends GUI implements ActionListener {
 
 	@SuppressWarnings("deprecation")
 	private void ShowCardPath() {
+		JOptionPane p;
 		String text = Words.choosenWay.toString().replace("[", "").replace("]", "");
 		System.out.println(text);
 		if (Words.choosenWay.size() > 0) {
@@ -565,24 +566,24 @@ public class GameGUI extends GUI implements ActionListener {
 			}
 			String ende = Words.choosenWay.toString().replace("[", "").replace("]", "").replace(", ", " → ");
 			System.out.println(ende);
-			JOptionPane p = new JOptionPane(Words.getHtmlText(ende));
-			p.setBackground(Color.DARK_GRAY);
-			p.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-			JDialog dialog = p.createDialog(Words.get(WordTypes.CardPath));
-			dialog.setBackground(Color.DARK_GRAY);
-			dialog.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-			dialog.setAlwaysOnTop(true);
-			dialog.show();
+
+			p = setupJOptionPane(Words.getHtmlText(ende));
 		} else {
-			JOptionPane p = new JOptionPane(Words.getHtmlText(Words.get(WordTypes.NoCardsChoosen)));
-			p.setBackground(Color.DARK_GRAY);
-			p.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-			JDialog dialog = p.createDialog(Words.get(WordTypes.CardPath));
-			dialog.setBackground(Color.DARK_GRAY);
-			dialog.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
-			dialog.setAlwaysOnTop(true);
-			dialog.show();
+			p = setupJOptionPane(Words.getHtmlText(Words.get(WordTypes.NoCardsChoosen)));
 		}
+	}
+
+	private JOptionPane setupJOptionPane(Object message) {
+		JOptionPane p = new JOptionPane(message);
+		p.setBackground(Color.DARK_GRAY);
+		p.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
+		JDialog dialog = p.createDialog(Words.get(WordTypes.CardPath));
+		dialog.setBackground(Color.DARK_GRAY);
+		dialog.setFont(new Font(CardGame.getSettings().getSchriftart(), Font.PLAIN, 12));
+		dialog.setAlwaysOnTop(true);
+		dialog.show();
+
+		return p;
 	}
 
 	public void setPlayButtonsIconsAfterEnd() {
