@@ -523,81 +523,41 @@ public class GameGUI extends GUI implements ActionListener {
 	private void handleQuiz() {
 		try {
 			if (Card.AktiveCardID == 43 || Card.AktiveCardID == 50) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card43und50Fehler));
-				if (intput.equalsIgnoreCase(Words.get(WordTypes.Roulette))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
-							Words.get(WordTypes.Card43und50Fehler), JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
-							Words.get(WordTypes.Card43und50Fehler), JOptionPane.ERROR_MESSAGE);
-				}
+				showMessageDialogOfJOptiionPane(WordTypes.Card43und50Fehler);
 			}
 			if (Card.AktiveCardID == 26 && !Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card26Fehler));
-				if (intput.equalsIgnoreCase(Words.get(WordTypes.marrythem))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
-							Words.get(WordTypes.Card26Fehler), JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
-							Words.get(WordTypes.Card26Fehler), JOptionPane.ERROR_MESSAGE);
-				}
+				showMessageDialogOfJOptiionPane(WordTypes.Card26Fehler);
 			}
 			if (Card.AktiveCardID == 64 && !Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card64Fehler));
-				if (intput.equalsIgnoreCase(Words.get(WordTypes.your))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
-							Words.get(WordTypes.Card64Fehler), JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
-							Words.get(WordTypes.Card64Fehler), JOptionPane.ERROR_MESSAGE);
-				}
+				showMessageDialogOfJOptiionPane(WordTypes.Card64Fehler);
 			}
 			if (Card.AktiveCardID == 45 && Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card45Fehler));
-				if (intput.equalsIgnoreCase(Words.get(WordTypes.das))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
-							Words.get(WordTypes.Card45Fehler), JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
-							Words.get(WordTypes.Card45Fehler), JOptionPane.ERROR_MESSAGE);
-				}
+				showMessageDialogOfJOptiionPane(WordTypes.Card45Fehler);
 			}
 			if ((Card.AktiveCardID == 11 || Card.AktiveCardID == 21 || Card.AktiveCardID == 35
 					|| Card.AktiveCardID == 39 || Card.AktiveCardID == 65) && !Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card11_21_35_39_65Fehler));
-				if (intput.equalsIgnoreCase(Words.get(WordTypes.colleague))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
-							Words.get(WordTypes.Card11_21_35_39_65Fehler), JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
-							Words.get(WordTypes.Card11_21_35_39_65Fehler), JOptionPane.ERROR_MESSAGE);
-				}
+				showMessageDialogOfJOptiionPane(WordTypes.Card11_21_35_39_65Fehler);
 			}
 			if (Card.AktiveCardID == 13 && !Card.German) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card13Fehler));
-				if (intput.equalsIgnoreCase(Words.get(WordTypes.whom))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
-							Words.get(WordTypes.Card13Fehler), JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
-							Words.get(WordTypes.Card13Fehler), JOptionPane.ERROR_MESSAGE);
-				}
+				showMessageDialogOfJOptiionPane(WordTypes.Card13Fehler);
 			}
 			if (Card.AktiveCardID == 15) {
-				String intput = JOptionPane.showInputDialog(Words.get(WordTypes.Card15Fehler));
-				if (intput.equalsIgnoreCase(Words.get(WordTypes.two))) {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
-							Words.get(WordTypes.Card15Fehler), JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
-							Words.get(WordTypes.Card15Fehler), JOptionPane.ERROR_MESSAGE);
-				}
+				showMessageDialogOfJOptiionPane(WordTypes.Card15Fehler);
 			}
 		} catch (NullPointerException nullPointerException) {
 
 		}
 	}
 
+	private void showMessageDialogOfJOptiionPane(WordTypes wordType) {
+		String intput = JOptionPane.showInputDialog(Words.get(wordType));
+		if (intput.equalsIgnoreCase(Words.get(WordTypes.das))) {
+			JOptionPane.showMessageDialog(null, Words.get(WordTypes.Richtig),
+					Words.get(wordType), JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, Words.get(WordTypes.Falsch),
+					Words.get(wordType), JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void SetCardPathinStartScreen(StartScreenGUI startScreenGUI) {
